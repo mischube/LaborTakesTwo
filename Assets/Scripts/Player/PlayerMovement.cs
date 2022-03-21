@@ -11,6 +11,7 @@ namespace Player
         public float turnSmoothTime;
 
         private float _turnSmoothVelocity;
+        private float _gravityVelocity = 0.1f;
 
 
         // Update is called once per frame
@@ -21,6 +22,8 @@ namespace Player
                 camera.enabled = false;
                 return;
             }
+            
+            ApplyGravity();
 
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
@@ -42,6 +45,19 @@ namespace Player
 
             var moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
             characterController.Move(moveDir.normalized * speed * Time.deltaTime);
+        }
+
+        private void ApplyGravity()
+        {
+            if (!characterController.isGrounded)
+            {
+                _gravityVelocity += 0.1f;
+                characterController.Move(new Vector3(0f, -_gravityVelocity * Time.deltaTime, 0f));
+            }
+            else
+            {
+                _gravityVelocity = 0.1f;
+            }
         }
     }
 }
