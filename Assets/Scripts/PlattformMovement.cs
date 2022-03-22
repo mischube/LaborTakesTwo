@@ -1,10 +1,13 @@
 using System;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 
 public class PlattformMovement : MonoBehaviourPun
 {
     public float speed = 1f;
+
+    private Vector3 _difference;
 
 
     public void MoveInDirection(Vector3 direction)
@@ -12,6 +15,13 @@ public class PlattformMovement : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
 
-        transform.position += direction.normalized * speed * Time.deltaTime;
+        _difference = direction.normalized * speed * Time.deltaTime;
+        
+        transform.position += _difference;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        other.transform.position += _difference;
     }
 }
