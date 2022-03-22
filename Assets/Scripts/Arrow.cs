@@ -15,4 +15,12 @@ public class Arrow : MonoBehaviourPun
             plattformMovement.MoveInDirection(direction);
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.CompareTag("Player"))
+        {
+            plattformMovement.MoveInDirection(Vector3.zero);
+        }
+    }
 }

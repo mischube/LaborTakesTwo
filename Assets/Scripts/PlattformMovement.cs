@@ -16,12 +16,18 @@ public class PlattformMovement : MonoBehaviourPun
             return;
 
         _difference = direction.normalized * speed * Time.deltaTime;
-        
+
         transform.position += _difference;
     }
 
+
     private void OnTriggerStay(Collider other)
     {
-        other.transform.position += _difference;
+        if (other.transform.CompareTag("Player"))
+        {
+            Debug.Log(_difference);
+            // other.GetComponent<CharacterController>().Move(_difference);
+            other.transform.position += _difference;
+        }
     }
 }
