@@ -1,6 +1,4 @@
-using System;
 using Photon.Pun;
-using TMPro;
 using UnityEngine;
 
 public class PlattformMovement : MonoBehaviourPun
@@ -15,9 +13,9 @@ public class PlattformMovement : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
 
-        _difference = direction.normalized * speed * Time.deltaTime;
-
-        transform.position += _difference;
+        _difference = direction.normalized * (speed * Time.deltaTime);
+        
+        transform.Translate(_difference);
     }
 
 
