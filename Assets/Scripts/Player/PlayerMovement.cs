@@ -7,7 +7,7 @@ namespace Player
     {
         public CharacterController characterController;
         public float speed = 6f;
-        public Camera camera;
+        public Camera cam;
         public float turnSmoothTime;
 
         private float _turnSmoothVelocity;
@@ -18,11 +18,8 @@ namespace Player
         void Update()
         {
             if (!photonView.IsMine)
-            {
-                camera.enabled = false;
                 return;
-            }
-            
+
             ApplyGravity();
 
             float horizontal = Input.GetAxisRaw("Horizontal");
@@ -37,7 +34,7 @@ namespace Player
 
         private void MoveCharacter(Vector3 direction)
         {
-            var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + camera.transform.eulerAngles.y;
+            var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity,
                 turnSmoothTime);
 

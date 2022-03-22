@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 940478125072702062}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterController: {fileID: 1504431538775554852}
   speed: 6
-  camera: {fileID: 1504431540764554285}
+  cam: {fileID: 1504431540764554285}
   turnSmoothTime: 0.2
 --- !u!143 &1504431538775554852
 CharacterController:
@@ -67,7 +67,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 1
+  m_StepOffset: 0.9
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
