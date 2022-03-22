@@ -25,9 +25,7 @@ public class PlattformMovement : MonoBehaviourPun
     {
         if (other.transform.CompareTag("Player"))
         {
-            Debug.Log(_difference);
-            // other.GetComponent<CharacterController>().Move(_difference);
-            other.transform.position += _difference;
+            other.GetComponent<CharacterController>().Move(_difference);
         }
     }
 }
