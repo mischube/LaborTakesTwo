@@ -7,8 +7,8 @@ namespace Player
     {
         public CharacterController characterController;
         public float speed = 6f;
-        public Camera cam;
-        public float turnSmoothTime;
+        public Transform cam;
+        public float turnSmoothTime = 0.1f;
 
         private float _turnSmoothVelocity;
         private float _gravityVelocity = 0.1f;
@@ -34,7 +34,7 @@ namespace Player
 
         private void MoveCharacter(Vector3 direction)
         {
-            var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.transform.eulerAngles.y;
+            var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity,
                 turnSmoothTime);
 

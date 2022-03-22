@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using Cinemachine;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Player
@@ -11,6 +12,7 @@ namespace Player
             {
                 GetComponentInChildren<Camera>().enabled = false;
                 GetComponentInChildren<AudioListener>().enabled = false;
+                GetComponentInChildren<CinemachineFreeLook>().enabled = false;
             }
             else
             {
