@@ -10,9 +10,6 @@ public class PlattformMovement : MonoBehaviourPun
 
     public void MoveInDirection(Vector3 direction)
     {
-        if (!photonView.IsMine)
-            return;
-
         _difference = direction.normalized * (speed * Time.deltaTime);
         
         transform.Translate(_difference);
@@ -23,7 +20,7 @@ public class PlattformMovement : MonoBehaviourPun
     {
         if (other.transform.CompareTag("Player"))
         {
-            other.GetComponent<CharacterController>().Move(_difference);
+            other.transform.Translate(_difference);
         }
     }
 }

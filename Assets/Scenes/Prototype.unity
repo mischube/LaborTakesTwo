@@ -305,6 +305,7 @@ GameObject:
   - component: {fileID: 117166061}
   - component: {fileID: 117166063}
   - component: {fileID: 117166064}
+  - component: {fileID: 117166065}
   m_Layer: 0
   m_Name: Plattform
   m_TagString: Untagged
@@ -654,6 +655,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 117166061}
+  - {fileID: 117166065}
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -686,13 +688,29 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &117166065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117166054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!43 &186785432
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh26894
+  m_Name: pb_Mesh27012
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
