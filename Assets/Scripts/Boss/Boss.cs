@@ -21,4 +21,17 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(fireBallCd);
         fireBallActive = false;
     }
+
+    private void BossHit()
+    {
+        if (health <= 0)
+        {
+            BossDead();
+        }
+    }
+    
+    private void BossDead()
+    {
+        
+    }
 }
