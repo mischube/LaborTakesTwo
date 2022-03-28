@@ -150,7 +150,7 @@ GameObject:
   - component: {fileID: -4350774455710407121}
   - component: {fileID: 940478125072702062}
   - component: {fileID: 3912371620828553111}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1084,7 +1084,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504431540764554283}
-  m_LocalRotation: {x: 0.15457791, y: -0.000000015321712, z: 0.000000002336183, w: 0.9879806}
+  m_LocalRotation: {x: 0.15457791, y: -0.000000015321719, z: 0.0000000023361846, w: 0.9879806}
   m_LocalPosition: {x: 0, y: 6.040786, z: -16.907827}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
