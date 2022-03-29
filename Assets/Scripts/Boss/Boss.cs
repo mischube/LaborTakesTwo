@@ -28,7 +28,7 @@ public class Boss : MonoBehaviour
         {
             foreach (var player in cd)
             {
-                Instantiate(fireball, player.transform.position + new Vector3(0,-1,0), Quaternion.identity);
+                Instantiate(fireball, new Vector3(player.transform.position.x, 0.1f , player.transform.position.z), Quaternion.identity);
             }
         }
         yield return new WaitForSeconds(fireBallCd);
