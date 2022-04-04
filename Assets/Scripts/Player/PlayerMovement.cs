@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
@@ -5,56 +7,121 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviourPun
     {
-        public CharacterController characterController;
-        public float speed = 6f;
-        public Transform cam;
-        public float turnSmoothTime = 0.1f;
+        //All Controller and Objects
+    public CharacterController characterController;
+    public GameObject cam;
+    
+    //all public variables
+    public Transform groundCheck;
+    public LayerMask groundMask;
 
-        private float _turnSmoothVelocity;
-        private float _gravityVelocity = 0.1f;
+    //general variables
+    private bool isGrounded;
+    private float groundDistance = 0.4f;
+    private float speed = 12f;
+    private float gravity = -9.81f;
+    private Vector3 velocity;
+    
+    //jump variables
+    private bool doubleJumpAvailable;
+    private float jumpHeight = 3f;
+    
+    //dash variables
+    [SerializeField] public float dashSpeed = 200f;
+    private bool dashActive = false;
+    private float dashCooldown = 3f;
+    private float dashTime = 0.5f;
 
-
-        // Update is called once per frame
-        void Update()
+    // Update is called once per frame
+    void Update()
+    {
+        if (!photonView.IsMine)
         {
-            if (!photonView.IsMine)
-                return;
+            return;
+        }
+        
+        //Check if on Ground (could be replaced with charactercontroller.isGrounded
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+        
+        if (isGrounded && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+        
+        //Get Player Inputs
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+        
+        
+        //move in Direction
+        Vector3 moveDirection = cam.transform.right * x + cam.transform.forward * z;
+        moveDirection.y = 0f;
+        characterController.Move(moveDirection * speed * Time.deltaTime);
 
-            ApplyGravity();
-
-            float horizontal = Input.GetAxisRaw("Horizontal");
-            float vertical = Input.GetAxisRaw("Vertical");
-            Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
-
-            if (!(direction.magnitude >= 0.1f))
-                return;
-
-            MoveCharacter(direction);
+        //rotating player
+        //only rotate if player really moves
+        if (moveDirection.magnitude > 0.1f)
+        {
+            //calculate degree with tan through x vector and z vector
+            float rotationDegree = Mathf.Atan2(moveDirection.x, moveDirection.z) * Mathf.Rad2Deg;
+            
+            //Quaternion.Euler uses the degree value to transform it into an quaternion
+            transform.rotation = Quaternion.Euler(0,rotationDegree,0);
         }
 
-        private void MoveCharacter(Vector3 direction)
+        Jump();
+        Dash();
+    }
+
+    private void Jump()
+    {
+        if (isGrounded)
         {
-            var targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity,
-                turnSmoothTime);
-
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            var moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            characterController.Move(moveDir.normalized * speed * Time.deltaTime);
+            doubleJumpAvailable = true;
         }
-
-        private void ApplyGravity()
+        
+        
+        if (Input.GetButtonDown("Jump") && (isGrounded || doubleJumpAvailable))
         {
-            if (!characterController.isGrounded)
+            //general gravity formula
+            velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            if (!isGrounded)
             {
-                _gravityVelocity += 0.1f;
-                characterController.Move(new Vector3(0f, -_gravityVelocity * Time.deltaTime, 0f));
-            }
-            else
-            {
-                _gravityVelocity = 0.1f;
+                doubleJumpAvailable = false;
             }
         }
+        
+        //let the player fall
+        velocity.y += gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime);
+        
+    }
+    
+    private void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !dashActive)
+        {
+            dashActive = true;
+            StartCoroutine(Dashing());
+            StartCoroutine(DashCoolDown());
+        }
+    }
+    
+    IEnumerator Dashing()
+    {
+        float startTime = Time.time;
+
+        while (Time.time < startTime + dashTime)
+        {
+            characterController.Move(transform.forward * dashSpeed * Time.deltaTime);
+            yield return null;
+        }
+    }
+    
+    IEnumerator DashCoolDown()
+    {
+        yield return new WaitForSeconds(dashCooldown);
+        dashActive = false;
+    }
     }
 }
