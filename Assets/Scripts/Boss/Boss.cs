@@ -7,7 +7,6 @@ public class Boss : MonoBehaviour
     private float health = 3f;
     private float fireBallCd = 5f;
     private bool fireBallActive = false;
-    private Collider[] cd;
 
     public GameObject fireball;
     public Transform middlePoint;
@@ -23,7 +22,7 @@ public class Boss : MonoBehaviour
     private IEnumerator ShootFireBall()
     {
         fireBallActive = true;
-        cd = Physics.OverlapSphere(middlePoint.position, 20f, LayerMask.GetMask("Player"));
+        Collider [] cd = Physics.OverlapSphere(middlePoint.position, 20f, LayerMask.GetMask("Player"));
         if (cd != null)
         {
             foreach (var player in cd)
@@ -33,6 +32,11 @@ public class Boss : MonoBehaviour
         }
         yield return new WaitForSeconds(fireBallCd);
         fireBallActive = false;
+    }
+
+    private void HandControll()
+    {
+        //reference to hand script
     }
 
     private void BossHit()
