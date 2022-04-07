@@ -12,7 +12,7 @@ public class PlattformMovement : MonoBehaviourPun
     {
         _difference = direction.normalized * (speed * Time.deltaTime);
         
-        transform.Translate(_difference);
+        transform.Translate(_difference, Space.World);
     }
 
 
@@ -20,7 +20,7 @@ public class PlattformMovement : MonoBehaviourPun
     {
         if (other.transform.CompareTag("Player"))
         {
-            other.transform.Translate(_difference);
+            other.transform.Translate(_difference, Space.World);
         }
     }
 }
