@@ -10,15 +10,26 @@ namespace Player
         {
             if (!photonView.IsMine)
             {
-                GetComponentInChildren<Camera>().enabled = false;
-                GetComponentInChildren<AudioListener>().enabled = false;
-                GetComponentInChildren<CinemachineFreeLook>().enabled = false;
+                DisableComponents();
+                DisableScripts();
             }
             else
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+        }
+
+        private void DisableComponents()
+        {
+            GetComponentInChildren<Camera>().enabled = false;
+            GetComponentInChildren<AudioListener>().enabled = false;
+            GetComponentInChildren<CinemachineFreeLook>().enabled = false;
+        }
+
+        private void DisableScripts()
+        {
+            GetComponent<PlayerMovement>().enabled = false;
         }
     }
 }
