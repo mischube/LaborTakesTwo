@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4649419451380182150}
   - component: {fileID: 8364305124079042459}
+  - component: {fileID: 4229764153040524371}
   m_Layer: 0
   m_Name: CM FreeLook1
   m_TagString: Untagged
@@ -135,6 +136,36 @@ MonoBehaviour:
   - {fileID: 375194191356874142}
   - {fileID: 1663843101655951016}
   - {fileID: 8513447204275053245}
+--- !u!114 &4229764153040524371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044881657063965089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e501d18bb52cf8c40b1853ca4904654f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 513
+  m_IgnoreTag: Player
+  m_TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 36
+  m_MinimumDistanceFromTarget: 1
+  m_AvoidObstacles: 1
+  m_DistanceLimit: 0
+  m_MinimumOcclusionTime: 0
+  m_CameraRadius: 0.1
+  m_Strategy: 0
+  m_MaximumEffort: 4
+  m_SmoothingTime: 0
+  m_Damping: 1.87
+  m_DampingWhenOccluded: 0
+  m_OptimalTargetDistance: 0
 --- !u!1 &1504431538775554853
 GameObject:
   m_ObjectHideFlags: 0
@@ -150,6 +181,7 @@ GameObject:
   - component: {fileID: 1047253470696002284}
   - component: {fileID: -4350774455710407121}
   - component: {fileID: 940478125072702062}
+  - component: {fileID: 7574328828550715057}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -281,6 +313,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aa7d1c16e524950bdd0e5ebdc56f593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7574328828550715057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504431538775554853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 219ea1ed57084f21b9efb64f537aedd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minHeight: -100
+  maxHeight: 500
+  respawnPoint: {x: 64, y: 16.1, z: -42}
 --- !u!1 &1504431538856185672
 GameObject:
   m_ObjectHideFlags: 0
