@@ -7,13 +7,12 @@ namespace Player
     {
         private List<Transform> _weapons = new List<Transform>();
         private Transform _baseWeaponPosition;
-        [SerializeField]
-        private int _selectedWeapon= 0;
+        [SerializeField] private int _selectedWeapon = 0;
         private InteractableInfo _interactable;
-        [SerializeField]
-        private GameObject _uiEnabler;
+        [SerializeField] private GameObject _uiEnabler;
         private GameObject _pickUpWeapon;
         private bool onInit = false;
+
         private void PickupWeapon()
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -26,10 +25,12 @@ namespace Player
                     {
                         _weapons.Add(weapon);
                     }
+
                     SetHandPosition();
                     inventory.EnableAllUI();
                     onInit = true;
                 }
+
                 if (_interactable.itemHoveredNow)
                 {
                     _pickUpWeapon = _interactable.GetHoveredItem();
@@ -39,14 +40,14 @@ namespace Player
                     _pickUpWeapon.transform.position = _baseWeaponPosition.transform.position;
                     ClearHands();
                     _pickUpWeapon.gameObject.SetActive(true);
-                    if(_weapons.Count == 3)
+                    if (_weapons.Count == 3)
                         inventory.TurnUIElementsAround(2);
-                    if(_weapons.Count == 4)
+                    if (_weapons.Count == 4)
                         inventory.TurnUIElementsAround(3);
                 }
             }
         }
-    
+
         private void Update()
         {
             PickupWeapon();
@@ -58,7 +59,7 @@ namespace Player
                 else
                     _selectedWeapon++;
             }
-        
+
             if (Input.GetAxis("Mouse ScrollWheel") < 0f)
             {
                 if (_selectedWeapon <= 0)
@@ -66,7 +67,8 @@ namespace Player
                 else
                     _selectedWeapon--;
             }
-            if(oldWeapon != _selectedWeapon)
+
+            if (oldWeapon != _selectedWeapon)
                 SelectWeapon();
         }
 
@@ -74,7 +76,7 @@ namespace Player
         {
             var inventory = _uiEnabler.GetComponent<UIVisibility>();
             int i = 0;
-            foreach (Transform weapon  in _weapons)
+            foreach (Transform weapon in _weapons)
             {
                 if (i == _selectedWeapon)
                 {
@@ -85,6 +87,7 @@ namespace Player
                 {
                     weapon.gameObject.SetActive(false);
                 }
+
                 i++;
             }
         }
@@ -96,6 +99,7 @@ namespace Player
                 weapon.gameObject.SetActive(false);
             }
         }
+
         private void SetHandPosition()
         {
             _baseWeaponPosition = _weapons[0];
