@@ -241,9 +241,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionDistance: 100
   cam: {fileID: 0}
-  InteractableMask:
+  interactableMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
+  itemHoveredNow: 0
 --- !u!143 &1504431538775554852
 CharacterController:
   m_ObjectHideFlags: 0

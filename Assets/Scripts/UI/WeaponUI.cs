@@ -9,23 +9,28 @@ namespace UI
     public class WeaponUI : MonoBehaviour
     {
         public PlayerInventory playerInventory;
-        public Image weaponIcon;
+        public Image weaponIconUIHolder;
 
         private WeaponScript _activeWeapon;
 
         private void Start()
         {
             //playerInventory = Player.Player.LocalPlayerInstance.GetComponent<PlayerInventory>();
+            UpdateIcon();
         }
 
         private void Update()
         {
             if (_activeWeapon != playerInventory.activeWeapon)
             {
-                //Update icon
-                _activeWeapon = playerInventory.activeWeapon;
-                weaponIcon.sprite = _activeWeapon.weaponContainer.icon;
+                UpdateIcon();
             }
+        }
+
+        private void UpdateIcon()
+        {
+            _activeWeapon = playerInventory.activeWeapon;
+            weaponIconUIHolder.sprite = _activeWeapon.weaponContainer.icon;
         }
     }
 }

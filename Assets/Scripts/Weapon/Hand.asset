@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5f1dbdcfa6b4aa5af41ced9e19645fc, type: 3}
   m_Name: Hand
   m_EditorClassIdentifier: 
-  name: 
-  description: 
+  name: Hand
+  description: This is your own hand. Please do not loose it
   sprite: {fileID: 0}
-  icon: {fileID: 0}
+  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
