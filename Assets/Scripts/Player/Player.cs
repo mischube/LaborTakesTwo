@@ -37,12 +37,13 @@ namespace Player
             GetComponentInChildren<Camera>().enabled = false;
             GetComponentInChildren<AudioListener>().enabled = false;
             GetComponentInChildren<CinemachineFreeLook>().enabled = false;
-            GetComponentInChildren<PlayerInventory>().enabled = false;
         }
 
         private void DisableScripts()
         {
             GetComponent<PlayerMovement>().enabled = false;
+            GetComponentInChildren<PlayerInventory>().enabled = false;
+            GetComponentInChildren<AutoRespawn>().enabled = false;
         }
     }
 }

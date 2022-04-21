@@ -6,8 +6,6 @@ namespace Weapon
     {
         public WeaponContainer weaponContainer;
 
-        public bool isActive;
-        
 
         public abstract void PrimaryAction();
 

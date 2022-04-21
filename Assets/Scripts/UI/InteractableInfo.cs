@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
+using Weapon;
 
 namespace UI
 {
@@ -8,44 +10,41 @@ namespace UI
         public float interactionDistance;
         public Camera cam;
         public LayerMask interactableMask;
-        public bool itemHoveredNow;
 
         private RaycastHit _hit;
         private GameObject _hitObject;
-        private bool _itemHoveredOnce;
         private Ray _ray;
-        private TextBoxScript _textBoxScript;
+
 
         void Update()
         {
             _ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
+
             if (Physics.Raycast(_ray, out _hit, interactionDistance, interactableMask))
             {
-                _textBoxScript = _hit.transform.gameObject.GetComponent<TextBoxScript>();
                 _hitObject = _hit.transform.gameObject;
-                SetInteractableTextRotation();
-                ShowInteractableText();
-                _itemHoveredOnce = true;
-                itemHoveredNow = true;
+                var textBoxScript = _hitObject.GetComponent<TextBoxScript>();
+                if (textBoxScript != null)
+                    ShowInteractableText(textBoxScript);
             }
-
-            if (_itemHoveredOnce && !Physics.Raycast(_ray, out _hit, interactionDistance, interactableMask))
+            else if (_hitObject != null)
             {
-                _textBoxScript.SetDescription("");
-                itemHoveredNow = false;
+                var textBoxScript = _hitObject.GetComponent<TextBoxScript>();
+
+                if (textBoxScript != null)
+                    textBoxScript.HideDescription();
+
+                _hitObject = null;
             }
         }
 
-        void ShowInteractableText()
+        void ShowInteractableText(TextBoxScript textBoxScript)
         {
-            _textBoxScript.SetDescription(_textBoxScript.GetDescription());
+            textBoxScript.ShowDescription();
+            textBoxScript.SetTextRotation(cam.transform.rotation);
         }
 
-        void SetInteractableTextRotation()
-        {
-            _textBoxScript.SetTextRotation(cam.transform.rotation);
-        }
-
+        [CanBeNull]
         public GameObject GetHoveredItem()
         {
             return _hitObject;
