@@ -5,21 +5,47 @@ namespace Player
 {
     public class PlayerInventory : MonoBehaviour
     {
-        private List<Transform> _weapons = new List<Transform>();
+        [SerializeField] private int selectedWeapon;
+        [SerializeField] private GameObject uiEnabler;
+
         private Transform _baseWeaponPosition;
-        [SerializeField] private int _selectedWeapon = 0;
         private InteractableInfo _interactable;
-        [SerializeField] private GameObject _uiEnabler;
+        private bool _onInit;
         private GameObject _pickUpWeapon;
-        private bool onInit = false;
+        private List<Transform> _weapons = new List<Transform>();
+
+        private void Update()
+        {
+            PickupWeapon();
+            int oldWeapon = selectedWeapon;
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            {
+                if (selectedWeapon >= transform.childCount - 1)
+                    selectedWeapon = 0;
+                else
+                    selectedWeapon++;
+            }
+
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            {
+                if (selectedWeapon <= 0)
+                    selectedWeapon = transform.childCount - 1;
+                else
+                    selectedWeapon--;
+            }
+
+            if (oldWeapon != selectedWeapon)
+                SelectWeapon();
+        }
 
         private void PickupWeapon()
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                var inventory = _uiEnabler.GetComponent<UIVisibility>();
+                var inventory = uiEnabler.GetComponent<UIVisibility>();
                 _interactable = transform.parent.gameObject.GetComponent<InteractableInfo>();
-                if (!onInit && _interactable.itemHoveredNow)
+
+                if (!_onInit && _interactable.itemHoveredNow)
                 {
                     foreach (Transform weapon in transform)
                     {
@@ -28,7 +54,7 @@ namespace Player
 
                     SetHandPosition();
                     inventory.EnableAllUI();
-                    onInit = true;
+                    _onInit = true;
                 }
 
                 if (_interactable.itemHoveredNow)
@@ -48,37 +74,13 @@ namespace Player
             }
         }
 
-        private void Update()
-        {
-            PickupWeapon();
-            int oldWeapon = _selectedWeapon;
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-            {
-                if (_selectedWeapon >= transform.childCount - 1)
-                    _selectedWeapon = 0;
-                else
-                    _selectedWeapon++;
-            }
-
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-            {
-                if (_selectedWeapon <= 0)
-                    _selectedWeapon = transform.childCount - 1;
-                else
-                    _selectedWeapon--;
-            }
-
-            if (oldWeapon != _selectedWeapon)
-                SelectWeapon();
-        }
-
         private void SelectWeapon()
         {
-            var inventory = _uiEnabler.GetComponent<UIVisibility>();
+            var inventory = uiEnabler.GetComponent<UIVisibility>();
             int i = 0;
             foreach (Transform weapon in _weapons)
             {
-                if (i == _selectedWeapon)
+                if (i == selectedWeapon)
                 {
                     inventory.TurnUIElementsAround(i);
                     weapon.gameObject.SetActive(true);
