@@ -1,110 +1,75 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Weapon;
 
 namespace Player
 {
     public class PlayerInventory : MonoBehaviour
     {
-        [SerializeField] private int selectedWeapon;
-        [SerializeField] private GameObject uiEnabler;
+        public WeaponScript activeWeapon;
+        private readonly LinkedList<WeaponScript> _weapons = new LinkedList<WeaponScript>();
 
-        private Transform _baseWeaponPosition;
-        private InteractableInfo _interactable;
-        private bool _onInit;
-        private GameObject _pickUpWeapon;
-        private List<Transform> _weapons = new List<Transform>();
+        private InteractableInfo _interactableInfo;
+
+        private void Start()
+        {
+            _interactableInfo = GetComponentInParent<InteractableInfo>();
+            _weapons.AddLast(gameObject.GetComponentInChildren<WeaponScript>());
+            activeWeapon = _weapons.First.Value;
+        }
 
         private void Update()
         {
-            PickupWeapon();
-            int oldWeapon = selectedWeapon;
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            if (Input.GetKeyDown(KeyCode.F))
             {
-                if (selectedWeapon >= transform.childCount - 1)
-                    selectedWeapon = 0;
-                else
-                    selectedWeapon++;
+                PickupWeapon();
             }
 
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            if (Input.GetKeyDown(KeyCode.E))
             {
-                if (selectedWeapon <= 0)
-                    selectedWeapon = transform.childCount - 1;
-                else
-                    selectedWeapon--;
+                SwitchWeapon(1);
             }
 
-            if (oldWeapon != selectedWeapon)
-                SelectWeapon();
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                SwitchWeapon(-1);
+            }
         }
+
 
         private void PickupWeapon()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                var inventory = uiEnabler.GetComponent<UIVisibility>();
-                _interactable = transform.parent.gameObject.GetComponent<InteractableInfo>();
-
-                if (!_onInit && _interactable.itemHoveredNow)
-                {
-                    foreach (Transform weapon in transform)
-                    {
-                        _weapons.Add(weapon);
-                    }
-
-                    SetHandPosition();
-                    inventory.EnableAllUI();
-                    _onInit = true;
-                }
-
-                if (_interactable.itemHoveredNow)
-                {
-                    _pickUpWeapon = _interactable.GetHoveredItem();
-                    _weapons.Add(_pickUpWeapon.transform);
-                    _pickUpWeapon.transform.SetParent(transform);
-                    _pickUpWeapon.layer = 0;
-                    _pickUpWeapon.transform.position = _baseWeaponPosition.transform.position;
-                    ClearHands();
-                    _pickUpWeapon.gameObject.SetActive(true);
-                    if (_weapons.Count == 3)
-                        inventory.TurnUIElementsAround(2);
-                    if (_weapons.Count == 4)
-                        inventory.TurnUIElementsAround(3);
-                }
-            }
+            var newWeapon = _interactableInfo.GetHoveredItem();
+            Destroy(newWeapon.GetComponent<TextBoxScript>());
+            _weapons.AddLast(newWeapon.GetComponent<WeaponScript>());
         }
 
-        private void SelectWeapon()
+        private void SwitchWeapon(int i)
         {
-            var inventory = uiEnabler.GetComponent<UIVisibility>();
-            int i = 0;
-            foreach (Transform weapon in _weapons)
+            if (i > 0)
             {
-                if (i == selectedWeapon)
+                var nextWeapon = _weapons.Find(activeWeapon)!.Next;
+                if (nextWeapon is null)
                 {
-                    inventory.TurnUIElementsAround(i);
-                    weapon.gameObject.SetActive(true);
+                    activeWeapon = _weapons.First.Value;
                 }
                 else
                 {
-                    weapon.gameObject.SetActive(false);
+                    activeWeapon = nextWeapon!.Value;
                 }
-
-                i++;
             }
-        }
-
-        private void ClearHands()
-        {
-            foreach (Transform weapon in _weapons)
+            else if (i < 0)
             {
-                weapon.gameObject.SetActive(false);
+                var nextWeapon = _weapons.Find(activeWeapon)!.Previous;
+                if (nextWeapon is null)
+                {
+                    activeWeapon = _weapons.Last.Value;
+                }
+                else
+                {
+                    activeWeapon = nextWeapon!.Value;
+                }
             }
-        }
-
-        private void SetHandPosition()
-        {
-            _baseWeaponPosition = _weapons[0];
         }
     }
 }

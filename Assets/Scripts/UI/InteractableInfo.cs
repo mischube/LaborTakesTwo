@@ -1,25 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Photon.Pun;
-using Cinemachine;
+using UnityEngine;
 
 public class InteractableInfo : MonoBehaviourPun
 {
     public float interactionDistance;
     public Camera cam;
     public LayerMask interactableMask;
-    
+    public bool itemHoveredNow;
+
     private RaycastHit _hit;
-    private Ray _ray;   
-    private bool _itemHoveredOnce = false;
-    public bool itemHoveredNow = false;
-    private TextBoxScript _textBoxScript;
     private GameObject _hitObject;
+    private bool _itemHoveredOnce;
+    private Ray _ray;
+    private TextBoxScript _textBoxScript;
+
     void Update()
     {
         _ray = cam.ScreenPointToRay(new Vector3(Screen.width / 2f, Screen.height / 2f, 0f));
-        if (Physics.Raycast(_ray, out _hit, interactionDistance,interactableMask))
+        if (Physics.Raycast(_ray, out _hit, interactionDistance, interactableMask))
         {
             _textBoxScript = _hit.transform.gameObject.GetComponent<TextBoxScript>();
             _hitObject = _hit.transform.gameObject;
@@ -29,7 +27,7 @@ public class InteractableInfo : MonoBehaviourPun
             itemHoveredNow = true;
         }
 
-        if (_itemHoveredOnce && !Physics.Raycast(_ray, out _hit, interactionDistance,interactableMask))
+        if (_itemHoveredOnce && !Physics.Raycast(_ray, out _hit, interactionDistance, interactableMask))
         {
             _textBoxScript.SetDescription("");
             itemHoveredNow = false;
@@ -40,6 +38,7 @@ public class InteractableInfo : MonoBehaviourPun
     {
         _textBoxScript.SetDescription(_textBoxScript.GetDescription());
     }
+
     void SetInteractableTextRotation()
     {
         _textBoxScript.SetTextRotation(cam.transform.rotation);

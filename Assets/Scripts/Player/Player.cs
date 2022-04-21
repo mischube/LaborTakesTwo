@@ -1,4 +1,5 @@
-﻿using Cinemachine;
+﻿using System;
+using Cinemachine;
 using Photon.Pun;
 using UnityEngine;
 
@@ -6,6 +7,17 @@ namespace Player
 {
     public class Player : MonoBehaviourPun
     {
+        public static GameObject LocalPlayerInstance;
+
+
+        private void Awake()
+        {
+            if (photonView.IsMine)
+            {
+                LocalPlayerInstance = gameObject;
+            }
+        }
+
         private void Start()
         {
             if (!photonView.IsMine)
@@ -25,6 +37,7 @@ namespace Player
             GetComponentInChildren<Camera>().enabled = false;
             GetComponentInChildren<AudioListener>().enabled = false;
             GetComponentInChildren<CinemachineFreeLook>().enabled = false;
+            GetComponentInChildren<PlayerInventory>().enabled = false;
         }
 
         private void DisableScripts()
