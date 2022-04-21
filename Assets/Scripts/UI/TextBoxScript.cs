@@ -8,7 +8,7 @@ public class TextBoxScript : MonoBehaviour
 
     public string GetDescription()
     {
-        return "Press <color=green>[E]</color> to Pickup";
+        return "Press <color=green>[F]</color> to Pickup";
     }
 
     public void  SetDescription(string description)
