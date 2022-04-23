@@ -11,6 +11,6 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerEnteredZone(object sender)
     {
-       Debug.Log("Victory!!!!!!!!!");
+        Debug.Log("Victory!!!!!!!!!");
     }
 }

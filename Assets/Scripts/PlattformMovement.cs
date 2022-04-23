@@ -11,7 +11,7 @@ public class PlattformMovement : MonoBehaviourPun
     public void MoveInDirection(Vector3 direction)
     {
         _difference = direction.normalized * (speed * Time.deltaTime);
-        
+
         transform.Translate(_difference, Space.World);
     }
 

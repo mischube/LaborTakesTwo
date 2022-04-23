@@ -17,14 +17,16 @@ public class BottleRoll : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             gameObject.transform.Rotate(rollingSpeed.x, -rollingSpeed.y, rollingSpeed.z);
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x + 0.051f,
+            gameObject.transform.position = new Vector3
+            (gameObject.transform.position.x + 0.051f,
                 gameObject.transform.position.y, gameObject.transform.position.z);
         }
 
         if (Input.GetKey(KeyCode.S))
         {
             gameObject.transform.Rotate(rollingSpeed.x, rollingSpeed.y, rollingSpeed.z);
-            gameObject.transform.position = new Vector3(gameObject.transform.position.x - 0.051f,
+            gameObject.transform.position = new Vector3
+            (gameObject.transform.position.x - 0.051f,
                 gameObject.transform.position.y, gameObject.transform.position.z);
         }
     }

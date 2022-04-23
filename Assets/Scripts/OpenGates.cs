@@ -33,7 +33,8 @@ public class OpenGates : MonoBehaviour
 
     private void GateControl()
     {
-        if (closeMainDoor == false) ;
+        if (closeMainDoor == false)
+            ;
         if (gameObject.name == "Button1" && closeMainDoor)
             closeBottomDoor = true;
 
@@ -45,14 +46,16 @@ public class OpenGates : MonoBehaviour
     {
         if (closeBottomDoor)
             if (door.transform.position.y < bottomDoorUpperLimit)
-                door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y + 0.05f,
+                door.transform.position = new Vector3
+                (door.transform.position.x, door.transform.position.y + 0.05f,
                     door.transform.position.z);
             else
                 closeBottomDoor = false;
 
         if (closeTopDoor)
             if (doorOnMountain.transform.position.y < topDoorUpperLimit)
-                doorOnMountain.transform.position = new Vector3(doorOnMountain.transform.position.x,
+                doorOnMountain.transform.position = new Vector3
+                (doorOnMountain.transform.position.x,
                     doorOnMountain.transform.position.y + 0.05f, doorOnMountain.transform.position.z);
             else
                 closeTopDoor = false;
@@ -75,17 +78,20 @@ public class OpenGates : MonoBehaviour
             OpenMainGate();
         }
 
-        if (closeTopDoor == false && closeMainDoor == false)
+        if (closeTopDoor == false &&
+            closeMainDoor == false)
         {
             closeMainDoor = false;
             closeBottomDoor = false;
             closeTopDoor = false;
             if (mainGateA.transform.position.x <= mainGateA.transform.position.x + gateOpenWihdt)
-                mainGateA.transform.position = new Vector3(mainGateA.transform.position.x - 0.1f,
+                mainGateA.transform.position = new Vector3
+                (mainGateA.transform.position.x - 0.1f,
                     mainGateA.transform.position.y,
                     mainGateA.transform.position.z);
             if (mainGateB.transform.position.x >= mainGateB.transform.position.x - gateOpenWihdt)
-                mainGateB.transform.position = new Vector3(mainGateB.transform.position.x + 0.1f,
+                mainGateB.transform.position = new Vector3
+                (mainGateB.transform.position.x + 0.1f,
                     mainGateB.transform.position.y,
                     mainGateB.transform.position.z);
         }
@@ -95,7 +101,8 @@ public class OpenGates : MonoBehaviour
     {
         closeTopDoor = false;
         if (doorOnMountain.transform.position.y > topDoorLowerLimit)
-            doorOnMountain.transform.position = new Vector3(doorOnMountain.transform.position.x,
+            doorOnMountain.transform.position = new Vector3
+            (doorOnMountain.transform.position.x,
                 doorOnMountain.transform.position.y - 0.05f, doorOnMountain.transform.position.z);
     }
 
@@ -103,7 +110,8 @@ public class OpenGates : MonoBehaviour
     {
         closeBottomDoor = false;
         if (door.transform.position.y > bottomDoorLowerLimit)
-            door.transform.position = new Vector3(door.transform.position.x, door.transform.position.y - 0.05f,
+            door.transform.position = new Vector3
+            (door.transform.position.x, door.transform.position.y - 0.05f,
                 door.transform.position.z);
     }
 

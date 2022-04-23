@@ -25,8 +25,7 @@ namespace UI
                 var textBoxScript = _hitObject.GetComponent<TextBoxScript>();
                 if (textBoxScript != null)
                     ShowInteractableText(textBoxScript);
-            }
-            else if (_hitObject != null)
+            } else if (_hitObject != null)
             {
                 var textBoxScript = _hitObject.GetComponent<TextBoxScript>();
 

@@ -1,5 +1,4 @@
-﻿using System;
-using Cinemachine;
+﻿using Cinemachine;
 using Photon.Pun;
 using UnityEngine;
 
@@ -24,8 +23,7 @@ namespace Player
             {
                 DisableComponents();
                 DisableScripts();
-            }
-            else
+            } else
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;

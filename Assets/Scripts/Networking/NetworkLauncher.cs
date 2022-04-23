@@ -18,8 +18,7 @@ namespace Networking
             {
                 Debug.Log("joining random room");
                 PhotonNetwork.JoinRandomRoom();
-            }
-            else
+            } else
             {
                 Debug.Log("Not connected. connecting now");
                 PhotonNetwork.ConnectUsingSettings();
