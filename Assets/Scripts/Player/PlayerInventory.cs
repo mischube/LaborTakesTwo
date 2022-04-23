@@ -63,7 +63,8 @@ namespace Player
         private void SwitchWeapon(bool stepForward)
         {
             activeWeapon.enabled = false;
-            var nextWeapon = _weapons.Find(activeWeapon)!.Next;
+            var actualWeaponNode = _weapons.Find(activeWeapon);
+            var nextWeapon = stepForward ? actualWeaponNode!.Next : actualWeaponNode!.Previous;
 
             if (nextWeapon == null)
                 nextWeapon = stepForward ? _weapons.First : _weapons.Last;
