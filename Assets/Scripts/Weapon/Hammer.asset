@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5f1dbdcfa6b4aa5af41ced9e19645fc, type: 3}
+  m_Name: Hammer
+  m_EditorClassIdentifier: 
+  name: Hammer
+  description: Press F to pay respect
+  body: {fileID: 2948883699485696602, guid: 0570d1f7fb0b1524d9e8ea8fa9a6b8b9, type: 3}
+  icon: {fileID: 21300000, guid: 8d0bad7960b5ff44a9ee00376fa9b517, type: 3}

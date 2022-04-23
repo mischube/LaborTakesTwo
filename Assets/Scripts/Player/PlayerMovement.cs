@@ -80,7 +80,8 @@ namespace Player
             }
 
 
-            if (Input.GetButtonDown("Jump") && (isGrounded || doubleJumpAvailable))
+            if (Input.GetButtonDown("Jump") &&
+                (isGrounded || doubleJumpAvailable))
             {
                 //general gravity formula
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
@@ -97,7 +98,8 @@ namespace Player
 
         private void Dash()
         {
-            if (Input.GetKeyDown(KeyCode.LeftShift) && !dashActive)
+            if (Input.GetKeyDown(KeyCode.LeftShift) &&
+                !dashActive)
             {
                 dashActive = true;
                 StartCoroutine(Dashing());
@@ -127,7 +129,8 @@ namespace Player
             Rigidbody body = hit.collider.attachedRigidbody;
 
             // no rigidbody
-            if (body == null || body.isKinematic)
+            if (body == null ||
+                body.isKinematic)
                 return;
 
             // We dont want to push objects below us

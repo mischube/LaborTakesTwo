@@ -18,7 +18,8 @@ namespace Player
 
         private void Update()
         {
-            if (_player.position.y < minHeight || _player.position.y > maxHeight)
+            if (_player.position.y < minHeight ||
+                _player.position.y > maxHeight)
             {
                 _player.position = respawnPoint;
             }
