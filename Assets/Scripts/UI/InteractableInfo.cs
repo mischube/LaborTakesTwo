@@ -1,7 +1,6 @@
 using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
-using Weapon;
 
 namespace UI
 {

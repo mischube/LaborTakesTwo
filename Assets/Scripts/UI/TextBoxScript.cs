@@ -1,37 +1,32 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Weapon;
 
-public class TextBoxScript : MonoBehaviour
+namespace UI
 {
-    public TextMesh interactionText;
-
-    private WeaponScript _weapon;
-
-    private void Start()
+    public class TextBoxScript : MonoBehaviour
     {
-        _weapon = GetComponent<WeaponScript>();
-    }
+        public TextMesh interactionText;
 
-    public string GetDescription()
-    {
-        return "Press <color=green>[F]</color> to Pickup";
-    }
+        private WeaponScript _weapon;
 
-    public void SetTextRotation(Quaternion rotation)
-    {
-        interactionText.transform.rotation = rotation;
-    }
+        private void Start()
+        {
+            _weapon = GetComponent<WeaponScript>();
+        }
 
-    public void ShowDescription()
-    {
-        interactionText.text = _weapon.weaponContainer.description;
-    }
+        public void SetTextRotation(Quaternion rotation)
+        {
+            interactionText.transform.rotation = rotation;
+        }
 
-    public void HideDescription()
-    {
-        interactionText.text = "";
+        public void ShowDescription()
+        {
+            interactionText.text = _weapon.weaponContainer.description;
+        }
+
+        public void HideDescription()
+        {
+            interactionText.text = "";
+        }
     }
 }

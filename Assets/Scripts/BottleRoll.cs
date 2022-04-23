@@ -1,12 +1,10 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BottleRoll : MonoBehaviour
 {
     public new GameObject gameObject;
     public Vector3 rollingSpeed;
+
     void Start()
     {
         rollingSpeed.y = 0.5f;
@@ -19,13 +17,15 @@ public class BottleRoll : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             gameObject.transform.Rotate(rollingSpeed.x, -rollingSpeed.y, rollingSpeed.z);
-            gameObject.transform.position =new Vector3(gameObject.transform.position.x+0.051f,gameObject.transform.position.y,gameObject.transform.position.z) ;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x + 0.051f,
+                gameObject.transform.position.y, gameObject.transform.position.z);
         }
+
         if (Input.GetKey(KeyCode.S))
         {
             gameObject.transform.Rotate(rollingSpeed.x, rollingSpeed.y, rollingSpeed.z);
-            gameObject.transform.position =new Vector3(gameObject.transform.position.x-0.051f,gameObject.transform.position.y,gameObject.transform.position.z) ;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x - 0.051f,
+                gameObject.transform.position.y, gameObject.transform.position.z);
         }
     }
 }
-
