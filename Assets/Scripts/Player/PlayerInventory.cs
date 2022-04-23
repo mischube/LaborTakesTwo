@@ -30,12 +30,12 @@ namespace Player
 
             if (Input.GetKeyDown(KeyCode.E))
             {
-                SwitchWeapon(1);
+                SwitchWeapon(true);
             }
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                SwitchWeapon(-1);
+                SwitchWeapon(false);
             }
         }
 
@@ -60,35 +60,15 @@ namespace Player
             Destroy(newWeapon.gameObject);
         }
 
-        private void SwitchWeapon(int i)
+        private void SwitchWeapon(bool stepForward)
         {
             activeWeapon.enabled = false;
-            
-            if (i > 0)
-            {
-                var nextWeapon = _weapons.Find(activeWeapon)!.Next;
-                if (nextWeapon is null)
-                {
-                    activeWeapon = _weapons.First.Value;
-                }
-                else
-                {
-                    activeWeapon = nextWeapon!.Value;
-                }
-            }
-            else if (i < 0)
-            {
-                var nextWeapon = _weapons.Find(activeWeapon)!.Previous;
-                if (nextWeapon is null)
-                {
-                    activeWeapon = _weapons.Last.Value;
-                }
-                else
-                {
-                    activeWeapon = nextWeapon!.Value;
-                }
-            }
+            var nextWeapon = _weapons.Find(activeWeapon)!.Next;
 
+            if (nextWeapon == null)
+                nextWeapon = stepForward ? _weapons.First : _weapons.Last;
+
+            activeWeapon = nextWeapon!.Value;
             activeWeapon.enabled = true;
         }
     }
