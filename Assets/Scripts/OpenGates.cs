@@ -6,14 +6,16 @@ public class OpenGates : MonoBehaviour
     public GameObject doorOnMountain;
     public GameObject mainGateA;
     public GameObject mainGateB;
-    public float gateOpenWihdt = 4f;
-    private bool closeBottomDoor;
-    private bool closeTopDoor;
-    private bool closeMainDoor = true;
-    public float topDoorUpperLimit = 14.6f;
-    public float topDoorLowerLimit = 8f;
-    public float bottomDoorUpperLimit = 3.6f;
-    public float bottomDoorLowerLimit = -3.6f;
+    public float gateOpenWidth = 4f;
+
+    private bool _closeBottomDoor;
+    private bool _closeTopDoor;
+    private bool _closeMainDoor = true;
+
+    private const float TopDoorUpperLimit = 14.6f;
+    private const float TopDoorLowerLimit = 8f;
+    private const float BottomDoorUpperLimit = 3.6f;
+    private const float BottomDoorLowerLimit = -3.6f;
 
     // Update is called once per frame
     void Update()
@@ -33,32 +35,32 @@ public class OpenGates : MonoBehaviour
 
     private void GateControl()
     {
-        if (closeMainDoor == false)
+        if (_closeMainDoor == false)
             ;
-        if (gameObject.name == "Button1" && closeMainDoor)
-            closeBottomDoor = true;
+        if (gameObject.name == "Button1" && _closeMainDoor)
+            _closeBottomDoor = true;
 
-        if (gameObject.name == "Button2" && closeMainDoor)
-            closeTopDoor = true;
+        if (gameObject.name == "Button2" && _closeMainDoor)
+            _closeTopDoor = true;
     }
 
     private void LowerGates()
     {
-        if (closeBottomDoor)
-            if (door.transform.position.y < bottomDoorUpperLimit)
+        if (_closeBottomDoor)
+            if (door.transform.position.y < BottomDoorUpperLimit)
                 door.transform.position = new Vector3
                 (door.transform.position.x, door.transform.position.y + 0.05f,
                     door.transform.position.z);
             else
-                closeBottomDoor = false;
+                _closeBottomDoor = false;
 
-        if (closeTopDoor)
-            if (doorOnMountain.transform.position.y < topDoorUpperLimit)
+        if (_closeTopDoor)
+            if (doorOnMountain.transform.position.y < TopDoorUpperLimit)
                 doorOnMountain.transform.position = new Vector3
                 (doorOnMountain.transform.position.x,
                     doorOnMountain.transform.position.y + 0.05f, doorOnMountain.transform.position.z);
             else
-                closeTopDoor = false;
+                _closeTopDoor = false;
     }
 
     private void OpenGate()
@@ -78,18 +80,18 @@ public class OpenGates : MonoBehaviour
             OpenMainGate();
         }
 
-        if (closeTopDoor == false &&
-            closeMainDoor == false)
+        if (_closeTopDoor == false &&
+            _closeMainDoor == false)
         {
-            closeMainDoor = false;
-            closeBottomDoor = false;
-            closeTopDoor = false;
-            if (mainGateA.transform.position.x <= mainGateA.transform.position.x + gateOpenWihdt)
+            _closeMainDoor = false;
+            _closeBottomDoor = false;
+            _closeTopDoor = false;
+            if (mainGateA.transform.position.x <= mainGateA.transform.position.x + gateOpenWidth)
                 mainGateA.transform.position = new Vector3
                 (mainGateA.transform.position.x - 0.1f,
                     mainGateA.transform.position.y,
                     mainGateA.transform.position.z);
-            if (mainGateB.transform.position.x >= mainGateB.transform.position.x - gateOpenWihdt)
+            if (mainGateB.transform.position.x >= mainGateB.transform.position.x - gateOpenWidth)
                 mainGateB.transform.position = new Vector3
                 (mainGateB.transform.position.x + 0.1f,
                     mainGateB.transform.position.y,
@@ -99,8 +101,8 @@ public class OpenGates : MonoBehaviour
 
     private void OpenUpperGate()
     {
-        closeTopDoor = false;
-        if (doorOnMountain.transform.position.y > topDoorLowerLimit)
+        _closeTopDoor = false;
+        if (doorOnMountain.transform.position.y > TopDoorLowerLimit)
             doorOnMountain.transform.position = new Vector3
             (doorOnMountain.transform.position.x,
                 doorOnMountain.transform.position.y - 0.05f, doorOnMountain.transform.position.z);
@@ -108,8 +110,8 @@ public class OpenGates : MonoBehaviour
 
     private void OpenLowerGate()
     {
-        closeBottomDoor = false;
-        if (door.transform.position.y > bottomDoorLowerLimit)
+        _closeBottomDoor = false;
+        if (door.transform.position.y > BottomDoorLowerLimit)
             door.transform.position = new Vector3
             (door.transform.position.x, door.transform.position.y - 0.05f,
                 door.transform.position.z);
@@ -117,7 +119,7 @@ public class OpenGates : MonoBehaviour
 
     private void OpenMainGate()
     {
-        closeMainDoor = false;
+        _closeMainDoor = false;
         OpenUpperGate();
         OpenLowerGate();
     }
