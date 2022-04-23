@@ -11,11 +11,11 @@ namespace Player
 
         private readonly LinkedList<WeaponScript> _weapons = new LinkedList<WeaponScript>();
         private InteractableInfo _interactableInfo;
-        private GameObject weaponHolder;
+        private GameObject _weaponHolder;
 
         private void Start()
         {
-            weaponHolder = transform.GetChild(0).gameObject;
+            _weaponHolder = transform.GetChild(0).gameObject;
             _interactableInfo = GetComponentInParent<InteractableInfo>();
             _weapons.AddLast(gameObject.GetComponentInChildren<WeaponScript>());
             activeWeapon = _weapons.First.Value;
@@ -50,7 +50,7 @@ namespace Player
             var newWeapon = newWeaponObj.GetComponent<WeaponScript>();
 
             //clone script
-            var newWeaponClone = weaponHolder.AddComponent(newWeapon.GetType()) as WeaponScript;
+            var newWeaponClone = _weaponHolder.AddComponent(newWeapon.GetType()) as WeaponScript;
             newWeaponClone!.weaponContainer = newWeapon.weaponContainer;
 
             //integrate in inventory
