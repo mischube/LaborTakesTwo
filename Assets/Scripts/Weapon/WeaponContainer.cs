@@ -9,7 +9,7 @@ namespace Weapon
 
         public string description;
 
-        public Sprite sprite;
+        public GameObject body;
 
         public Sprite icon;
     }

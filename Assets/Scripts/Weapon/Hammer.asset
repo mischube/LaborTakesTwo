@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hammer
   description: Press F to pay respect
-  sprite: {fileID: 0}
+  body: {fileID: 2948883699485696602, guid: 0570d1f7fb0b1524d9e8ea8fa9a6b8b9, type: 3}
   icon: {fileID: 21300000, guid: 8d0bad7960b5ff44a9ee00376fa9b517, type: 3}
