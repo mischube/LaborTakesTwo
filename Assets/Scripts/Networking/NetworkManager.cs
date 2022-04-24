@@ -21,8 +21,7 @@ namespace Networking
             {
                 Debug.Log("joining random room");
                 PhotonNetwork.JoinRandomRoom();
-            }
-            else
+            } else
             {
                 Debug.Log("Not connected. connecting now");
                 PhotonNetwork.ConnectUsingSettings();
@@ -42,26 +41,23 @@ namespace Networking
 
         public override void OnJoinedRoom()
         {
-            Debug.Log($"Connect to room [{PhotonNetwork.CurrentRoom.Name}]");
+            Debug.LogFormat("Joined room [{0}]", PhotonNetwork.CurrentRoom.Name);
             OnLobbyJoined?.Invoke(this);
         }
 
         public void LoadScene(Scenes levelName)
         {
-            //Secures that every player has same scene loaded
-            // if (!PhotonNetwork.IsMasterClient)
-                // return;
-
             Debug.LogFormat("Loading scene [{0}]", levelName.GetStringValue());
 
             PhotonNetwork.LoadLevel(levelName.GetStringValue());
         }
 
-        public GameObject SpawnPlayer(Vector3 position)
+        public void SpawnPlayer(Vector3 position)
         {
-            Debug.LogFormat("Spawning player in scene {0} on position [{1}]", SceneManager.GetActiveScene().name,
+            Debug.LogFormat
+            ("Spawning player in scene {0} on position [{1}]", SceneManager.GetActiveScene().name,
                 position);
-            return PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
+            PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
         }
     }
 }

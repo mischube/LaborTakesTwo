@@ -22,29 +22,33 @@ namespace Global
 
             LoadComponents();
 
-            _networkManager.OnLobbyJoined += OnLobbyJoined;
-            _networkManager.Connect();
-
             SceneManager.sceneLoaded += OnSceneLoaded;
+            _networkManager.OnLobbyJoined += OnLobbyJoined;
+            
+            _networkManager.Connect();
 
             Debug.Log("game manager started");
         }
 
-        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
         {
-            Debug.LogFormat("Scene loaded");
+            Debug.LogFormat("Scene '{0}' loaded", scene.name);
             _networkManager.SpawnPlayer(new Vector3(65, 16, -43));
         }
 
         private void OnLobbyJoined(object sender)
         {
             Debug.LogFormat("Player joined room");
+
             if (PhotonNetwork.IsMasterClient)
             {
+                //Only first player joining room loads a scene
                 _networkManager.LoadScene(defaultScene);
+            } else
+            {
+                //all others just spawn their player object
+                _networkManager.SpawnPlayer(new Vector3(65, 16, -43));
             }
-
-            _networkManager.SpawnPlayer(new Vector3(65, 16, -43));
         }
 
         private void LoadComponents()
@@ -54,7 +58,8 @@ namespace Global
 
         public void SwitchScene()
         {
-            _networkManager.LoadScene(Scenes.Tutorial);
+            _networkManager.LoadScene(Scenes.Advanced);
+            //todo spawn players at correct point
         }
     }
 }
