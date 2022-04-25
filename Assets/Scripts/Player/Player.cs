@@ -6,14 +6,24 @@ namespace Player
 {
     public class Player : MonoBehaviourPun
     {
+        public static GameObject LocalPlayerInstance;
+
+
+        private void Awake()
+        {
+            if (photonView.IsMine)
+            {
+                LocalPlayerInstance = gameObject;
+            }
+        }
+
         private void Start()
         {
             if (!photonView.IsMine)
             {
                 DisableComponents();
                 DisableScripts();
-            }
-            else
+            } else
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
@@ -30,6 +40,8 @@ namespace Player
         private void DisableScripts()
         {
             GetComponent<PlayerMovement>().enabled = false;
+            GetComponentInChildren<PlayerInventory>().enabled = false;
+            GetComponentInChildren<AutoRespawn>().enabled = false;
         }
     }
 }
