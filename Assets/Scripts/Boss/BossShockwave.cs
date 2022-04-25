@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
-public class BossHand : MonoBehaviour
+public class BossShockwave : MonoBehaviour
 {
     public LineRenderer lineRenderer;
     public MeshCollider meshCollider;
@@ -20,12 +17,9 @@ public class BossHand : MonoBehaviour
         lineRenderer.positionCount = pointsCount + 1;
     }
 
-    private void Update()
+    public void StartShockwave()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            StartCoroutine(Blast());
-        }
+        StartCoroutine(Blast());
     }
 
     private IEnumerator Blast()
@@ -56,11 +50,6 @@ public class BossHand : MonoBehaviour
         }
 
         lineRenderer.widthMultiplier = Mathf.Lerp(0f, startWidth, 1f - currentRadius / maxRadius);
-        
-        //creates mesh for linerenderer
-        // Mesh mesh = new Mesh();
-        // lineRenderer.BakeMesh(mesh, true);
-        // meshCollider.sharedMesh = mesh;
     }
 
     private void Damage(float currentRadius)

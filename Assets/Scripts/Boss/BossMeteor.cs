@@ -1,8 +1,7 @@
 using System.Collections;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public class Boss : MonoBehaviour
+public class BossMeteor : MonoBehaviour
 {
     private float health = 3f;
     private float fireBallCd = 5f;
