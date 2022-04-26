@@ -58,9 +58,9 @@ namespace Global
             _scenesManager.LoadScene(Scenes.Advanced);
 
 
-            Player.Player.LocalPlayerInstance.GetComponent<CharacterController>().enabled = false;
-            Player.Player.LocalPlayerInstance.transform.position = new Vector3(65, 16, -43);
-            Player.Player.LocalPlayerInstance.GetComponent<CharacterController>().enabled = true;
+            Player.PlayerNetworking.LocalPlayerInstance.GetComponent<CharacterController>().enabled = false;
+            Player.PlayerNetworking.LocalPlayerInstance.transform.position = new Vector3(65, 16, -43);
+            Player.PlayerNetworking.LocalPlayerInstance.GetComponent<CharacterController>().enabled = true;
         }
     }
 }
