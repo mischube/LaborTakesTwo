@@ -57,7 +57,7 @@ namespace Global
         {
             _scenesManager.LoadScene(Scenes.Advanced);
 
-
+            //todo rework this part when the respawnSystem is implemented
             Player.PlayerNetworking.LocalPlayerInstance.GetComponent<CharacterController>().enabled = false;
             Player.PlayerNetworking.LocalPlayerInstance.transform.position = new Vector3(65, 16, -43);
             Player.PlayerNetworking.LocalPlayerInstance.GetComponent<CharacterController>().enabled = true;
