@@ -1,16 +1,11 @@
-﻿using Global;
-using Library.StringEnums;
-using Photon.Pun;
+﻿using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Networking
 {
     public class NetworkManager : MonoBehaviourPunCallbacks
     {
-        public GameObject playerPrefab;
-
         public event JoinedLobbyHandler OnLobbyJoined;
 
 
@@ -47,23 +42,6 @@ namespace Networking
         {
             Debug.LogFormat("Joined room [{0}]", PhotonNetwork.CurrentRoom.Name);
             OnLobbyJoined?.Invoke(this);
-        }
-
-
-        public void LoadScene(Scenes levelName)
-        {
-            Debug.LogFormat("Loading scene [{0}]", levelName.GetStringValue());
-
-            PhotonNetwork.LoadLevel(levelName.GetStringValue());
-        }
-
-
-        public void SpawnPlayer(Vector3 position)
-        {
-            Debug.LogFormat
-            ("Spawning player in scene {0} on position [{1}]", SceneManager.GetActiveScene().name,
-                position);
-            PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
         }
     }
 }
