@@ -15,6 +15,8 @@ namespace Player
             {
                 LocalPlayerInstance = gameObject;
             }
+
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
