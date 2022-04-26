@@ -13,6 +13,7 @@ namespace Networking
 
         public event JoinedLobbyHandler OnLobbyJoined;
 
+
         public void Connect()
         {
             PhotonNetwork.AutomaticallySyncScene = true;
@@ -28,16 +29,19 @@ namespace Networking
             }
         }
 
+
         public override void OnConnectedToMaster()
         {
             Debug.Log("Connected to master. Joining room now");
             PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: new RoomOptions { MaxPlayers = 2, IsVisible = true });
         }
 
+
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
             Debug.Log($"Failed to join a random room | message: [{message}]");
         }
+
 
         public override void OnJoinedRoom()
         {
@@ -45,12 +49,14 @@ namespace Networking
             OnLobbyJoined?.Invoke(this);
         }
 
+
         public void LoadScene(Scenes levelName)
         {
             Debug.LogFormat("Loading scene [{0}]", levelName.GetStringValue());
 
             PhotonNetwork.LoadLevel(levelName.GetStringValue());
         }
+
 
         public void SpawnPlayer(Vector3 position)
         {

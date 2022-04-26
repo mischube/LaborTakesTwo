@@ -24,7 +24,7 @@ namespace Global
 
             SceneManager.sceneLoaded += OnSceneLoaded;
             _networkManager.OnLobbyJoined += OnLobbyJoined;
-            
+
             _networkManager.Connect();
 
             Debug.Log("game manager started");
@@ -34,6 +34,16 @@ namespace Global
         {
             Debug.LogFormat("Scene '{0}' loaded", scene.name);
             _networkManager.SpawnPlayer(new Vector3(65, 16, -43));
+        }
+
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+
+            if (_networkManager != null)
+            {
+                _networkManager.OnLobbyJoined -= OnLobbyJoined;
+            }
         }
 
         private void OnLobbyJoined(object sender)
