@@ -751,18 +751,14 @@ MonoBehaviour:
   doorOnMountain: {fileID: 1680329419}
   mainGateA: {fileID: 927794125}
   mainGateB: {fileID: 470327382}
-  gateOpenWihdt: 4
-  topDoorUpperLimit: 14.6
-  topDoorLowerLimit: 8
-  bottomDoorUpperLimit: 3.6
-  bottomDoorLowerLimit: -3.6
+  gateOpenWidth: 4
 --- !u!43 &19738481
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh21014
+  m_Name: pb_Mesh29072
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -30072,7 +30068,7 @@ GameObject:
   - component: {fileID: 1136244261}
   - component: {fileID: 1136244260}
   - component: {fileID: 1136244259}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Game Object (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31348,18 +31344,14 @@ MonoBehaviour:
   doorOnMountain: {fileID: 1680329419}
   mainGateA: {fileID: 927794125}
   mainGateB: {fileID: 1119936697}
-  gateOpenWihdt: 4
-  topDoorUpperLimit: 14.6
-  topDoorLowerLimit: 8
-  bottomDoorUpperLimit: 3.6
-  bottomDoorLowerLimit: -3.6
+  gateOpenWidth: 4
 --- !u!43 &1243903036
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20684
+  m_Name: pb_Mesh28770
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -38757,7 +38749,7 @@ GameObject:
   - component: {fileID: 1767251152}
   - component: {fileID: 1767251151}
   - component: {fileID: 1767251150}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: New Game Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40523,11 +40515,7 @@ MonoBehaviour:
   doorOnMountain: {fileID: 1680329419}
   mainGateA: {fileID: 927794125}
   mainGateB: {fileID: 470327382}
-  gateOpenWihdt: 4
-  topDoorUpperLimit: 14.6
-  topDoorLowerLimit: 8
-  bottomDoorUpperLimit: 3.6
-  bottomDoorLowerLimit: -3.6
+  gateOpenWidth: 4
 --- !u!43 &1871476593
 Mesh:
   m_ObjectHideFlags: 0
@@ -56349,19 +56337,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1504431540764554284, guid: 02c90592c4aace040abbeca65125dfc3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000015321717
+      value: 0.000000015321712
       objectReference: {fileID: 0}
     - target: {fileID: 1504431540764554284, guid: 02c90592c4aace040abbeca65125dfc3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000023361846
+      value: -0.000000002336183
       objectReference: {fileID: 0}
     - target: {fileID: 2145121747630076649, guid: 02c90592c4aace040abbeca65125dfc3, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017004385
+      value: 0.000000017004378
       objectReference: {fileID: 0}
     - target: {fileID: 2145121747630076649, guid: 02c90592c4aace040abbeca65125dfc3, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000026287996
+      value: -0.0000000026287987
       objectReference: {fileID: 0}
     - target: {fileID: 4649419451380182150, guid: 02c90592c4aace040abbeca65125dfc3, type: 3}
       propertyPath: m_LocalPosition.y
