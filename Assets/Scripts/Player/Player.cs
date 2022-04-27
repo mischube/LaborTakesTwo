@@ -42,6 +42,7 @@ namespace Player
             GetComponent<PlayerMovement>().enabled = false;
             GetComponentInChildren<PlayerInventory>().enabled = false;
             GetComponentInChildren<AutoRespawn>().enabled = false;
+            GetComponentInChildren<PlayerHealth>().enabled = false;
         }
     }
 }
