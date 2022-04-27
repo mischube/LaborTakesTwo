@@ -6,18 +6,18 @@ namespace Weapon
     public abstract class WeaponScript : MonoBehaviour
     {
         public WeaponContainer weaponContainer;
+       
+        protected GameObject Body;
 
-
-        private void OnEnable()
+        protected virtual void OnEnable()
         {
             //if weapon got picked up
             if (weaponContainer == null)
                 return;
 
             Destroy(transform.GetChild(0).gameObject);
-            var body = Instantiate(weaponContainer.body, transform.position, transform.rotation, transform);
-
-            if (!body.CompareTag("Player"))
+            Body = Instantiate(weaponContainer.body, transform.position, transform.rotation, transform);
+            if (!Body.CompareTag("Player"))
                 throw new Exception("Weapon body needs a tag");
         }
 
