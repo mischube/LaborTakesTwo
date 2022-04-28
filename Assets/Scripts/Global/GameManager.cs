@@ -54,9 +54,9 @@ namespace Global
             _networkManager = gameObject.GetComponent<NetworkManager>();
         }
 
-        public void SwitchScene()
+        public void SwitchScene(Scenes nextScene)
         {
-            _scenesManager.LoadScene(Scenes.Advanced);
+            _scenesManager.LoadScene(nextScene);
 
             //todo rework this part when the respawnSystem is implemented
             Player.PlayerNetworking.LocalPlayerInstance.GetComponent<CharacterController>().enabled = false;
