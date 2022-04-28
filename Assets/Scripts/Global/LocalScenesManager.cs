@@ -8,8 +8,6 @@ namespace Global
 {
     public class LocalScenesManager : MonoBehaviourPun
     {
-        public GameObject playerPrefab;
-
         private Scenes _currentScene;
 
         public Scenes CurrentScene
@@ -24,7 +22,6 @@ namespace Global
 
         private void Start()
         {
-            playerPrefab = Resources.Load<GameObject>("Player");
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
@@ -47,7 +44,13 @@ namespace Global
             Debug.LogFormat
             ("Spawning player in scene {0} on position [{1}]", SceneManager.GetActiveScene().name,
                 position);
+
+            var playerPrefab = Resources.Load<GameObject>("Player");
+            var uiPrefab = Resources.Load<GameObject>("UI");
+
             PhotonNetwork.Instantiate(playerPrefab.name, position, Quaternion.identity);
+
+            Instantiate(uiPrefab);
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
