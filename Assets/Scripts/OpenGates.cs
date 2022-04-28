@@ -34,8 +34,7 @@ public class OpenGates : MonoBehaviour
 
     private void GateControl()
     {
-        if (_closeMainDoor == false)
-            ;
+        if (_closeMainDoor == false);
         if (gameObject.name == "Button1" && _closeMainDoor)
             _closeBottomDoor = true;
 
