@@ -2,6 +2,7 @@ using System;
 using Networking;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Global
 {
@@ -37,7 +38,7 @@ namespace Global
 
         private void OnLobbyJoined(object sender)
         {
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient && _scenesManager.CurrentScene == Scenes.Start)
             {
                 //Only first player joining room loads a scene
                 _scenesManager.LoadScene(defaultScene);
