@@ -358,7 +358,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minHeight: -100
   maxHeight: 500
-  respawnPoint: {x: 64, y: 16.1, z: -42}
 --- !u!1 &1504431538856185672
 GameObject:
   m_ObjectHideFlags: 0

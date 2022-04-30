@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6148366293448555977}
   - component: {fileID: 6148366293448555988}
   - component: {fileID: 6148366293448555989}
+  - component: {fileID: -1662213996271776475}
+  - component: {fileID: -1041576544709154611}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -83,4 +85,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea3a5ff6cce4dbe92b150a20c38b2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1504431538775554853, guid: 02c90592c4aace040abbeca65125dfc3, type: 3}
+--- !u!114 &-1662213996271776475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6148366293448555976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a666df9194a048a196e618d0b89cf1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkPoints:
+  - scene: 2
+    position: {x: 0, y: 1, z: -11}
+    isChecked: 1
+  - scene: 1
+    position: {x: 65, y: 16, z: -43}
+    isChecked: 1
+--- !u!114 &-1041576544709154611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6148366293448555976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29e5855263594549bba95cb444e1b64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
