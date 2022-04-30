@@ -31,7 +31,6 @@ namespace Global.Respawn
 
 
             TeleportPlayer(player, spawnPoint);
-            //todo set player HP
         }
 
         private void TeleportPlayer(GameObject player, RespawnPoint activePoint)
