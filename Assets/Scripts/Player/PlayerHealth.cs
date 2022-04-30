@@ -30,7 +30,6 @@ public class PlayerHealth : MonoBehaviour
         {
             StartCoroutine(PlayerInvincibility());
             
-            Debug.Log(currentHealth);
             currentHealth -= dmg;
             
             playerDmgEvent?.Invoke((int)currentHealth);
