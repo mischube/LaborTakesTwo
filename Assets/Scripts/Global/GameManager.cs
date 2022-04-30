@@ -4,6 +4,7 @@ using Networking;
 using Photon.Pun;
 using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Global
 {
@@ -69,7 +70,10 @@ namespace Global
         {
             _scenesManager.LoadScene(nextScene);
 
-            _respawnManager.RespawnPlayer(PlayerNetworking.LocalPlayerInstance);
+            SceneManager.sceneLoaded += (scene, mode) =>
+            {
+                _respawnManager.RespawnPlayer(PlayerNetworking.LocalPlayerInstance);
+            };
         }
     }
 }
