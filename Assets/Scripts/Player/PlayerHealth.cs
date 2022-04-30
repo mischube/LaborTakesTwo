@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public GameObject body;
+
+    public event PlayerDamaged playerDmgEvent;
+    public event PlayerDead playerDeadEvent;
     
     private AutoRespawn autoRespawn;
     private CharacterController characterController;
@@ -29,6 +32,8 @@ public class PlayerHealth : MonoBehaviour
             
             Debug.Log(currentHealth);
             currentHealth -= dmg;
+            
+            playerDmgEvent?.Invoke((int)currentHealth);
 
             if (currentHealth <= 0f)
             {
@@ -39,10 +44,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void PlayerDeath()
     {
-        characterController.enabled = false;
-        transform.position = autoRespawn.respawnPoint;
+        characterController.enabled = false; 
+        transform.position = autoRespawn.respawnPoint; //todo delete when respawnsystem is impl.
         characterController.enabled = true;
         currentHealth = maxHealth;
+        playerDeadEvent?.Invoke();
     }
 
     IEnumerator PlayerInvincibility()
@@ -54,5 +60,10 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(invincibilityTime);
         body.GetComponent<Renderer>().material.color = oldColor;
         gettingDamaged = false;
+    }
+
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 }
