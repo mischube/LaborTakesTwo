@@ -14,7 +14,7 @@ namespace UI
 
         private void Start()
         {
-            //playerInventory = Player.Player.LocalPlayerInstance.GetComponent<PlayerInventory>();
+            playerInventory = PlayerNetworking.LocalPlayerInstance.GetComponentInChildren<PlayerInventory>();
             UpdateIcon();
         }
 
