@@ -9,7 +9,9 @@ namespace Weapon
         private Animator _animator;
         private bool _currentlyAttacking = false;
         private float _hitboxActiveTime =2f;
-        //private bool chargeCooldown = false;
+        private float _pushingActiveTime =1.1f;
+        private bool _currentlyPushing = false;
+        private bool _swing = false;
         public override void PrimaryAction()
         {
             _currentlyAttacking = true;
@@ -19,28 +21,29 @@ namespace Weapon
 
         public override void SecondaryAction()
         {
-            _animator.SetTrigger("Charge");
+            Debug.Log("Secondary");
+            if (!_swing)
+                Swing();
+            if (_swing)
+                Load();
+            
         }
-        /*
-               public override void SecondaryAction()
-               {
-                   
-                   _animator.SetBool("Loading", true);
-                   StartCoroutine(ChargeCooldown());
-                   if (chargeCooldown)
-                   {
-                       Debug.Log("inside");
-                       _animator.SetBool("Canceling", true);
-                   }
-                       
-               }
-              
-               private void StopAnimation()
-               {
-                   _animator.SetBool("Loading", false);
-                   chargeCooldown = false;
-               }
-               */
+        private void Load()
+        {
+            _animator.SetBool("Loading", true);
+        } 
+        private void Swing()
+        {
+            _animator.SetTrigger("Charge");     
+            _swing = true;
+        }   
+        private void StopAnimation()
+        {
+            _animator.SetBool("Loading", false);
+            _animator.ResetTrigger("Charge");
+            _swing = false;
+        }
+               
         private void Start()
         {
             _animator = GetComponent<Animator>();
@@ -49,14 +52,12 @@ namespace Weapon
 
         private void Update()
         {
-            if(Input.GetMouseButton(0)) 
+            if (Input.GetMouseButton(0))
                 PrimaryAction();
-            if(Input.GetMouseButton(1)) 
+            if (Input.GetMouseButtonDown(1))
                 SecondaryAction();
-            //if (Input.GetMouseButtonDown(1))
-            //    SecondaryAction();
-            //if (Input.GetMouseButtonUp(1))
-            //    StopAnimation();
+            if (Input.GetMouseButtonUp(1))
+                StopAnimation();
         }
 
         protected override void OnEnable()
@@ -78,16 +79,18 @@ namespace Weapon
             yield return new WaitForSeconds(_hitboxActiveTime);
             _currentlyAttacking = false;
         }
-        /*
-        IEnumerator ChargeCooldown()
+        IEnumerator ActivatePushing()
         {
-            yield return new WaitForSeconds(_hitboxActiveTime);
-            chargeCooldown = true;
+            yield return new WaitForSeconds(_pushingActiveTime);
+            _currentlyPushing = false;
         }
-        */
         public bool getAttackActive()
         {
             return _currentlyAttacking;
+        }
+        public bool getPushActive()
+        {
+            return _currentlyPushing;
         }
     }
 }

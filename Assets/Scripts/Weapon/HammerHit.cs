@@ -12,5 +12,10 @@ public class HammerHit : MonoBehaviour
         {
             Destroy(collider.gameObject);
         }
+        if (collider.gameObject.CompareTag("Pushable"))
+        {
+            Debug.Log("I hit shit");
+            collider.gameObject.GetComponent<Rigidbody>().AddForce(transform.up*100,ForceMode.Force);
+        }
     }
 }
