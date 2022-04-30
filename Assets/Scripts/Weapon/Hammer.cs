@@ -9,24 +9,22 @@ namespace Weapon
         private Animator _animator;
         private bool _currentlyAttacking = false;
         private float _hitboxActiveTime =2f;
-        private float _pushingActiveTime =1.1f;
+        private float _pushingActiveTime =1.5f;
         private bool _currentlyPushing = false;
         private bool _swing = false;
         public override void PrimaryAction()
         {
-            _currentlyAttacking = true;
             _animator.SetTrigger("Hit");
             StartCoroutine(ActivateHitbox());
         }
 
         public override void SecondaryAction()
         {
-            Debug.Log("Secondary");
             if (!_swing)
                 Swing();
             if (_swing)
                 Load();
-            
+            StartCoroutine(ActivatePushing());
         }
         private void Load()
         {
@@ -42,6 +40,8 @@ namespace Weapon
             _animator.SetBool("Loading", false);
             _animator.ResetTrigger("Charge");
             _swing = false;
+            _currentlyPushing = false;
+            Debug.Log("stop"+_currentlyPushing);
         }
                
         private void Start()
@@ -52,9 +52,9 @@ namespace Weapon
 
         private void Update()
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !_currentlyAttacking)
                 PrimaryAction();
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(1)&& !_currentlyPushing)
                 SecondaryAction();
             if (Input.GetMouseButtonUp(1))
                 StopAnimation();
@@ -76,13 +76,16 @@ namespace Weapon
         }
         IEnumerator ActivateHitbox()
         {
+            _currentlyAttacking = true;
             yield return new WaitForSeconds(_hitboxActiveTime);
             _currentlyAttacking = false;
         }
         IEnumerator ActivatePushing()
         {
+            Debug.Log(_currentlyPushing);
             yield return new WaitForSeconds(_pushingActiveTime);
-            _currentlyPushing = false;
+            _currentlyPushing = true;
+            Debug.Log(_currentlyPushing);
         }
         public bool getAttackActive()
         {

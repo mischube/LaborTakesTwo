@@ -12,10 +12,19 @@ public class HammerHit : MonoBehaviour
         {
             Destroy(collider.gameObject);
         }
-        if (collider.gameObject.CompareTag("Pushable"))
+        if (collider.gameObject.CompareTag("Pushable") && hammer.getPushActive())
         {
-            Debug.Log("I hit shit");
-            collider.gameObject.GetComponent<Rigidbody>().AddForce(transform.up*100,ForceMode.Force);
+            Debug.Log("PushActive is true");
+            Debug.Log(hammer.getPushActive());
+            Rigidbody rigidbody = collider.gameObject.GetComponent<Rigidbody>();
+            rigidbody.isKinematic = false;
+            rigidbody.AddForce(transform.forward*20,ForceMode.Impulse);
+            StartCoroutine(FreezeObject(rigidbody));
         }
+    }
+    IEnumerator FreezeObject(Rigidbody rigidbody)
+    {
+        yield return new WaitForSeconds(3);
+        rigidbody.isKinematic = true;
     }
 }
