@@ -41,7 +41,6 @@ namespace Weapon
             _animator.ResetTrigger("Charge");
             _swing = false;
             _currentlyPushing = false;
-            Debug.Log("stop"+_currentlyPushing);
         }
                
         private void Start()
@@ -82,10 +81,8 @@ namespace Weapon
         }
         IEnumerator ActivatePushing()
         {
-            Debug.Log(_currentlyPushing);
             yield return new WaitForSeconds(_pushingActiveTime);
             _currentlyPushing = true;
-            Debug.Log(_currentlyPushing);
         }
         public bool getAttackActive()
         {

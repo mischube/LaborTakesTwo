@@ -14,8 +14,6 @@ public class HammerHit : MonoBehaviour
         }
         if (collider.gameObject.CompareTag("Pushable") && hammer.getPushActive())
         {
-            Debug.Log("PushActive is true");
-            Debug.Log(hammer.getPushActive());
             Rigidbody rigidbody = collider.gameObject.GetComponent<Rigidbody>();
             rigidbody.isKinematic = false;
             rigidbody.AddForce(transform.forward*20,ForceMode.Impulse);
