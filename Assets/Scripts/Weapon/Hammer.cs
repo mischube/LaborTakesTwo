@@ -1,6 +1,5 @@
-using System;
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 namespace Weapon
 {
@@ -8,10 +7,11 @@ namespace Weapon
     {
         private Animator _animator;
         private bool _currentlyAttacking = false;
-        private float _hitboxActiveTime =2f;
-        private float _pushingActiveTime =1.5f;
+        private float _hitboxActiveTime = 2f;
+        private float _pushingActiveTime = 1.5f;
         private bool _currentlyPushing = false;
         private bool _swing = false;
+
         public override void PrimaryAction()
         {
             _animator.SetTrigger("Hit");
@@ -26,15 +26,18 @@ namespace Weapon
                 Load();
             StartCoroutine(ActivatePushing());
         }
+
         private void Load()
         {
             _animator.SetBool("Loading", true);
-        } 
+        }
+
         private void Swing()
         {
-            _animator.SetTrigger("Charge");     
+            _animator.SetTrigger("Charge");
             _swing = true;
-        }   
+        }
+
         private void StopAnimation()
         {
             _animator.SetBool("Loading", false);
@@ -42,7 +45,7 @@ namespace Weapon
             _swing = false;
             _currentlyPushing = false;
         }
-               
+
         private void Start()
         {
             _animator = GetComponent<Animator>();
@@ -51,9 +54,11 @@ namespace Weapon
 
         private void Update()
         {
-            if (Input.GetMouseButton(0) && !_currentlyAttacking)
+            if (Input.GetMouseButton(0) &&
+                !_currentlyAttacking)
                 PrimaryAction();
-            if (Input.GetMouseButtonDown(1)&& !_currentlyPushing)
+            if (Input.GetMouseButtonDown(1) &&
+                !_currentlyPushing)
                 SecondaryAction();
             if (Input.GetMouseButtonUp(1))
                 StopAnimation();
@@ -71,23 +76,26 @@ namespace Weapon
 
             HammerHit Hammerhit = Body.AddComponent<HammerHit>();
             Hammerhit.hammer = this;
-
         }
+
         IEnumerator ActivateHitbox()
         {
             _currentlyAttacking = true;
             yield return new WaitForSeconds(_hitboxActiveTime);
             _currentlyAttacking = false;
         }
+
         IEnumerator ActivatePushing()
         {
             yield return new WaitForSeconds(_pushingActiveTime);
             _currentlyPushing = true;
         }
+
         public bool getAttackActive()
         {
             return _currentlyAttacking;
         }
+
         public bool getPushActive()
         {
             return _currentlyPushing;
