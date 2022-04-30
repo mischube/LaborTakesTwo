@@ -14,7 +14,7 @@ public class HealthbarUI : MonoBehaviour
 
     private void Start()
     {
-        playerHealth = PlayerNetworking.LocalPlayerInstance.GetComponentInChildren<PlayerHealth>();
+        playerHealth = PlayerNetworking.LocalPlayerInstance.GetComponent<PlayerHealth>();
         playerHealth.playerDmgEvent += LoseAHeart;
         playerHealth.playerDeadEvent += FillAllHearts;
         CreateHearts();
