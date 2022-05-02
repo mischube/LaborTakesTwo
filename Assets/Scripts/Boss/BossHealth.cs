@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using Boss;
 using UnityEngine;
 
 public class BossHealth : MonoBehaviour
 {
+    public event Victory victoryEvent;
+    
     private float health = 3f;
 
     public void DamageBoss(float dmg)
@@ -18,6 +19,7 @@ public class BossHealth : MonoBehaviour
     private void BossDeath()
     {
         Debug.Log("Boss died. You win !!!!!");
+        victoryEvent?.Invoke();
         //switch to wining scene or play cutscene
     }
 }
