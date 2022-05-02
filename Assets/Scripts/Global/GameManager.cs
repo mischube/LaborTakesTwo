@@ -33,7 +33,18 @@ namespace Global
             _networkManager.OnLobbyJoined += OnLobbyJoined;
             _networkManager.Connect();
 
+            PlayerNetworking.PlayerLoaded += () =>
+            {
+                PlayerNetworking.LocalPlayerInstance.GetComponent<PlayerHealth>().playerDeadEvent += OnPlayerDeadEvent;
+            };
+
             Debug.Log("game manager started");
+        }
+
+
+        private void OnPlayerDeadEvent()
+        {
+            _respawnManager.RespawnPlayer(PlayerNetworking.LocalPlayerInstance);
         }
 
 
@@ -41,6 +52,8 @@ namespace Global
         {
             if (_networkManager != null)
                 _networkManager.OnLobbyJoined -= OnLobbyJoined;
+
+            PlayerNetworking.LocalPlayerInstance.GetComponent<PlayerHealth>().playerDeadEvent -= OnPlayerDeadEvent;
         }
 
 

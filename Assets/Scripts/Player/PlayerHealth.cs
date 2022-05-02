@@ -43,9 +43,6 @@ public class PlayerHealth : MonoBehaviour
 
     private void PlayerDeath()
     {
-        characterController.enabled = false; 
-        transform.position = autoRespawn.respawnPoint; //todo delete when respawnsystem is impl.
-        characterController.enabled = true;
         currentHealth = maxHealth;
         playerDeadEvent?.Invoke();
     }

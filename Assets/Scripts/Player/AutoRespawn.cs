@@ -6,9 +6,9 @@ namespace Player
 {
     public class AutoRespawn : MonoBehaviour
     {
-        public float minHeight = -100;
-        public float maxHeight = 500;
-        
+        [SerializeField] private float minHeight = -100;
+        [SerializeField] private float maxHeight = 500;
+
         private Transform _player;
         private RespawnManager _respawnManager;
 
