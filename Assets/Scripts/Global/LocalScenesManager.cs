@@ -19,29 +19,11 @@ namespace Global
         }
 
 
-        private void Start()
-        {
-            SceneManager.sceneLoaded += OnSceneLoaded;
-        }
-
-
-        private void OnDisable()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-
-
         public void LoadScene(Scenes levelName)
         {
             Debug.LogFormat("Loading scene [{0}]", levelName.GetStringValue());
 
             PhotonNetwork.LoadLevel(levelName.GetStringValue());
-        }
-
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode arg1)
-        {
-            Debug.LogFormat("Scene '{0}' loaded", scene.name);
         }
     }
 }
