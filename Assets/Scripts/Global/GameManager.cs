@@ -52,8 +52,6 @@ namespace Global
         {
             if (_networkManager != null)
                 _networkManager.OnLobbyJoined -= OnLobbyJoined;
-
-            PlayerNetworking.LocalPlayerInstance.GetComponent<PlayerHealth>().playerDeadEvent -= OnPlayerDeadEvent;
         }
 
 
