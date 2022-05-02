@@ -9,6 +9,8 @@ public class BossShockwave : MonoBehaviour
     public float maxRadius;
     public float speed;
     public float startWidth;
+
+    private float shockWaveDmg = 1f;
     
 
     private void Awake()
@@ -79,8 +81,9 @@ public class BossShockwave : MonoBehaviour
                 {
                     if (player.transform.position.y < 1.3f)
                     {
-                        //if he is to low get damaged
-                        Debug.Log("hit");
+                        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+                        if (playerHealth != null)
+                            playerHealth.DamagePlayer(shockWaveDmg);
                     }
                 }
             }
