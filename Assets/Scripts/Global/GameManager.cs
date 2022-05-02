@@ -41,6 +41,12 @@ namespace Global
             Debug.Log("game manager started");
         }
 
+        private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+        {
+            Debug.Log("Scene loaded");
+            _respawnManager.RespawnPlayer(PlayerNetworking.LocalPlayerInstance);
+        }
+
 
         private void OnPlayerDeadEvent()
         {
@@ -64,6 +70,8 @@ namespace Global
                 _scenesManager.LoadScene(defaultScene);
             }
 
+            SceneManager.sceneLoaded += OnSceneLoaded;
+
             //all others just spawn their player object
             _respawnManager.SpawnPlayer();
         }
@@ -80,11 +88,6 @@ namespace Global
         public void SwitchScene(Scenes nextScene)
         {
             _scenesManager.LoadScene(nextScene);
-
-            SceneManager.sceneLoaded += (scene, mode) =>
-            {
-                _respawnManager.RespawnPlayer(PlayerNetworking.LocalPlayerInstance);
-            };
         }
     }
 }
