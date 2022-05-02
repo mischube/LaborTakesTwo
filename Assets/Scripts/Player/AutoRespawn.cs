@@ -9,8 +9,11 @@ namespace Player
         [SerializeField] private float minHeight = -100;
         [SerializeField] private float maxHeight = 500;
 
+        public RespawnPoint currentCheckpoint;
+
         private Transform _player;
         private RespawnManager _respawnManager;
+
 
         private void Start()
         {
@@ -18,6 +21,7 @@ namespace Player
             _respawnManager = GameManager.Instance.GetComponent<RespawnManager>();
         }
 
+        
         private void Update()
         {
             if (_player.position.y < minHeight ||

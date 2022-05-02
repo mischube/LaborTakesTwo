@@ -9,7 +9,5 @@ namespace Global.Respawn
         public Scenes scene;
 
         public Vector3 position;
-
-        public bool isChecked;
     }
 }
