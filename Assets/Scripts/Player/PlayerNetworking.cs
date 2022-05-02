@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class Player : MonoBehaviourPun
+    public class PlayerNetworking : MonoBehaviourPun
     {
         public static GameObject LocalPlayerInstance;
 
@@ -15,6 +15,8 @@ namespace Player
             {
                 LocalPlayerInstance = gameObject;
             }
+
+            DontDestroyOnLoad(gameObject);
         }
 
         private void Start()
@@ -42,6 +44,7 @@ namespace Player
             GetComponent<PlayerMovement>().enabled = false;
             GetComponentInChildren<PlayerInventory>().enabled = false;
             GetComponentInChildren<AutoRespawn>().enabled = false;
+            GetComponentInChildren<PlayerHealth>().enabled = false;
         }
     }
 }

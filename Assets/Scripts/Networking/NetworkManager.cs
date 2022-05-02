@@ -1,19 +1,18 @@
 ﻿using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 namespace Networking
 {
-    public class NetworkLauncher : MonoBehaviourPunCallbacks
+    public class NetworkManager : MonoBehaviourPunCallbacks
     {
-        public GameObject playerPrefab;
+        public event JoinedLobbyHandler OnLobbyJoined;
 
-        private void Start()
-        {
-            Connect();
-        }
 
         public void Connect()
         {
+            PhotonNetwork.AutomaticallySyncScene = true;
+
             if (PhotonNetwork.IsConnected)
             {
                 Debug.Log("joining random room");
@@ -25,22 +24,24 @@ namespace Networking
             }
         }
 
+
         public override void OnConnectedToMaster()
         {
-            Debug.Log("Connected now Join room");
-            PhotonNetwork.JoinRandomRoom();
+            Debug.Log("Connected to master. Joining room now");
+            PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: new RoomOptions { MaxPlayers = 2, IsVisible = true });
         }
+
 
         public override void OnJoinRandomFailed(short returnCode, string message)
         {
-            Debug.Log("No Room, Creating now");
-            PhotonNetwork.CreateRoom("My Room", new Photon.Realtime.RoomOptions { MaxPlayers = 2, IsVisible = true });
+            Debug.Log($"Failed to join a random room | message: [{message}]");
         }
+
 
         public override void OnJoinedRoom()
         {
-            Debug.Log("Connect to room");
-            PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(65, 16, -43), Quaternion.identity);
+            Debug.LogFormat("Joined room [{0}]", PhotonNetwork.CurrentRoom.Name);
+            OnLobbyJoined?.Invoke(this);
         }
     }
 }
