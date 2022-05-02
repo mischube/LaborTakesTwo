@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class BossMeteor : MonoBehaviour
 {
-    private float health = 3f;
     private float fireBallCd = 5f;
     private bool fireBallActive = false;
 
@@ -31,23 +30,5 @@ public class BossMeteor : MonoBehaviour
         }
         yield return new WaitForSeconds(fireBallCd);
         fireBallActive = false;
-    }
-
-    private void HandControll()
-    {
-        //reference to hand script
-    }
-
-    private void BossHit()
-    {
-        if (health <= 0)
-        {
-            BossDead();
-        }
-    }
-
-    private void BossDead()
-    {
-        
     }
 }
