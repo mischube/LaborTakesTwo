@@ -69,13 +69,9 @@ namespace Weapon
             base.OnEnable();
             if (weaponContainer == null)
                 return;
-            Body.AddComponent<BoxCollider>();
-            Body.GetComponent<BoxCollider>().isTrigger = true;
-            Body.AddComponent<Rigidbody>();
-            Body.GetComponent<Rigidbody>().useGravity = false;
 
-            HammerHit Hammerhit = Body.AddComponent<HammerHit>();
-            Hammerhit.hammer = this;
+            var hammerHit = gameObject.GetComponentInChildren<HammerHit>();
+            hammerHit.hammer = this;
         }
 
         IEnumerator ActivateHitbox()
