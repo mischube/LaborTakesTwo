@@ -1,17 +1,25 @@
 using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 using Weapon;
 
-public class HammerHit : MonoBehaviour
+public class HammerHit : MonoBehaviourPun
 {
     public Hammer hammer;
+
 
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.CompareTag("Destroyable") &&
             hammer.getAttackActive())
         {
-            Destroy(collider.gameObject);
+            if (collider.gameObject.GetComponent<PhotonView>().IsMine)
+                PhotonNetwork.Destroy(collider.gameObject);
+            else
+            {
+                collider.gameObject.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
+                PhotonNetwork.Destroy(collider.gameObject);
+            }
         }
 
         if (collider.gameObject.CompareTag("Pushable") &&
