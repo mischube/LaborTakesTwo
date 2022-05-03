@@ -22,10 +22,17 @@ public class HealthbarUI : MonoBehaviour
 
     private void CreateHearts()
     {
+        int width = Screen.width;
+        float spaceSide = (float) width / 16;
+
+        int height = Screen.height;
+        float spaceTop = (float) height / 25;
+        
         for (int i = 0; i < playerHealth.GetMaxHealth(); i++)
         {
             GameObject heartInstantiate = 
-                Instantiate(heartPrefab, heartSpawnPoint.position + new Vector3(0 + i * 115,0,0), heartSpawnPoint.rotation, transform);
+                Instantiate(heartPrefab, heartSpawnPoint.position + new Vector3(spaceSide * 1.5f + i * spaceSide,-spaceTop,0),
+                    heartSpawnPoint.rotation, transform);
             heartList.Add(heartInstantiate);
         }
     }
