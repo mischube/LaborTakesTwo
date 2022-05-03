@@ -9,11 +9,14 @@ namespace Player
         public static GameObject LocalPlayerInstance;
 
 
+        public static event PlayerLoaded PlayerLoaded;
+
         private void Awake()
         {
             if (photonView.IsMine)
             {
                 LocalPlayerInstance = gameObject;
+                PlayerLoaded?.Invoke();
             }
 
             DontDestroyOnLoad(gameObject);
