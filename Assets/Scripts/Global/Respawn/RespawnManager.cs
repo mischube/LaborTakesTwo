@@ -8,14 +8,14 @@ namespace Global.Respawn
 {
     public class RespawnManager : MonoBehaviour
     {
-        private RespawnPointRepository _respawnPointRepository;
+        private SpawnPointRepository _spawnPointRepository;
         private GameObject _playerPrefab;
         private GameObject _uiPrefab;
 
 
         private void Start()
         {
-            _respawnPointRepository = gameObject.GetComponent<RespawnPointRepository>();
+            _spawnPointRepository = gameObject.GetComponent<SpawnPointRepository>();
             _playerPrefab = Resources.Load<GameObject>("Player");
             _uiPrefab = Resources.Load<GameObject>("UI");
         }
@@ -48,7 +48,7 @@ namespace Global.Respawn
         public void SpawnPlayer()
         {
             var currentScene = GameManager.Instance.CurrentScene;
-            var spawnPosition = _respawnPointRepository.GetSpawnPoint(currentScene);
+            var spawnPosition = _spawnPointRepository.GetSpawnPoint(currentScene);
 
             Debug.LogFormat
             ("Spawning player in scene {0} on position [{1}]", currentScene.GetStringValue(),
