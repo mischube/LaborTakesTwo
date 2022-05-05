@@ -1,4 +1,3 @@
-using System;
 using Library.StringEnums;
 using Photon.Pun;
 using UnityEngine;
@@ -12,9 +11,8 @@ namespace Global
         {
             get
             {
-                var scene = SceneManager.GetActiveScene().name;
-                var success = Enum.TryParse<Scenes>(scene, out var scenesEnumValue);
-                return success ? scenesEnumValue : throw new InvalidCastException();
+                var scene = SceneManager.GetActiveScene();
+                return scene.GetEnumValue();
             }
         }
 
