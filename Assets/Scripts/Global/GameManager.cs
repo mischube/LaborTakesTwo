@@ -1,5 +1,6 @@
 using System;
 using Global.Respawn;
+using Library.StringEnums;
 using Networking;
 using Photon.Pun;
 using Player;
@@ -21,7 +22,14 @@ namespace Global
         public static GameManager Instance => GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
 
 
-        public Scenes CurrentScene => _scenesManager.CurrentScene;
+        public Scenes CurrentScene
+        {
+            get
+            {
+                var scene = SceneManager.GetActiveScene();
+                return scene.GetEnumValue();
+            }
+        }
 
 
         private void Start()
@@ -64,7 +72,7 @@ namespace Global
         private void OnLobbyJoined(object sender)
         {
             if (PhotonNetwork.IsMasterClient &&
-                _scenesManager.CurrentScene == Scenes.Start)
+                CurrentScene == Scenes.Start)
             {
                 //Only first player joining room loads a scene
                 _scenesManager.LoadScene(defaultScene);
