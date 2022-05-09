@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using Photon.Pun;
 using UI;
 using UnityEngine;
 using Weapon;
 
 namespace Player
 {
-    public class PlayerInventory : MonoBehaviour
+    public class PlayerInventory : MonoBehaviourPun
     {
         public WeaponScript activeWeapon;
 
@@ -43,7 +44,6 @@ namespace Player
         private void PickupWeapon()
         {
             var newWeaponObj = _interactableInfo.GetHoveredItem();
-
             if (newWeaponObj == null)
                 return;
 
@@ -57,7 +57,7 @@ namespace Player
             newWeaponClone.enabled = false;
             _weapons.AddLast(newWeaponClone);
 
-            Destroy(newWeapon.gameObject);
+            newWeaponObj.GetComponent<Moveable>().DestroyTargetPun();
         }
 
         private void SwitchWeapon(bool stepForward)
