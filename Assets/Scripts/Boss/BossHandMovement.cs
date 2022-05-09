@@ -8,7 +8,7 @@ public class BossHandMovement : MonoBehaviour
     public BossShockwave bossShockwave;
     public bool leftHand;
     
-    private float speed = .05f;
+    private float speed = 5f;
     private bool changeDirection;
 
     private void Start()
@@ -27,7 +27,7 @@ public class BossHandMovement : MonoBehaviour
         
         Vector3 moveDirection = new Vector3(0f, 1f, 0f);
 
-        transform.position += moveDirection * speed;
+        transform.position += moveDirection * (speed * Time.deltaTime);
 
         if (transform.position.y < 0f || transform.position.y > 10f)
         {

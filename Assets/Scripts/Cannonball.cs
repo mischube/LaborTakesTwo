@@ -6,10 +6,10 @@ using UnityEngine;
 public class Cannonball : MonoBehaviour
 {
 
-    private float speed = .15f;
+    private float speed = 15f;
     
     private void Update()
     {
-        transform.position += transform.forward * speed;
+        transform.position += transform.forward * (speed * Time.deltaTime);
     }
 }
