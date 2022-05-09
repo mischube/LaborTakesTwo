@@ -9,6 +9,10 @@ public class BossUI : MonoBehaviour
     {
         //ich wüsste sonst nicht wie ich an bossHealth kommen könnte
         bossHealth = FindObjectOfType<BossHealth>();
+
+        if (bossHealth == null)
+            return;
+
         bossHealth.victoryEvent += ShowVictoryScreen;
     }
 
@@ -19,6 +23,9 @@ public class BossUI : MonoBehaviour
 
     private void OnDisable()
     {
+        if (bossHealth == null)
+            return;
+        
         bossHealth.victoryEvent -= ShowVictoryScreen;
     }
 }
