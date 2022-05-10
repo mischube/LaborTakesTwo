@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Player;
 using UnityEngine;
@@ -15,8 +14,8 @@ public class HealthbarUI : MonoBehaviour
     private void Start()
     {
         playerHealth = PlayerNetworking.LocalPlayerInstance.GetComponent<PlayerHealth>();
-        playerHealth.playerDmgEvent += LoseAHeart;
-        playerHealth.playerDeadEvent += FillAllHearts;
+        playerHealth.PlayerDmgEvent += LoseAHeart;
+        playerHealth.PlayerDeadEvent += FillAllHearts;
         CreateHearts();
     }
 
@@ -52,7 +51,7 @@ public class HealthbarUI : MonoBehaviour
 
     private void OnDisable()
     {
-        playerHealth.playerDmgEvent -= LoseAHeart;
-        playerHealth.playerDeadEvent -= FillAllHearts;
+        playerHealth.PlayerDmgEvent -= LoseAHeart;
+        playerHealth.PlayerDeadEvent -= FillAllHearts;
     }
 }

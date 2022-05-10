@@ -1,11 +1,85 @@
+using Global;
+using Global.Respawn;
+using Library.StringEnums;
+using Photon.Pun;
+using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public static class AppStarter
+public class AppStarter : MonoBehaviour
 {
-    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
-    internal static void OnBeforeSceneLoadRuntimeMethod()
+    [SerializeField] private Scenes defaultScene;
+    [SerializeField] private GameObject gameManagerPrefab;
+    [SerializeField] private GameObject uiPrefab;
+    [SerializeField] private GameObject playerPrefab;
+
+    private NetworkConnector _networkConnector;
+
+    private void Start()
     {
-        var gameManager = Resources.Load<GameObject>("GameManager");
-        Object.Instantiate(gameManager);
+        SetDefaultScene();
+
+        SceneManager.sceneLoaded += OnGameSceneLoaded;
+        _networkConnector = GetComponent<NetworkConnector>();
+        _networkConnector.JoinedRoom += OnJoinedRoom;
+        _networkConnector.Connect();
+        _networkConnector.Connected += () => _networkConnector.JoinRoom();
+    }
+
+    private void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.GetEnumValue() == Scenes.Start)
+            return;
+
+        SpawnPlayer();
+        SceneManager.sceneLoaded -= OnGameSceneLoaded;
+    }
+
+
+    private void OnJoinedRoom()
+    {
+        Instantiate(gameManagerPrefab);
+
+        LoadGameScene();
+    }
+
+
+    private void LoadGameScene()
+    {
+        Debug.LogFormat("load game scene {0}", defaultScene.GetStringValue());
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel(defaultScene.GetStringValue());
+        }
+
+
+        _networkConnector.JoinedRoom -= OnJoinedRoom;
+    }
+
+    private void SetDefaultScene()
+    {
+        defaultScene = AppStartup.Scene;
+
+        Debug.Log(defaultScene);
+    }
+
+
+    private void SpawnPlayer()
+    {
+        var gameManager = GameManager.Instance;
+        var currentScene = gameManager.CurrentScene;
+        var spawnPosition = gameManager.GetComponent<SpawnPointRepository>().GetSpawnPoint(currentScene);
+
+        Debug.LogFormat
+        ("Spawning player in scene {0} on position [{1}]", currentScene.GetStringValue(),
+            spawnPosition.position);
+
+        var player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition.position, Quaternion.identity);
+
+        //Set default checkpoint in current scene
+        player.GetComponent<Respawn>().currentCheckpoint = spawnPosition;
+
+        Instantiate(uiPrefab);
     }
 }

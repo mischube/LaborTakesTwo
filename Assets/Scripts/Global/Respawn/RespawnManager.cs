@@ -1,6 +1,4 @@
 using System;
-using Library.StringEnums;
-using Photon.Pun;
 using Player;
 using UnityEngine;
 
@@ -8,16 +6,12 @@ namespace Global.Respawn
 {
     public class RespawnManager : MonoBehaviour
     {
-        private SpawnPointRepository _spawnPointRepository;
-        private GameObject _playerPrefab;
-        private GameObject _uiPrefab;
-
-
         private void Start()
         {
-            _spawnPointRepository = gameObject.GetComponent<SpawnPointRepository>();
-            _playerPrefab = Resources.Load<GameObject>("Player");
-            _uiPrefab = Resources.Load<GameObject>("UI");
+            PlayerNetworking.PlayerLoaded += () =>
+            {
+                PlayerNetworking.LocalPlayerInstance.GetComponent<PlayerHealth>().PlayerDeadEvent += OnPlayerDead;
+            };
         }
 
 
@@ -27,12 +21,11 @@ namespace Global.Respawn
                 throw new InvalidOperationException
                     ($"Cannot respawn a object which is not a player. Was: {player.tag}");
 
-            if (GameManager.Instance.CurrentScene == Scenes.Start)
-                throw new InvalidOperationException
-                    ($"Can't spawn a player in Scene {GameManager.Instance.CurrentScene}");
 
-            var checkpoint = player.GetComponent<AutoRespawn>().currentCheckpoint;
+            var checkpoint = player.GetComponent<Player.Respawn>().currentCheckpoint;
 
+            Debug.LogFormat("Respawning player at {0}", checkpoint.position);
+            
             TeleportPlayer(player, checkpoint.position);
         }
 
@@ -45,21 +38,9 @@ namespace Global.Respawn
         }
 
 
-        public void SpawnPlayer()
+        private void OnPlayerDead()
         {
-            var currentScene = GameManager.Instance.CurrentScene;
-            var spawnPosition = _spawnPointRepository.GetSpawnPoint(currentScene);
-
-            Debug.LogFormat
-            ("Spawning player in scene {0} on position [{1}]", currentScene.GetStringValue(),
-                spawnPosition.position);
-
-            var player = PhotonNetwork.Instantiate(_playerPrefab.name, spawnPosition.position, Quaternion.identity);
-
-            //Set default checkpoint in current scene
-            player.GetComponent<AutoRespawn>().currentCheckpoint = spawnPosition;
-
-            Instantiate(_uiPrefab);
+            RespawnPlayer(PlayerNetworking.LocalPlayerInstance);
         }
     }
 }

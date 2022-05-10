@@ -1,5 +1,4 @@
 using Global.Respawn;
-using Player;
 using UnityEngine;
 
 namespace Global
@@ -21,7 +20,7 @@ namespace Global
 
         private void OnTriggerEnter(Collider other)
         {
-            other.GetComponent<AutoRespawn>().currentCheckpoint = point;
+            other.GetComponent<Player.Respawn>().currentCheckpoint = point;
         }
     }
 }
