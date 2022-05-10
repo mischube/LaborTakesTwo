@@ -320,7 +320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 930da8e6c3ff4f76b95b01b8f4e9934b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultScene: 1
+  defaultScene: 2
   gameManagerPrefab: {fileID: 6148366293448555976, guid: 6a04180fb00254a48b514b491ea1b5c2, type: 3}
   uiPrefab: {fileID: 3436224690444418299, guid: 100c9b18318964944a54d024cf3356f6, type: 3}
   playerPrefab: {fileID: 1504431538775554853, guid: 02c90592c4aace040abbeca65125dfc3, type: 3}
