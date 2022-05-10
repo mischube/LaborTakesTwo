@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Player
 {
-    public class AutoRespawn : MonoBehaviour
+    public class Respawn : MonoBehaviour
     {
         [SerializeField] private float minHeight = -100;
         [SerializeField] private float maxHeight = 500;
