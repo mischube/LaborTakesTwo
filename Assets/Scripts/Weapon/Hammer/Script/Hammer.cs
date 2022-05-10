@@ -56,6 +56,7 @@ namespace Weapon.Hammer.Script
         private void Start()
         {
             _animator = GetComponent<Animator>();
+            //_animator = transform.root.GetComponent<Animator>();
             _animator.runtimeAnimatorController = weaponContainer.animatorController;
         }
 

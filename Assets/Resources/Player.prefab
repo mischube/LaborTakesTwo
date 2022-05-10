@@ -214,6 +214,8 @@ GameObject:
   - component: {fileID: 7574328828550715057}
   - component: {fileID: 6891450399085716146}
   - component: {fileID: 4027590028795705597}
+  - component: {fileID: 6106331426431389882}
+  - component: {fileID: 1317406428685864519}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -315,6 +317,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -4350774455710407121}
+  - {fileID: 6106331426431389882}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -391,6 +394,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInventory: {fileID: 0}
+--- !u!114 &6106331426431389882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504431538775554853}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers: []
+--- !u!95 &1317406428685864519
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504431538775554853}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1504431538856185672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,7 +1237,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504431540764554283}
-  m_LocalRotation: {x: 0.15457791, y: -0.000000015321717, z: 0.0000000023361846, w: 0.9879806}
+  m_LocalRotation: {x: 0.15457791, y: 0.000000015321712, z: -0.000000002336183, w: 0.9879806}
   m_LocalPosition: {x: 0, y: 6.040786, z: -16.907827}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1685,7 +1723,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6322772009405081497}
-  m_LocalRotation: {x: 0.15278047, y: -0.000000017004385, z: 0.0000000026287996, w: 0.98826015}
+  m_LocalRotation: {x: 0.15278047, y: 0.000000017004378, z: -0.0000000026287987, w: 0.98826015}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1871,8 +1909,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6304997164441906121}
   - component: {fileID: 3358938125013613283}
-  - component: {fileID: 7449682346989487126}
   - component: {fileID: 6970176317232490557}
+  - component: {fileID: 5288365860710302728}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Player
@@ -1908,7 +1946,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponContainer: {fileID: 11400000, guid: a6226b7619e97cd4c82548fdf22530b6, type: 2}
---- !u!95 &7449682346989487126
+--- !u!114 &6970176317232490557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361167154252844057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf08883d7e010a42a7cc9ca32bc3a5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &5288365860710302728
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -1927,18 +1977,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &6970176317232490557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7361167154252844057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daf08883d7e010a42a7cc9ca32bc3a5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8780264559847461424
 GameObject:
   m_ObjectHideFlags: 0
