@@ -7,6 +7,13 @@ public class NetworkConnector : MonoBehaviourPunCallbacks
     public event JoinedRoomHandler JoinedRoom;
     public event ConnectedHandler Connected;
 
+    public override void OnEnable()
+    {
+        base.OnEnable();
+
+        DontDestroyOnLoad(this);
+    }
+
     public void Connect()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -43,6 +50,8 @@ public class NetworkConnector : MonoBehaviourPunCallbacks
     {
         Debug.LogFormat("Joined room [{0}]", PhotonNetwork.CurrentRoom.Name);
         JoinedRoom?.Invoke();
+
+        Destroy(gameObject);
     }
 }
 

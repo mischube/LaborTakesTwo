@@ -24,6 +24,8 @@ public class AppStarter : MonoBehaviour
         _networkConnector.JoinedRoom += OnJoinedRoom;
         _networkConnector.Connect();
         _networkConnector.Connected += () => _networkConnector.JoinRoom();
+
+        Instantiate(gameManagerPrefab);
     }
 
     private void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -38,8 +40,6 @@ public class AppStarter : MonoBehaviour
 
     private void OnJoinedRoom()
     {
-        Instantiate(gameManagerPrefab);
-
         LoadGameScene();
     }
 
