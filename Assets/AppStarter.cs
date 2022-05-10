@@ -59,9 +59,12 @@ public class AppStarter : MonoBehaviour
 
     private void SetDefaultScene()
     {
-        defaultScene = AppStartup.Scene;
+        if (AppStartup.Scene == Scenes.Start)
+        {
+            return;
+        }
 
-        Debug.Log(defaultScene);
+        defaultScene = AppStartup.Scene;
     }
 
 
