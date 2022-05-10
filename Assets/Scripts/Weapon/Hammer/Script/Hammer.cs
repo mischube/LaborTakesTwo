@@ -14,16 +14,23 @@ namespace Weapon.Hammer.Script
 
         public override void PrimaryAction()
         {
+            if (_currentlyAttacking)
+                return;
+
             _animator.SetTrigger("Hit");
             StartCoroutine(ActivateHitbox());
         }
 
         public override void SecondaryAction()
         {
+            if (_currentlyPushing)
+                return;
+
             if (!_swing)
                 Swing();
             if (_swing)
                 Load();
+            
             StartCoroutine(ActivatePushing());
         }
 
@@ -54,12 +61,6 @@ namespace Weapon.Hammer.Script
 
         private void Update()
         {
-            if (Input.GetMouseButton(0) &&
-                !_currentlyAttacking)
-                PrimaryAction();
-            if (Input.GetMouseButtonDown(1) &&
-                !_currentlyPushing)
-                SecondaryAction();
             if (Input.GetMouseButtonUp(1))
                 StopAnimation();
         }
