@@ -1,4 +1,6 @@
+using System;
 using Global;
+using UnityEngine.SceneManagement;
 
 namespace Library.StringEnums
 {
@@ -18,6 +20,12 @@ namespace Library.StringEnums
             }
 
             return attribs[0].StringValue;
+        }
+
+        public static Scenes GetEnumValue(this Scene scene)
+        {
+            var success = Enum.TryParse<Scenes>(scene.name, out var scenesEnumValue);
+            return success ? scenesEnumValue : throw new InvalidCastException();
         }
     }
 }

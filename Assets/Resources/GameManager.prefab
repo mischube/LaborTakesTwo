@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6148366293448555978}
   - component: {fileID: 6148366293448555979}
   - component: {fileID: 6148366293448555977}
-  - component: {fileID: 6148366293448555988}
   - component: {fileID: 6148366293448555989}
   - component: {fileID: -1662213996271776475}
   - component: {fileID: -1041576544709154611}
@@ -60,19 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f27deb662f940748e84e80fc07b1477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultScene: 3
---- !u!114 &6148366293448555988
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6148366293448555976}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4da0a756c0a46808ce56ed337f7bec9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6148366293448555989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,7 +85,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - scene: 1
-    position: {x: 60, y: 12, z: -29}
+    position: {x: 63, y: 12, z: -43}
   - scene: 2
     position: {x: 0, y: 1, z: -8}
   - scene: 3

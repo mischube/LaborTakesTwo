@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace Global.Respawn
 {
-    public class RespawnPointRepository : MonoBehaviour
+    public class SpawnPointRepository : MonoBehaviour
     {
         [SerializeField] private List<RespawnPoint> spawnPoints = new List<RespawnPoint>();
 
 
         public RespawnPoint GetSpawnPoint(Scenes scene)
         {
-            return spawnPoints.Single(point => point.scene == scene);
+            return spawnPoints.SingleOrDefault(point => point.scene == scene);
         }
 
         private void Start()
