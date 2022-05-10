@@ -2,36 +2,39 @@ using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
-public class Moveable : MonoBehaviourPun
+namespace Weapon.Hammer.Script
 {
-    public void DestroyTargetPun()
+    public class Moveable : MonoBehaviourPun
     {
-        photonView.RPC("DestroyTarget", RpcTarget.MasterClient);
-    }
+        public void DestroyTargetPun()
+        {
+            photonView.RPC("DestroyTarget", RpcTarget.MasterClient);
+        }
 
-    public void MoveTargetPun(Vector3 forwardDirection)
-    {
-        photonView.RPC("MoveTarget", RpcTarget.All, forwardDirection);
-    }
+        public void MoveTargetPun(Vector3 forwardDirection)
+        {
+            photonView.RPC("MoveTarget", RpcTarget.All, forwardDirection);
+        }
 
-    [PunRPC]
-    private void DestroyTarget()
-    {
-        PhotonNetwork.Destroy(gameObject);
-    }
+        [PunRPC]
+        private void DestroyTarget()
+        {
+            PhotonNetwork.Destroy(gameObject);
+        }
 
-    [PunRPC]
-    private void MoveTarget(Vector3 forward)
-    {
-        Rigidbody rigidbody = transform.gameObject.GetComponent<Rigidbody>();
-        rigidbody.isKinematic = false;
-        rigidbody.AddForce(forward * 10, ForceMode.Impulse);
-        StartCoroutine(FreezeObject(rigidbody));
-    }
+        [PunRPC]
+        private void MoveTarget(Vector3 forward)
+        {
+            Rigidbody rigidbody = transform.gameObject.GetComponent<Rigidbody>();
+            rigidbody.isKinematic = false;
+            rigidbody.AddForce(forward * 10, ForceMode.Impulse);
+            StartCoroutine(FreezeObject(rigidbody));
+        }
 
-    IEnumerator FreezeObject(Rigidbody rigidbody)
-    {
-        yield return new WaitForSeconds(3);
-        rigidbody.isKinematic = true;
+        IEnumerator FreezeObject(Rigidbody rigidbody)
+        {
+            yield return new WaitForSeconds(3);
+            rigidbody.isKinematic = true;
+        }
     }
 }

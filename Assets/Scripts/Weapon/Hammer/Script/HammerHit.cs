@@ -1,23 +1,25 @@
 using Photon.Pun;
 using UnityEngine;
-using Weapon;
 
-public class HammerHit : MonoBehaviourPun
+namespace Weapon.Hammer.Script
 {
-    public Hammer hammer;
-
-    private void OnTriggerEnter(Collider collider)
+    public class HammerHit : MonoBehaviourPun
     {
-        if (collider.gameObject.CompareTag("Destroyable") &&
-            hammer.getAttackActive())
-        {
-            collider.GetComponent<Moveable>().DestroyTargetPun();
-        }
+        public Hammer hammer;
 
-        if (collider.gameObject.CompareTag("Pushable") &&
-            hammer.getPushActive())
+        private void OnTriggerEnter(Collider other)
         {
-            collider.GetComponent<Moveable>().MoveTargetPun(transform.forward);
+            if (other.gameObject.CompareTag("Destroyable") &&
+                hammer.getAttackActive())
+            {
+                other.GetComponent<Moveable>().DestroyTargetPun();
+            }
+
+            if (other.gameObject.CompareTag("Pushable") &&
+                hammer.getPushActive())
+            {
+                other.GetComponent<Moveable>().MoveTargetPun(transform.forward);
+            }
         }
     }
 }

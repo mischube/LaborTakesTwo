@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace Weapon
+namespace Weapon.Hammer.Script
 {
     public class Hammer : WeaponScript
     {
