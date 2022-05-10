@@ -45,6 +45,9 @@ MonoBehaviour:
   - TransferMaster
   - DestroyTarget
   - MoveTarget
+  - ChangeWeapon
+  - InstantiateWeapon
+  - DestroyWeapon
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Weapon
@@ -14,11 +13,17 @@ namespace Weapon
             //if weapon got picked up
             if (weaponContainer == null)
                 return;
+            var script = transform.root.GetComponent<WeaponPhoton>();
 
-            Destroy(transform.GetChild(0).gameObject);
-            Body = Instantiate(weaponContainer.body, transform.position, transform.rotation, transform);
-            if (!Body.CompareTag("Player"))
-                throw new Exception("Weapon body needs a tag");
+            script.DeleteGameObject(transform.GetChild(0).gameObject);
+            script.DestroyOldWeaponPun();
+            script.SaveGameObject(weaponContainer, transform);
+            script.ChangeWeaponPun(weaponContainer.body.name);
+            //Body = Instantiate(weaponContainer.body, transform.position, transform.rotation, transform);
+
+            //Führt zu errors, schau mal drüber mike ka wofür das ist
+            //if (!Body.CompareTag("Player"))
+            // throw new Exception("Weapon body needs a tag");
         }
 
         public abstract void PrimaryAction();
