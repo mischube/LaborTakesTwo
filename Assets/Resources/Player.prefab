@@ -376,6 +376,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 1504431538856185672}
+  maxHealth: 3
+  invincibilityTime: 2
 --- !u!114 &4027590028795705597
 MonoBehaviour:
   m_ObjectHideFlags: 0
