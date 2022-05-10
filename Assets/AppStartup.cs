@@ -22,7 +22,6 @@ public static class AppStartup
             return;
 
         Scene = currentScene.GetEnumValue();
-        Debug.Log(Scene);
         SceneManager.LoadScene(startScene.GetStringValue());
     }
 }
