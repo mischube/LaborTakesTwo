@@ -69,7 +69,7 @@ namespace Global
         }
 
 
-        private void OnLobbyJoined(object sender)
+        private void OnLobbyJoined()
         {
             if (PhotonNetwork.IsMasterClient &&
                 CurrentScene == Scenes.Start)

@@ -41,7 +41,7 @@ namespace Networking
         public override void OnJoinedRoom()
         {
             Debug.LogFormat("Joined room [{0}]", PhotonNetwork.CurrentRoom.Name);
-            OnLobbyJoined?.Invoke(this);
+            OnLobbyJoined?.Invoke();
         }
     }
 }

@@ -1,4 +1,4 @@
 namespace Networking
 {
-    public delegate void JoinedLobbyHandler(object sender);
+    public delegate void JoinedLobbyHandler();
 }
