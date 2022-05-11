@@ -1,4 +1,5 @@
 using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Weapon.Hammer.Script
@@ -11,7 +12,7 @@ namespace Weapon.Hammer.Script
         private float _pushingActiveTime = 1.5f;
         private bool _currentlyPushing = false;
         private bool _swing = false;
-
+        private PhotonView photonView;
         public override void PrimaryAction()
         {
             if (_currentlyAttacking)
@@ -55,9 +56,11 @@ namespace Weapon.Hammer.Script
 
         private void Start()
         {
-            _animator = GetComponent<Animator>();
-            //_animator = transform.root.GetComponent<Animator>();
+            //_animator = GetComponent<Animator>();
+            _animator = transform.root.GetComponent<Animator>();
+            photonView = transform.root.GetComponent<PhotonView>();
             _animator.runtimeAnimatorController = weaponContainer.animatorController;
+            
         }
 
         private void Update()
