@@ -21,7 +21,7 @@ namespace Player
             _respawnManager = GameManager.Instance.GetComponent<RespawnManager>();
         }
 
-        
+
         private void Update()
         {
             if (_player.position.y < minHeight ||
