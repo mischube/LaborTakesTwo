@@ -49,7 +49,7 @@ namespace Player
             //move in Direction
             Vector3 moveDirection = cam.transform.right * x + cam.transform.forward * z;
             moveDirection.y = 0f;
-            characterController.Move(moveDirection.normalized * (speed * Time.deltaTime));
+            characterController.Move(moveDirection * (speed * Time.deltaTime));
 
             //rotating player
             //only rotate if player really moves
