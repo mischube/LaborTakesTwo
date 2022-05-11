@@ -11,6 +11,7 @@ namespace Global
     {
         private LocalScenesManager _scenesManager;
         private RespawnManager _respawnManager;
+        private SpawnPointRepository _spawnPointRepository;
 
         private readonly Guid _guid = Guid.NewGuid();
 
@@ -40,8 +41,9 @@ namespace Global
 
         private void LoadComponents()
         {
-            _scenesManager = gameObject.GetComponent<LocalScenesManager>();
-            _respawnManager = gameObject.GetComponent<RespawnManager>();
+            _scenesManager = GetComponent<LocalScenesManager>();
+            _respawnManager = GetComponent<RespawnManager>();
+            _spawnPointRepository = GetComponent<SpawnPointRepository>();
         }
 
 
@@ -68,6 +70,10 @@ namespace Global
         public void SwitchScene(Scenes nextScene)
         {
             _scenesManager.LoadScene(nextScene);
+
+            //Set spawn point in new scene
+            var spawnPoint = _spawnPointRepository.GetSpawnPoint(nextScene);
+            PlayerNetworking.LocalPlayerInstance.GetComponent<Player.Respawn>().currentCheckpoint = spawnPoint;
         }
     }
 }
