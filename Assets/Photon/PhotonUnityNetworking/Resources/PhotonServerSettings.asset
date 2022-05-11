@@ -39,6 +39,16 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - OnTriggerEnter
+  - DestroyForAll
+  - DisableForAll
+  - TransferMaster
+  - DestroyTarget
+  - MoveTarget
+  - ChangeWeapon
+  - InstantiateWeapon
+  - DestroyWeapon
+  - SwitchWeaponPun
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

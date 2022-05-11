@@ -4,7 +4,7 @@ namespace Weapon
     {
         public override void PrimaryAction()
         {
-            //Insert emote here :)
+            //Insert emote here :)s
         }
 
         public override void SecondaryAction()

@@ -16,8 +16,7 @@ public class OpenGates : MonoBehaviour
     private const float TopDoorLowerLimit = 8f;
     private const float BottomDoorUpperLimit = 3.6f;
     private const float BottomDoorLowerLimit = -3.6f;
-
-    // Update is called once per frame
+    
     void Update()
     {
         LowerGates();
@@ -36,7 +35,7 @@ public class OpenGates : MonoBehaviour
     private void GateControl()
     {
         if (_closeMainDoor == false)
-            ;
+            return;
         if (gameObject.name == "Button1" && _closeMainDoor)
             _closeBottomDoor = true;
 

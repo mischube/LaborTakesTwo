@@ -7,17 +7,25 @@ namespace Weapon
     {
         public WeaponContainer weaponContainer;
 
+        private GameObject _body;
 
-        private void OnEnable()
+
+        protected virtual void OnEnable()
         {
             //if weapon got picked up
             if (weaponContainer == null)
                 return;
 
-            Destroy(transform.GetChild(0).gameObject);
-            var body = Instantiate(weaponContainer.body, transform.position, transform.rotation, transform);
+            _body = transform.GetChild(0).gameObject;
 
-            if (!body.CompareTag("Player"))
+            Destroy(_body.gameObject);
+
+            var weaponPhoton = GetComponent<WeaponPhoton>();
+            weaponPhoton.RaiseWeaponChangedEvent(weaponContainer.body.name);
+
+            _body = Instantiate(weaponContainer.body, transform.position, transform.rotation, transform);
+
+            if (!_body.CompareTag("Player"))
                 throw new Exception("Weapon body needs a tag");
         }
 
