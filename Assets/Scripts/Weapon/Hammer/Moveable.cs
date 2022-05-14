@@ -2,7 +2,7 @@ using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
-namespace Weapon.Hammer.Script
+namespace Weapon.Hammer
 {
     public class Moveable : MonoBehaviourPun
     {

@@ -3,7 +3,7 @@ using Photon.Pun;
 using UI;
 using UnityEngine;
 using Weapon;
-using Weapon.Hammer.Script;
+using Weapon.Hammer;
 
 namespace Player
 {

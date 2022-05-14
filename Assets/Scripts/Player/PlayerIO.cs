@@ -6,6 +6,8 @@ namespace Player
     {
         [SerializeField] private PlayerInventory playerInventory;
 
+        private bool _isLocked = true;
+
         private void Start()
         {
             playerInventory = GetComponentInChildren<PlayerInventory>();
@@ -21,6 +23,31 @@ namespace Player
             if (Input.GetMouseButtonDown(1))
             {
                 playerInventory.activeWeapon.SecondaryAction();
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                Application.Quit();
+            }
+
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                ToggleMouse();
+            }
+        }
+
+        private void ToggleMouse()
+        {
+            if (_isLocked)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+                _isLocked = false;
+            } else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+                _isLocked = true;
             }
         }
     }
