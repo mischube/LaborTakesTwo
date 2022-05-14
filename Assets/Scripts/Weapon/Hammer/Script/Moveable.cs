@@ -28,16 +28,16 @@ namespace Weapon.Hammer.Script
         [UsedImplicitly]
         private void MoveTarget(Vector3 forward)
         {
-            Rigidbody rigidbody = transform.gameObject.GetComponent<Rigidbody>();
-            rigidbody.isKinematic = false;
-            rigidbody.AddForce(forward * 10, ForceMode.Impulse);
-            StartCoroutine(FreezeObject(rigidbody));
+            var rigidbodyComponent = transform.gameObject.GetComponent<Rigidbody>();
+            rigidbodyComponent.isKinematic = false;
+            rigidbodyComponent.AddForce(forward * 10, ForceMode.Impulse);
+            StartCoroutine(FreezeObject(rigidbodyComponent));
         }
 
-        IEnumerator FreezeObject(Rigidbody rigidbody)
+        IEnumerator FreezeObject(Rigidbody rigidBody)
         {
             yield return new WaitForSeconds(3);
-            rigidbody.isKinematic = true;
+            rigidBody.isKinematic = true;
         }
     }
 }
