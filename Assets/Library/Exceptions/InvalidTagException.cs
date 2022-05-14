@@ -1,6 +1,6 @@
 using System;
 
-namespace Exceptions
+namespace Library.Exceptions
 {
     /// <summary>
     /// This exception is thrown if a object has an invalid tag.
