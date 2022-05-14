@@ -12,13 +12,13 @@ namespace Weapon.Hammer.Script
             if (other.gameObject.CompareTag("Destroyable") &&
                 hammer.getAttackActive())
             {
-                other.GetComponent<Moveable>().DestroyTargetPun();
+                other.GetComponent<Movable>().DestroyTargetPun();
             }
 
             if (other.gameObject.CompareTag("Pushable") &&
                 hammer.getPushActive())
             {
-                other.GetComponent<Moveable>().MoveTargetPun(transform.forward);
+                other.GetComponent<Movable>().MoveTargetPun(transform.forward);
             }
         }
     }

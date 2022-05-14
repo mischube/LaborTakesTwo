@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Weapon.Hammer.Script
 {
-    public class Moveable : MonoBehaviourPun
+    public class Movable : MonoBehaviourPun
     {
         public void DestroyTargetPun()
         {

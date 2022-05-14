@@ -58,7 +58,7 @@ namespace Player
             newWeaponClone.enabled = false;
             _weapons.AddLast(newWeaponClone);
 
-            newWeaponObj.GetComponent<Moveable>().DestroyTargetPun();
+            newWeaponObj.GetComponent<Movable>().DestroyTargetPun();
         }
 
         private void SwitchWeapon(bool stepForward)
