@@ -1,4 +1,5 @@
 using System.Collections;
+using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
 
@@ -17,12 +18,14 @@ namespace Weapon.Hammer.Script
         }
 
         [PunRPC]
+        [UsedImplicitly]
         private void DestroyTarget()
         {
             PhotonNetwork.Destroy(gameObject);
         }
 
         [PunRPC]
+        [UsedImplicitly]
         private void MoveTarget(Vector3 forward)
         {
             Rigidbody rigidbody = transform.gameObject.GetComponent<Rigidbody>();
