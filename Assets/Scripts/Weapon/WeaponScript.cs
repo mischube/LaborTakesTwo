@@ -32,10 +32,5 @@ namespace Weapon
         public abstract void PrimaryAction();
 
         public abstract void SecondaryAction();
-
-        protected virtual void OnDisable()
-        {
-            return;
-        }
     }
 }
