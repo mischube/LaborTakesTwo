@@ -17,6 +17,7 @@ public class NetworkConnector : MonoBehaviourPunCallbacks
     public void Connect()
     {
         PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.SendRate = 60;
 
         if (PhotonNetwork.IsConnected)
             return;
