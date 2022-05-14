@@ -1,24 +1,23 @@
 using System.Collections;
-using Photon.Pun;
 using UnityEngine;
 
 namespace Weapon.Hammer.Script
 {
     public class Hammer : WeaponScript
     {
-        private Animator _animator;
-        private bool _currentlyAttacking = false;
+        private bool _currentlyAttacking;
         private float _hitboxActiveTime = 2f;
         private float _pushingActiveTime = 1.5f;
-        private bool _currentlyPushing = false;
-        private bool _swing = false;
-        private PhotonView photonView;
+        private bool _currentlyPushing;
+        private bool _swing;
+
+        
         public override void PrimaryAction()
         {
             if (_currentlyAttacking)
                 return;
 
-            _animator.SetTrigger("Hit");
+            Animator.SetTrigger("Hit");
             StartCoroutine(ActivateHitbox());
         }
 
@@ -31,37 +30,29 @@ namespace Weapon.Hammer.Script
                 Swing();
             if (_swing)
                 Load();
-            
+
             StartCoroutine(ActivatePushing());
         }
 
         private void Load()
         {
-            _animator.SetBool("Loading", true);
+            Animator.SetBool("Loading", true);
         }
 
         private void Swing()
         {
-            _animator.SetTrigger("Charge");
+            Animator.SetTrigger("Charge");
             _swing = true;
         }
 
         private void StopAnimation()
         {
-            _animator.SetBool("Loading", false);
-            _animator.ResetTrigger("Charge");
+            Animator.SetBool("Loading", false);
+            Animator.ResetTrigger("Charge");
             _swing = false;
             _currentlyPushing = false;
         }
 
-        private void Start()
-        {
-            //_animator = GetComponent<Animator>();
-            _animator = transform.root.GetComponent<Animator>();
-            photonView = transform.root.GetComponent<PhotonView>();
-            _animator.runtimeAnimatorController = weaponContainer.animatorController;
-            
-        }
 
         private void Update()
         {

@@ -9,6 +9,7 @@ namespace Weapon
 
         private GameObject _body;
 
+        protected Animator Animator;
 
         protected virtual void OnEnable()
         {
@@ -24,6 +25,9 @@ namespace Weapon
             weaponPhoton.RaiseWeaponChangedEvent(weaponContainer.body.name);
 
             _body = Instantiate(weaponContainer.body, transform.position, transform.rotation, transform);
+
+            Animator = transform.root.GetComponent<Animator>();
+            Animator.runtimeAnimatorController = weaponContainer.animatorController;
 
             if (!_body.CompareTag("Player"))
                 throw new Exception("Weapon body needs a tag");
