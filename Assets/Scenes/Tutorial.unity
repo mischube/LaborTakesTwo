@@ -41610,7 +41610,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh20024
+  m_Name: pb_Mesh20380
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -92382,7 +92382,6 @@ GameObject:
   - component: {fileID: 1984239096}
   - component: {fileID: 1984239095}
   - component: {fileID: 1984239094}
-  - component: {fileID: 1984239099}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -105650,19 +105649,6 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
---- !u!65 &1984239099
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1984239092}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 111, y: 1, z: 148.6}
-  m_Center: {x: 55.5, y: 0.5, z: -74.3}
 --- !u!43 &2005852949
 Mesh:
   m_ObjectHideFlags: 0
