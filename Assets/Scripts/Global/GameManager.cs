@@ -1,13 +1,14 @@
 using System;
 using Global.Respawn;
 using Library.StringEnums;
+using Photon.Pun;
 using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Global
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviourPun
     {
         private LocalScenesManager _scenesManager;
         private RespawnManager _respawnManager;
