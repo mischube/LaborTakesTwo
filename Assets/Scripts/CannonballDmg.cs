@@ -1,7 +1,16 @@
+using System;
+using Photon.Pun;
 using UnityEngine;
 
 public class CannonballDmg : MonoBehaviour
 {
+    private Cannonball cannonball;
+    
+    private void Start()
+    {
+        cannonball = GetComponentInParent<Cannonball>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag.Equals("Boss"))
@@ -10,7 +19,7 @@ public class CannonballDmg : MonoBehaviour
             if (bossHealth == null)
                 return;
             bossHealth.DamageBoss(3f);
-            Destroy(gameObject);
+            cannonball.DestoryWholeGameobject();
         }
     }
 }

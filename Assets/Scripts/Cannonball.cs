@@ -1,9 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class Cannonball : MonoBehaviour
+public class Cannonball : MonoBehaviourPun
 {
 
     private float speed = 15f;
@@ -11,5 +12,13 @@ public class Cannonball : MonoBehaviour
     private void Update()
     {
         transform.position += transform.forward * (speed * Time.deltaTime);
+    }
+
+    public void DestoryWholeGameobject()
+    {
+        if (!photonView.IsMine)
+            return;
+        
+        PhotonNetwork.Destroy(gameObject);
     }
 }
