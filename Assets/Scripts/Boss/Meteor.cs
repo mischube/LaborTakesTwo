@@ -1,4 +1,5 @@
 using System;
+using Photon.Pun;
 using UnityEngine;
 
 public class Meteor : MonoBehaviour
@@ -10,7 +11,7 @@ public class Meteor : MonoBehaviour
     {
         if (Math.Abs(impact.position.y - meteor.position.y) < .1f) //checks if impact and meteor are on same y level
         {
-            Destroy(gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
-public class BossMeteor : MonoBehaviour
+public class BossMeteor : MonoBehaviourPun
 {
     public GameObject fireball;
     public Transform middlePoint;
@@ -13,6 +13,9 @@ public class BossMeteor : MonoBehaviour
 
     private void Update()
     {
+        if (!photonView.IsMine)
+            return;
+        
         if (!fireBallActive)
         {
             StartCoroutine(ShootFireBall());
