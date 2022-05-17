@@ -8,6 +8,8 @@ namespace Weapon
         public new string name;
 
         public string description;
+        
+        public RuntimeAnimatorController animatorController;
 
         public GameObject body;
 

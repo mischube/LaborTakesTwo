@@ -6,56 +6,50 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviourPun
     {
-        //All Controller and Objects
+        //all public variables
         public CharacterController characterController;
         public GameObject cam;
-
-        //all public variables
         public Transform groundCheck;
         public LayerMask groundMask;
 
+        //Serialize fields
+        [SerializeField] private float speed = 12f;
+        [SerializeField] private float gravity = -9.81f;
+        [SerializeField] private float dashSpeed = 200f;
+        [SerializeField] private float dashCooldown = 3f;
+        [SerializeField] private float dashTime = 0.5f;
+        [SerializeField] private float jumpHeight = 3f;
+        [SerializeField] private float groundDistance = 0.4f;
+
         //general variables
-        private bool isGrounded;
-        private float groundDistance = 0.4f;
-        private float speed = 12f;
-        private float gravity = -9.81f;
-        private Vector3 velocity;
+        private bool _isGrounded;
+        private Vector3 _velocity;
+        private bool _doubleJumpAvailable;
+        private bool _dashActive;
 
-        //jump variables
-        private bool doubleJumpAvailable;
-        private float jumpHeight = 3f;
 
-        //dash variables
-        [SerializeField] public float dashSpeed = 200f;
-        private bool dashActive = false;
-        private float dashCooldown = 3f;
-        private float dashTime = 0.5f;
-
-        // Update is called once per frame
         void Update()
         {
             if (!photonView.IsMine)
-            {
                 return;
-            }
 
             //Check if on Ground (could be replaced with charactercontroller.isGrounded
-            isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+            _isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-            if (isGrounded && velocity.y < 0)
+            if (_isGrounded && _velocity.y < 0)
             {
-                velocity.y = -2f;
+                _velocity.y = -2f;
             }
 
             //Get Player Inputs
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
+            var x = Input.GetAxis("Horizontal");
+            var z = Input.GetAxis("Vertical");
 
 
             //move in Direction
             Vector3 moveDirection = cam.transform.right * x + cam.transform.forward * z;
             moveDirection.y = 0f;
-            characterController.Move(moveDirection * speed * Time.deltaTime);
+            characterController.Move(moveDirection * (speed * Time.deltaTime));
 
             //rotating player
             //only rotate if player really moves
@@ -74,59 +68,58 @@ namespace Player
 
         private void Jump()
         {
-            if (isGrounded)
+            if (_isGrounded)
             {
-                doubleJumpAvailable = true;
+                _doubleJumpAvailable = true;
             }
 
 
-            if (Input.GetButtonDown("Jump") &&
-                (isGrounded || doubleJumpAvailable))
+            if (Input.GetButtonDown("Jump") && (_isGrounded || _doubleJumpAvailable))
             {
                 //general gravity formula
-                velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-                if (!isGrounded)
+                _velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                if (!_isGrounded)
                 {
-                    doubleJumpAvailable = false;
+                    _doubleJumpAvailable = false;
                 }
             }
 
             //let the player fall
-            velocity.y += gravity * Time.deltaTime;
-            characterController.Move(velocity * Time.deltaTime);
+            _velocity.y += gravity * Time.deltaTime;
+            characterController.Move(_velocity * Time.deltaTime);
         }
 
         private void Dash()
         {
             if (Input.GetKeyDown(KeyCode.LeftShift) &&
-                !dashActive)
+                !_dashActive)
             {
-                dashActive = true;
+                _dashActive = true;
                 StartCoroutine(Dashing());
                 StartCoroutine(DashCoolDown());
             }
         }
 
-        IEnumerator Dashing()
+        private IEnumerator Dashing()
         {
-            float startTime = Time.time;
+            var startTime = Time.time;
 
             while (Time.time < startTime + dashTime)
             {
-                characterController.Move(transform.forward * dashSpeed * Time.deltaTime);
+                characterController.Move(transform.forward * (dashSpeed * Time.deltaTime));
                 yield return null;
             }
         }
 
-        IEnumerator DashCoolDown()
+        private IEnumerator DashCoolDown()
         {
             yield return new WaitForSeconds(dashCooldown);
-            dashActive = false;
+            _dashActive = false;
         }
 
-        void OnControllerColliderHit(ControllerColliderHit hit)
+        private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            Rigidbody body = hit.collider.attachedRigidbody;
+            var body = hit.collider.attachedRigidbody;
 
             // no rigidbody
             if (body == null ||
