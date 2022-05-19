@@ -58,7 +58,8 @@ namespace Player
             newWeaponClone.enabled = false;
             _weapons.AddLast(newWeaponClone);
 
-            newWeaponObj.GetComponent<Movable>().DestroyTargetPun();
+            if (newWeaponObj.name.Contains("Hammer"))
+                newWeaponObj.GetComponent<Movable>().DestroyTargetPun();
         }
 
         private void SwitchWeapon(bool stepForward)
