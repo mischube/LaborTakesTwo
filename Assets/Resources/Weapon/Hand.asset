@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hand
   description: This is your own hand. Please do not loose it
+  animatorController: {fileID: 9100000, guid: b18c3864b4069c94e808d9a5fbf78700, type: 2}
   body: {fileID: 5636826638956267916, guid: 1a712b25102a9604baa017f430327c9b, type: 3}
   icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
