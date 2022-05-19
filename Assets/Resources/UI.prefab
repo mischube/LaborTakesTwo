@@ -446,7 +446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10ce5eda19a3fab448d1bc1f2e688f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  victoryScene: {fileID: 4982645320889051343}
+  victoryUiGameObject: {fileID: 4982645320889051343}
   bossHealth: {fileID: 0}
 --- !u!1 &4982645320889051343
 GameObject:

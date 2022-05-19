@@ -8,7 +8,8 @@ public class BossMeteor : MonoBehaviourPun
     public Transform middlePoint;
     
     private float fireBallCd = 5f;
-    private bool fireBallActive = false;
+    private bool _fireBallActive = false;
+    [SerializeField]
     private float meteorActivationRange = 30f;
 
     private void Update()
@@ -16,7 +17,7 @@ public class BossMeteor : MonoBehaviourPun
         if (!photonView.IsMine)
             return;
         
-        if (!fireBallActive)
+        if (!_fireBallActive)
         {
             StartCoroutine(ShootFireBall());
         }
@@ -24,7 +25,7 @@ public class BossMeteor : MonoBehaviourPun
 
     private IEnumerator ShootFireBall()
     {
-        fireBallActive = true;
+        _fireBallActive = true;
         Collider [] cd = Physics.OverlapSphere(middlePoint.position, meteorActivationRange, LayerMask.GetMask("Player"));
         if (cd != null)
         {
@@ -35,6 +36,6 @@ public class BossMeteor : MonoBehaviourPun
             }
         }
         yield return new WaitForSeconds(fireBallCd);
-        fireBallActive = false;
+        _fireBallActive = false;
     }
 }

@@ -5,12 +5,12 @@ using UnityEngine;
 public class BossShockwave : MonoBehaviour
 {
     public LineRenderer lineRenderer;
-    public MeshCollider meshCollider;
     public int pointsCount;
     public float maxRadius;
     public float speed;
     public float startWidth;
 
+    [SerializeField]
     private float shockWaveDmg = 1f;
     
 
@@ -32,13 +32,13 @@ public class BossShockwave : MonoBehaviour
         while (currentRadius < maxRadius)
         {
             currentRadius += Time.deltaTime * speed;
-            Draw(currentRadius);
+            DrawCircle(currentRadius);
             Damage(currentRadius);
             yield return null;
         }
     }
 
-    private void Draw(float currentRadius)
+    private void DrawCircle(float currentRadius)
     {
         //we need all points with an equal angle to get a nice circle
         float angleBetweenPoints = 360f / pointsCount;
@@ -83,8 +83,7 @@ public class BossShockwave : MonoBehaviour
                     if (player.transform.position.y < 1.3f)
                     {
                         PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-                        if (playerHealth != null)
-                            playerHealth.DamagePlayer(shockWaveDmg);
+                        playerHealth.DamagePlayer(shockWaveDmg);
                     }
                 }
             }

@@ -8,21 +8,22 @@ public class BossHandMovement : MonoBehaviour
     public BossShockwave bossShockwave;
     public bool leftHand;
     
+    [SerializeField]
     private float speed = 5f;
-    private bool changeDirection;
+    private bool _changeDirection;
 
     private void Start()
     {
         if (leftHand)
-            changeDirection = true;
+            _changeDirection = true;
     }
 
     void Update()
     {
-        if (changeDirection)
+        if (_changeDirection)
         {
             speed *= -1f;
-            changeDirection = false;
+            _changeDirection = false;
         }
         
         Vector3 moveDirection = new Vector3(0f, 1f, 0f);
@@ -31,7 +32,7 @@ public class BossHandMovement : MonoBehaviour
 
         if (transform.position.y < 0f || transform.position.y > 10f)
         {
-            changeDirection = true;
+            _changeDirection = true;
             
             if (transform.position.y < 2f)
             {

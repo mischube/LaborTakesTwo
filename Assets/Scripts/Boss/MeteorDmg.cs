@@ -13,8 +13,6 @@ public class MeteorDmg : MonoBehaviour
         if (other.transform.tag.Equals("Player"))
         {
             PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-            if (playerHealth == null)
-                return;
             playerHealth.DamagePlayer(meteorDmg);
         }
     }

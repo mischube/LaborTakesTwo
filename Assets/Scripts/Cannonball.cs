@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class Cannonball : MonoBehaviourPun
 {
-
+    [SerializeField]
     private float speed = 15f;
     
     private void Update()

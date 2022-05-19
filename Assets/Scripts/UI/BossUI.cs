@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class BossUI : MonoBehaviour
 {
-    public GameObject victoryScene;
+    public GameObject victoryUiGameObject;
     public BossHealth bossHealth;
 
     private void Start()
@@ -30,7 +30,7 @@ public class BossUI : MonoBehaviour
 
     private void ShowVictoryScreen()
     {
-        victoryScene.SetActive(true);
+        victoryUiGameObject.SetActive(true);
     }
 
     private void OnDisable()

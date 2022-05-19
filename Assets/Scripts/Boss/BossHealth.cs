@@ -5,6 +5,7 @@ public class BossHealth : MonoBehaviour
 {
     public event Victory victoryEvent;
     
+    [SerializeField]
     private float health = 3f;
 
     public void DamageBoss(float dmg)
