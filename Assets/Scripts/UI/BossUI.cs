@@ -10,13 +10,15 @@ public class BossUI : MonoBehaviour
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
         
+        //** wenn man in der boss szene startet für test zwecke
         //ich wüsste sonst nicht wie ich an bossHealth kommen könnte
         bossHealth = FindObjectOfType<BossHealth>();
-
+        
         if (bossHealth == null)
             return;
-
+        
         bossHealth.victoryEvent += ShowVictoryScreen;
+        //**
     }
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
