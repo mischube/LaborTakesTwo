@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
 
-namespace Weapon.Hammer.Script
+namespace Weapon.Hammer
 {
     public class Movable : MonoBehaviourPun
     {

@@ -2,23 +2,27 @@ using System.Collections;
 using Photon.Pun;
 using UnityEngine;
 
-namespace Weapon.Hammer.Script
+namespace Weapon.Hammer
 {
     public class Hammer : WeaponScript
     {
-        private Animator _animator;
-        private bool _currentlyAttacking = false;
-        private float _hitboxActiveTime = 2f;
-        private float _pushingActiveTime = 1.5f;
-        private bool _currentlyPushing = false;
-        private bool _swing = false;
+        [SerializeField] private float hitboxActiveTime = 2f;
+        [SerializeField] private float pushingActiveTime = 1.5f;
+
+        private bool _currentlyAttacking;
+        private bool _currentlyPushing;
+        private bool _swing;
+        private static readonly int Hit = Animator.StringToHash("Hit");
+        private static readonly int Loading = Animator.StringToHash("Loading");
+        private static readonly int Charge = Animator.StringToHash("Charge");
+
 
         public override void PrimaryAction()
         {
             if (_currentlyAttacking)
                 return;
 
-            _animator.SetTrigger("Hit");
+            Animator.SetTrigger(Hit);
             StartCoroutine(ActivateHitbox());
         }
 
@@ -37,29 +41,23 @@ namespace Weapon.Hammer.Script
 
         private void Load()
         {
-            _animator.SetBool("Loading", true);
+            Animator.SetBool(Loading, true);
         }
 
         private void Swing()
         {
-            _animator.SetTrigger("Charge");
+            Animator.SetTrigger(Charge);
             _swing = true;
         }
 
         private void StopAnimation()
         {
-            _animator.SetBool("Loading", false);
-            _animator.ResetTrigger("Charge");
+            Animator.SetBool(Loading, false);
+            Animator.ResetTrigger(Charge);
             _swing = false;
             _currentlyPushing = false;
         }
 
-        private void Start()
-        {
-            _animator = GetComponent<Animator>();
-            //_animator = transform.root.GetComponent<Animator>();
-            _animator.runtimeAnimatorController = weaponContainer.animatorController;
-        }
 
         private void Update()
         {
@@ -95,13 +93,13 @@ namespace Weapon.Hammer.Script
         IEnumerator ActivateHitbox()
         {
             _currentlyAttacking = true;
-            yield return new WaitForSeconds(_hitboxActiveTime);
+            yield return new WaitForSeconds(hitboxActiveTime);
             _currentlyAttacking = false;
         }
 
         IEnumerator ActivatePushing()
         {
-            yield return new WaitForSeconds(_pushingActiveTime);
+            yield return new WaitForSeconds(pushingActiveTime);
             _currentlyPushing = true;
         }
 
