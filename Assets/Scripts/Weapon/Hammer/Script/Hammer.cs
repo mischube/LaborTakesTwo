@@ -89,12 +89,12 @@ namespace Weapon.Hammer.Script
             _currentlyPushing = true;
         }
 
-        public bool getAttackActive()
+        public bool GetAttackActive()
         {
             return _currentlyAttacking;
         }
 
-        public bool getPushActive()
+        public bool GetPushActive()
         {
             return _currentlyPushing;
         }

@@ -10,13 +10,13 @@ namespace Weapon.Hammer.Script
         private void OnTriggerEnter(Collider other)
         {
             if (other.gameObject.CompareTag("Destroyable") &&
-                hammer.getAttackActive())
+                hammer.GetAttackActive())
             {
                 other.GetComponent<Movable>().DestroyTargetPun();
             }
 
             if (other.gameObject.CompareTag("Pushable") &&
-                hammer.getPushActive())
+                hammer.GetPushActive())
             {
                 other.GetComponent<Movable>().MoveTargetPun(transform.forward);
             }
