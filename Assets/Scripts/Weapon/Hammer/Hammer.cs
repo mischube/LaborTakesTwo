@@ -1,4 +1,5 @@
 using System.Collections;
+using Photon.Pun;
 using UnityEngine;
 
 namespace Weapon.Hammer.Script
@@ -30,7 +31,7 @@ namespace Weapon.Hammer.Script
                 Swing();
             if (_swing)
                 Load();
-            
+
             StartCoroutine(ActivatePushing());
         }
 
@@ -69,8 +70,23 @@ namespace Weapon.Hammer.Script
         protected override void OnEnable()
         {
             base.OnEnable();
+
             if (weaponContainer == null)
                 return;
+
+            var photonAnimatorView = transform.root.GetComponent<PhotonAnimatorView>();
+            photonAnimatorView.SetParameterSynchronized(
+                "Hit",
+                PhotonAnimatorView.ParameterType.Trigger,
+                PhotonAnimatorView.SynchronizeType.Discrete);
+            photonAnimatorView.SetParameterSynchronized(
+                "Charge",
+                PhotonAnimatorView.ParameterType.Trigger,
+                PhotonAnimatorView.SynchronizeType.Discrete);
+            photonAnimatorView.SetParameterSynchronized(
+                "Loading",
+                PhotonAnimatorView.ParameterType.Bool,
+                PhotonAnimatorView.SynchronizeType.Discrete);
 
             var hammerHit = gameObject.GetComponentInChildren<HammerHit>();
             hammerHit.hammer = this;
