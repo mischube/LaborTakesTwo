@@ -101,7 +101,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
   m_PositionCurves:
   - curve:
       serializedVersion: 2
@@ -226,7 +226,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
   m_ScaleCurves: []
   m_FloatCurves: []
   m_PPtrCurves: []
@@ -397,7 +397,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.x
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -524,7 +524,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.y
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -651,7 +651,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalPosition.z
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -742,7 +742,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.x
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -833,7 +833,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.y
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -924,7 +924,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: localEulerAnglesRaw.z
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
     classID: 4
     script: {fileID: 0}
   m_EulerEditorCurves:
@@ -935,7 +935,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -945,7 +945,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -955,7 +955,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: 
+    path: Inventory/Weapon/Hammer_Modell(Clone)
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
