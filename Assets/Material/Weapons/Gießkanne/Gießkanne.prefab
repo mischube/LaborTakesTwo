@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3421812852819695921, guid: bb6d073d87ee9e34fb488f88d078d9d9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.3000001
+      value: 1.3000001
       objectReference: {fileID: 0}
     - target: {fileID: 3421812852819695921, guid: bb6d073d87ee9e34fb488f88d078d9d9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -273,8 +273,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb6d073d87ee9e34fb488f88d078d9d9, type: 3}
+--- !u!1 &4331143533143401433 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7645261612899978289, guid: bb6d073d87ee9e34fb488f88d078d9d9, type: 3}
+  m_PrefabInstance: {fileID: 6197583067426287592}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8754580266321999577 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3421812852819695921, guid: bb6d073d87ee9e34fb488f88d078d9d9, type: 3}
   m_PrefabInstance: {fileID: 6197583067426287592}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4489744808095052808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4331143533143401433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd9809fe534da24093e3b1416313f62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grownPlantPrefab: {fileID: 2879783310017704855, guid: 32693a3e94a048e4f80283336807f09c, type: 3}
