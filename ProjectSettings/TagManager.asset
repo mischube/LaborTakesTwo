@@ -9,6 +9,7 @@ TagManager:
   - NetworkManager
   - GameManager
   - UI
+  - Boss
   layers:
   - Default
   - TransparentFX
