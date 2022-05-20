@@ -62,6 +62,9 @@ namespace Global
         private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
         {
             Debug.Log($"Scene {CurrentScene.GetStringValue()} loaded");
+
+            SetSpawnPoint();
+
             _respawnManager.RespawnPlayer(PlayerNetworking.LocalPlayerInstance);
         }
 
@@ -70,10 +73,16 @@ namespace Global
 
         public void SwitchScene(Scenes nextScene)
         {
+            Debug.Log($"[GameManager] Switching to Scene {nextScene.GetStringValue()}");
             _scenesManager.LoadScene(nextScene);
+        }
 
-            //Set spawn point in new scene
-            var spawnPoint = _spawnPointRepository.GetSpawnPoint(nextScene);
+        private void SetSpawnPoint()
+        {
+            var spawnPoint = _spawnPointRepository.GetSpawnPoint(CurrentScene);
+
+            Debug.Log($"Switching player respawn: {spawnPoint.position}");
+
             PlayerNetworking.LocalPlayerInstance.GetComponent<Player.Respawn>().currentCheckpoint = spawnPoint;
         }
     }
