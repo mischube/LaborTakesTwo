@@ -15,5 +15,5 @@ MonoBehaviour:
   name: IceRod
   description: Press F to pick up
   animatorController: {fileID: 0}
-  body: {fileID: 0}
-  icon: {fileID: 0}
+  body: {fileID: 894873796720985071, guid: c870fe80e8697fa41bdca23937de2db0, type: 3}
+  icon: {fileID: 21300000, guid: b42403815ea567647be0a21677cb56ce, type: 3}
