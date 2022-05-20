@@ -306,7 +306,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: hammer_idle
+  m_Name: playerIdle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
