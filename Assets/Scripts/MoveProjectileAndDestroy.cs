@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class IceProjectile : MonoBehaviourPun
+public class MoveProjectileAndDestroy : MonoBehaviourPun
 {
     [SerializeField]
     private float speed = 15f;

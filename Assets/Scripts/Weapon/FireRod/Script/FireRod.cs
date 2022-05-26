@@ -1,17 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using Weapon;
 
 public class FireRod : WeaponScript
 {
+    private GameObject fireProjectilePrefab;
     private PhotonParticel photonParticel;
 
     private void Start()
     {
         photonParticel = GetComponent<PhotonParticel>();
         photonParticel.firerod = this;
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        
+        //load prefab
+        fireProjectilePrefab = (GameObject)Resources.Load("FireProjectile", typeof(GameObject));
     }
 
     public override void PrimaryAction()
@@ -22,7 +29,7 @@ public class FireRod : WeaponScript
 
     public override void SecondaryAction()
     {
-        Debug.Log("rechts");
+        PhotonNetwork.Instantiate(fireProjectilePrefab.name, transform.position, transform.rotation);
     }
     
     private void Update()
