@@ -8,6 +8,7 @@ public class ElementObject : MonoBehaviour
     private void Start()
     {
         GetComponent<Renderer>().material.color = Color.cyan;
+        transform.tag = "Destroyable";
     }
 
     private void OnParticleCollision(GameObject other)
@@ -29,6 +30,7 @@ public class ElementObject : MonoBehaviour
             Debug.Log("IceToWater");
             transform.gameObject.layer = 4;
             GetComponent<Renderer>().material.color = Color.blue;
+            transform.tag = "Untagged";
         }
     }
     
@@ -39,6 +41,7 @@ public class ElementObject : MonoBehaviour
             Debug.Log("WaterToIce");
             transform.gameObject.layer = 12;
             GetComponent<Renderer>().material.color = Color.cyan;
+            transform.tag = "Destroyable";
         }
     }
 }
