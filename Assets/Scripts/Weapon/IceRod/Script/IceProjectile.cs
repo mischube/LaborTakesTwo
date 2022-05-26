@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class IceProjectile : MonoBehaviour
+public class IceProjectile : MonoBehaviourPun
 {
     [SerializeField]
     private float speed = 15f;
@@ -22,6 +22,9 @@ public class IceProjectile : MonoBehaviour
     IEnumerator DestroyAfterTravel()
     {
         yield return new WaitForSeconds(3f);
-        PhotonNetwork.Destroy(gameObject);
+        if (photonView.IsMine)
+        {
+            PhotonNetwork.Destroy(gameObject);   
+        }
     }
 }

@@ -7,6 +7,13 @@ using Weapon;
 public class Icerod : WeaponScript
 {
     private GameObject iceProjectilePrefab;
+    private PhotonParticel photonParticel;
+
+    private void Start()
+    {
+        photonParticel = GetComponent<PhotonParticel>();
+        photonParticel.icerod = this;
+    }
 
     protected override void OnEnable()
     {
@@ -19,6 +26,7 @@ public class Icerod : WeaponScript
     public override void PrimaryAction()
     {
         transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+        photonParticel.iceParticel = true;
     }
 
     private void Update()
@@ -26,6 +34,7 @@ public class Icerod : WeaponScript
         if (Input.GetMouseButtonUp(0))
         {
             transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
+            photonParticel.iceParticel = false;
         }
     }
 
