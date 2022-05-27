@@ -8,7 +8,7 @@ public class WateringCan : WeaponScript
     private float takeoverRadius = 1f;
     private GameObject player;
     private CharacterController cc;
-
+    private Transform groundcheck;
     private bool polymorphActive;
 
     private Vector3 characterControllerCenterOffset = new Vector3(0, -3, 0);
@@ -17,7 +17,6 @@ public class WateringCan : WeaponScript
     private Vector3 oldPlantPosition;
     private GameObject oldPlantParent;
     private Transform currentPlant;
-    private Vector3 oldGroundCheckPosition;
     private Vector3 oldCharacterControllerCenter;
     private float oldCharacterControllerHeight;
 
@@ -36,9 +35,13 @@ public class WateringCan : WeaponScript
     public override void SecondaryAction()
     {
         player = transform.root.gameObject;
-        Transform groundcheck = player.transform.Find("GroundCheck");
         takeoverCenter = player.transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(takeoverCenter, takeoverRadius);
+
+        if (!polymorphActive)
+        {
+            groundcheck = player.transform.Find("GroundCheck");
+        }
 
         foreach (var hitCollider in hitColliders)
         {
@@ -47,14 +50,12 @@ public class WateringCan : WeaponScript
                 EnablePolymorph();
 
                 oldPlantPosition = hitCollider.transform.GetChild(0).position;
-                oldGroundCheckPosition = groundcheck.position;
+                var minY = hitCollider.transform.GetChild(0).GetComponent<Renderer>().bounds.min.y;
                 currentPlant = hitCollider.transform.GetChild(0);
                 oldPlantParent = hitCollider.gameObject;
-
                 player.transform.position = hitCollider.transform.GetChild(0).position;
-                groundcheck.position = new Vector3(player.transform.position.x, -0.5f, player.transform.position.z);
-
                 hitCollider.transform.GetChild(0).SetParent(player.transform);
+                groundcheck.position = new Vector3(player.transform.position.x, minY, player.transform.position.z);
                 cc.enabled = true;
                 return;
             }
@@ -63,10 +64,10 @@ public class WateringCan : WeaponScript
         if (polymorphActive)
         {
             DisablePolymorph();
-
+            var minY = player.transform.Find("Cylinder").GetComponent<Renderer>().bounds.min.y;
             currentPlant.SetParent(oldPlantParent.transform);
             currentPlant.position = oldPlantPosition;
-            groundcheck.position = oldGroundCheckPosition;
+            groundcheck.position = new Vector3(groundcheck.position.x, minY, groundcheck.position.z);
             cc.enabled = true;
         }
     }

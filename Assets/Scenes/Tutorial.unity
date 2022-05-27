@@ -21288,7 +21288,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-1384
+  m_Name: pb_Mesh18264
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -43100,24 +43100,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1111464571 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5610765184015911286, guid: ed1833d7ce71c774284629247d787dcc, type: 3}
-  m_PrefabInstance: {fileID: 3514228204812786589}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1111464577
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111464571}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 4.052967, z: 5}
-  m_Center: {x: -2.5, y: 3.9824715, z: 0}
 --- !u!1 &1119936697
 GameObject:
   m_ObjectHideFlags: 0
@@ -91030,8 +91012,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.2741823, y: 1.7374063, z: 3.0075421}
-  m_Center: {x: 0.11975057, y: 0.29560363, z: -0.546691}
+  m_Size: {x: 3.324603, y: 1.7374063, z: 3.0075598}
+  m_Center: {x: 0.64496166, y: 0.29560366, z: -0.546693}
 --- !u!114 &1874949752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108730,6 +108712,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 863735109644976154, guid: ed1833d7ce71c774284629247d787dcc, type: 3}
+      propertyPath: plantType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 863735109644976154, guid: ed1833d7ce71c774284629247d787dcc, type: 3}
+      propertyPath: plantGrowthSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5610765184015911272, guid: ed1833d7ce71c774284629247d787dcc, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -108786,9 +108776,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soil
       objectReference: {fileID: 0}
-    - target: {fileID: 5610765184015911287, guid: ed1833d7ce71c774284629247d787dcc, type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+    - target: {fileID: 5610765184015911286, guid: ed1833d7ce71c774284629247d787dcc, type: 3}
+      propertyPath: m_TagString
+      value: Plant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed1833d7ce71c774284629247d787dcc, type: 3}

@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 5610765184015911273}
   - component: {fileID: 5610765184015911272}
   - component: {fileID: 5610765184015911287}
+  - component: {fileID: 1111464577}
+  - component: {fileID: 863735109644976154}
   m_Layer: 9
   m_Name: Soil
   m_TagString: Growable
@@ -11651,6 +11653,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 2, z: 5}
   m_Center: {x: -2.5, y: 1, z: 0}
+--- !u!65 &1111464577
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5610765184015911286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 4.052967, z: 5}
+  m_Center: {x: -2.5, y: 3.9824715, z: 0}
+--- !u!114 &863735109644976154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5610765184015911286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f038ffb620d58d04c902fe4cfbb42103, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7516078606937559368
 PrefabInstance:
   m_ObjectHideFlags: 0

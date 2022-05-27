@@ -10,8 +10,9 @@ TagManager:
   - GameManager
   - UI
   - Boss
-  - Growable
   - Grown
+  - Plant
+  - Growable
   layers:
   - Default
   - TransparentFX
