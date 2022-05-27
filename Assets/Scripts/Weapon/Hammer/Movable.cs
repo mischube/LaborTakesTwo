@@ -7,22 +7,11 @@ namespace Weapon.Hammer
 {
     public class Movable : MonoBehaviourPun
     {
-        public void DestroyTargetPun()
-        {
-            photonView.RPC("DestroyTarget", RpcTarget.MasterClient);
-        }
-
         public void MoveTargetPun(Vector3 forwardDirection)
         {
             photonView.RPC("MoveTarget", RpcTarget.All, forwardDirection);
         }
 
-        [PunRPC]
-        [UsedImplicitly]
-        private void DestroyTarget()
-        {
-            PhotonNetwork.Destroy(gameObject);
-        }
 
         [PunRPC]
         [UsedImplicitly]
