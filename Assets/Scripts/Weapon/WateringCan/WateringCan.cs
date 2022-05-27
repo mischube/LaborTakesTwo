@@ -11,8 +11,8 @@ public class WateringCan : WeaponScript
     private Transform groundcheck;
     private bool polymorphActive;
 
-    private Vector3 characterControllerCenterOffset; // = new Vector3(0, -3, 0);
-    private float characterControllerHeightOffset; // = 5f;
+    private Vector3 characterControllerCenterOffset;
+    private float characterControllerHeightOffset;
 
     private Vector3 oldPlantPosition;
     private GameObject oldPlantParent;
@@ -49,7 +49,7 @@ public class WateringCan : WeaponScript
             {
                 currentPlant = hitCollider.transform.GetChild(0);
                 EnablePolymorph();
-                
+
                 oldPlantPosition = hitCollider.transform.GetChild(0).position;
                 var minY = hitCollider.transform.GetChild(0).GetComponent<Renderer>().bounds.min.y;
                 oldPlantParent = hitCollider.gameObject;
