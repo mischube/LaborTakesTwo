@@ -7,14 +7,14 @@ public class FireRod : WeaponScript
 {
     private GameObject fireProjectilePrefab;
     private PhotonParticel photonParticel;
-    private GameObject fireBeam;
-    private GameObject photonBeam;
+    private GameObject fireBeamPrefab;
+    private GameObject invisBeam;
 
     private void Start()
     {
         //load prefab
         fireProjectilePrefab = (GameObject)Resources.Load("FireProjectile", typeof(GameObject));
-        fireBeam = (GameObject)Resources.Load("Beam", typeof(GameObject));
+        fireBeamPrefab = (GameObject)Resources.Load("BeamFire", typeof(GameObject));
         
         photonParticel = GetComponent<PhotonParticel>();
         photonParticel.firerod = this;
@@ -28,11 +28,12 @@ public class FireRod : WeaponScript
         Transform CompTransform = GetComponentInParent<Transform>();
         Vector3 position = GetComponentInParent<Transform>().position;
 
-        photonBeam = Instantiate(
-            fireBeam,
+        invisBeam = Instantiate(
+            fireBeamPrefab,
             position + new Vector3(CompTransform.forward.x * 7.5f, 0, CompTransform.forward.z * 7.5f),
-            transform.rotation * fireBeam.transform.rotation);
-        photonBeam.transform.parent = transform;
+            transform.rotation * fireBeamPrefab.transform.rotation);
+        invisBeam.transform.parent = transform;
+        invisBeam.GetComponent<GetParticel>().rodName = "Fire";
     }
 
     public override void SecondaryAction()
@@ -46,7 +47,7 @@ public class FireRod : WeaponScript
         {
             transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
             photonParticel.fireParticel = false;
-            Destroy(photonBeam);
+            Destroy(invisBeam);
         }
     }
 }

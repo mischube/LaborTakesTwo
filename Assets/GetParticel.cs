@@ -6,9 +6,17 @@ using UnityEngine;
 public class GetParticel : MonoBehaviour
 {
     public GameObject smokeParticel;
+    public string rodName;
     
     private void OnParticleCollision(GameObject other)
     {
-        Instantiate(smokeParticel, transform.position, Quaternion.identity);
+        if (other.name.Contains("Ice") && rodName.Equals("Fire"))
+        {
+            Instantiate(smokeParticel, transform.position, Quaternion.identity);
+        }
+        else if (other.name.Contains("Fire") && rodName.Equals("Ice"))
+        {
+            Instantiate(smokeParticel, transform.position, Quaternion.identity);
+        }
     }
 }

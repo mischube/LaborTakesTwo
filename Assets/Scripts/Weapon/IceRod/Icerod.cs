@@ -8,14 +8,14 @@ public class Icerod : WeaponScript
 {
     private GameObject iceProjectilePrefab;
     private PhotonParticel photonParticel;
-    private GameObject iceBeam;
-    private GameObject photonBeam;
+    private GameObject beamPrefab;
+    private GameObject invisBeam;
 
     private void Start()
     {
         //load prefab
         iceProjectilePrefab = (GameObject)Resources.Load("IceProjectile", typeof(GameObject));
-        iceBeam = (GameObject)Resources.Load("Beam", typeof(GameObject));
+        beamPrefab = (GameObject)Resources.Load("BeamIce", typeof(GameObject));
         
         photonParticel = GetComponent<PhotonParticel>();
         photonParticel.icerod = this;
@@ -29,11 +29,12 @@ public class Icerod : WeaponScript
         Transform CompTransform = GetComponentInParent<Transform>();
         Vector3 position = GetComponentInParent<Transform>().position;
 
-        photonBeam = Instantiate(
-            iceBeam,
+        invisBeam = Instantiate(
+            beamPrefab,
             position + new Vector3(CompTransform.forward.x * 7.5f, 0, CompTransform.forward.z * 7.5f),
-            transform.rotation * iceBeam.transform.rotation);
-        photonBeam.transform.parent = transform;
+            transform.rotation * beamPrefab.transform.rotation);
+        invisBeam.transform.parent = transform;
+        invisBeam.GetComponent<GetParticel>().rodName = "Ice";
     }
 
     private void Update()
@@ -42,7 +43,7 @@ public class Icerod : WeaponScript
         {
             transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
             photonParticel.iceParticel = false;
-            Destroy(photonBeam);
+            Destroy(invisBeam);
         }
     }
 

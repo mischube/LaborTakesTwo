@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 5345339376178466114}
   - component: {fileID: -371075532598809088}
   - component: {fileID: 2153144371768671287}
-  m_Layer: 15
-  m_Name: Beam
+  m_Layer: 16
+  m_Name: BeamFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,3 +100,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smokeParticel: {fileID: 2931031904205407272, guid: a4e70a14dcfee6f428b580a893397a02, type: 3}
+  rodName: 
