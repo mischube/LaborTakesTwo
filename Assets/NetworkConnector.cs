@@ -7,6 +7,8 @@ public class NetworkConnector : MonoBehaviourPunCallbacks
     public event JoinedRoomHandler JoinedRoom;
     public event ConnectedHandler Connected;
 
+    public bool JoinRandomRoom { get; set; }
+
     public override void OnEnable()
     {
         base.OnEnable();
@@ -29,8 +31,21 @@ public class NetworkConnector : MonoBehaviourPunCallbacks
 
     public void JoinRoom()
     {
-        Debug.Log("Joining room..");
-        PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: new RoomOptions { MaxPlayers = 2, IsVisible = true });
+        JoinRandomRoom = true;
+
+        if (JoinRandomRoom)
+        {
+            Debug.Log("Joining random room..");
+            PhotonNetwork.JoinRandomOrCreateRoom(roomOptions: new RoomOptions { MaxPlayers = 2, IsVisible = true });
+            return;
+        }
+
+        Debug.Log("Joining 'TestRoom'");
+
+        PhotonNetwork.JoinOrCreateRoom(
+            "TestRoom",
+            new RoomOptions { MaxPlayers = 2, IsVisible = true },
+            TypedLobby.Default);
     }
 
 
