@@ -9,13 +9,33 @@ public class PlantType : MonoBehaviour
     [Tooltip("Gives the plant a max size, works for all plants")] [SerializeField]
     private float plantGrowthSize;
 
-    public string getPlantType()
+    [Tooltip("Gives the snake plant a max size")] [SerializeField]
+    private int snakePlantGrowthSize;
+
+    private int currentPlantGrowthSize = 0;
+
+    public string GetPlantType()
     {
         return plantType.ToString();
     }
 
-    public float getPlantSize()
+    public float GetPlantSize()
     {
         return plantGrowthSize;
+    }
+
+    public int GetSnakePlantSize()
+    {
+        return snakePlantGrowthSize;
+    }
+
+    public int GetCurrentSnakeSize()
+    {
+        return currentPlantGrowthSize;
+    }
+
+    public void IncrementCurrentSnakeSize()
+    {
+        currentPlantGrowthSize++;
     }
 }

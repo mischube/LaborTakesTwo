@@ -13,6 +13,7 @@ TagManager:
   - Grown
   - Plant
   - Growable
+  - GrownSnake
   layers:
   - Default
   - TransparentFX
