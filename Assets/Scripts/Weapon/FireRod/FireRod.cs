@@ -28,8 +28,9 @@ public class FireRod : WeaponScript
         Transform CompTransform = GetComponentInParent<Transform>();
         Vector3 position = GetComponentInParent<Transform>().position;
 
-        photonBeam = PhotonNetwork.Instantiate(fireBeam.name,
-            position + new Vector3(CompTransform.forward.x * 7.5f, 0 , CompTransform.forward.z * 7.5f), 
+        photonBeam = Instantiate(
+            fireBeam,
+            position + new Vector3(CompTransform.forward.x * 7.5f, 0, CompTransform.forward.z * 7.5f),
             transform.rotation * fireBeam.transform.rotation);
         photonBeam.transform.parent = transform;
     }
@@ -48,21 +49,4 @@ public class FireRod : WeaponScript
             Destroy(photonBeam);
         }
     }
-
-    // private void OnTriggerStay(Collider other)
-    // {
-    //     if (other.gameObject.layer == 15)
-    //     {
-    //         transform.GetChild(2).gameObject.SetActive(true);
-    //         transform.GetChild(2).gameObject.transform.position = other.transform.position;
-    //     }
-    // }
-    //
-    // private void OnTriggerExit(Collider other)
-    // {
-    //     if (other.gameObject.layer == 15)
-    //     {
-    //         transform.GetChild(2).gameObject.SetActive(false);
-    //     }
-    // }
 }

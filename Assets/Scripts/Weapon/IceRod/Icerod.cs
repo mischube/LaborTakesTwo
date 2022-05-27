@@ -29,11 +29,6 @@ public class Icerod : WeaponScript
         Transform CompTransform = GetComponentInParent<Transform>();
         Vector3 position = GetComponentInParent<Transform>().position;
 
-        // photonBeam = PhotonNetwork.Instantiate(iceBeam.name,
-        //     position + new Vector3(CompTransform.forward.x * 7.5f, 0 , CompTransform.forward.z * 7.5f), 
-        //     transform.rotation * iceBeam.transform.rotation);
-        // photonBeam.transform.parent = transform;
-
         photonBeam = Instantiate(
             iceBeam,
             position + new Vector3(CompTransform.forward.x * 7.5f, 0, CompTransform.forward.z * 7.5f),
@@ -55,21 +50,4 @@ public class Icerod : WeaponScript
     {
         PhotonNetwork.Instantiate(iceProjectilePrefab.name, transform.position, transform.rotation);
     }
-
-    // private void OnTriggerStay(Collider other)
-    // {
-    //     if (other.gameObject.layer == 15)
-    //     {
-    //         transform.GetChild(2).gameObject.SetActive(true);
-    //         transform.GetChild(2).gameObject.transform.position = other.transform.position;
-    //     }
-    // }
-    //
-    // private void OnTriggerExit(Collider other)
-    // {
-    //     if (other.gameObject.layer == 15)
-    //     {
-    //         transform.GetChild(2).gameObject.SetActive(false);
-    //     }
-    // }
 }
