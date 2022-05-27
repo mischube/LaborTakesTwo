@@ -59,6 +59,11 @@ public class WateringCan : WeaponScript
                 cc.enabled = true;
                 return;
             }
+
+            if (hitCollider.GetComponent<PlantType>().getPlantType().Equals("Growable") && !polymorphActive)
+            {
+                Debug.Log(hitCollider.GetComponent<PlantType>().getPlantType());
+            }
         }
 
         if (polymorphActive)
