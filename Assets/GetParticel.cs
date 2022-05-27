@@ -12,11 +12,11 @@ public class GetParticel : MonoBehaviour
     {
         if (other.name.Contains("Ice") && rodName.Equals("Fire"))
         {
-            Instantiate(smokeParticel, transform.position, Quaternion.identity);
+            Instantiate(smokeParticel, transform.position, smokeParticel.transform.rotation);
         }
         else if (other.name.Contains("Fire") && rodName.Equals("Ice"))
         {
-            Instantiate(smokeParticel, transform.position, Quaternion.identity);
+            Instantiate(smokeParticel, transform.position, smokeParticel.transform.rotation);
         }
     }
 }
