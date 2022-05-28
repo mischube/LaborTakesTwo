@@ -9,7 +9,6 @@ public class WateringCan : WeaponScript
     private float takeoverRadius = 1f;
     private GameObject player;
     private GameObject plantExtensionPrefab;
-    private SnakeMovement snakeMovement;
     private CharacterController cc;
     private Transform groundcheck;
     private bool polymorphGrownActive;
@@ -69,7 +68,10 @@ public class WateringCan : WeaponScript
                 currentPlant = hitCollider.transform.GetChild(lastChild);
                 plantExtensionPrefab = hitCollider.transform.GetChild(lastChild).gameObject;
                 EnableSnakePolymorph();
-
+                player.transform.GetComponent<SnakeMovement>().SetCurrentPlant(
+                    plantExtensionPrefab,
+                    oldPlantParent,
+                    player);
                 oldPlantPosition = player.transform.position; //Care its used for the old player pos this time
                 oldPlantParent = hitCollider.gameObject;
                 player.transform.position = hitCollider.transform.GetChild(lastChild).position;
@@ -96,6 +98,11 @@ public class WateringCan : WeaponScript
             currentPlant.SetParent(oldPlantParent.transform);
             player.transform.position = oldPlantPosition;
             player.transform.GetComponent<PlayerMovement>().enabled = true;
+
+            foreach (var plant in player.transform.GetComponent<SnakeMovement>().ReturnPlantList())
+            {
+                Destroy(plant);
+            }
             cc.enabled = true;
         }
     }
@@ -109,6 +116,7 @@ public class WateringCan : WeaponScript
         player.transform.Find("Inventory").gameObject.SetActive(false);
         player.transform.Find("GroundCheck").gameObject.SetActive(false);
         player.transform.GetComponent<PlayerMovement>().enabled = false;
+        player.transform.GetComponent<SnakeMovement>().enabled = true;
         polymorphSnakeActive = true;
     }
 
@@ -145,6 +153,7 @@ public class WateringCan : WeaponScript
         player.transform.Find("Cube").gameObject.SetActive(true);
         player.transform.Find("Inventory").gameObject.SetActive(true);
         player.transform.Find("GroundCheck").gameObject.SetActive(true);
+        player.transform.GetComponent<SnakeMovement>().enabled = false;
         polymorphGrownActive = false;
         polymorphSnakeActive = false;
     }
