@@ -103,6 +103,8 @@ public class WateringCan : WeaponScript
             {
                 Destroy(plant);
             }
+
+            player.transform.GetComponent<SnakeMovement>().clearList();
             cc.enabled = true;
         }
     }

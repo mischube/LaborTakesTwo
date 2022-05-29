@@ -12,8 +12,8 @@ public class SnakeMovement : MonoBehaviour
     private float rightSide = 0f;
     private float leftside = 0f;
     private float directionSpeed = 0.01f;
-    
-    
+
+
     void Update()
     {
         if (plantList.Count > 0)
@@ -91,5 +91,6 @@ public class SnakeMovement : MonoBehaviour
 
     public void clearList()
     {
+        plantList.Clear();
     }
 }
