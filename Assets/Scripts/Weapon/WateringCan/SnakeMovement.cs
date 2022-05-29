@@ -9,8 +9,8 @@ public class SnakeMovement : MonoBehaviour
     private Vector3 currentStartPos;
     private List<GameObject> plantList = new List<GameObject>();
     private float plantRangeOffset = 1f;
-    private float rightSide = 0f;
-    private float leftside = 0f;
+    private float rightSide;
+    private float leftside;
     private float directionSpeed = 0.01f;
 
 
