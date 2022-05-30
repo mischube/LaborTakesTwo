@@ -86,7 +86,7 @@ public class WateringCan : WeaponScript
         //Schaut ob Growable Polymorph aktiv ist und schaltet dies mithilfe von Methoden dann aus
         if (polymorphGrownActive)
         {
-            resetCCSize();
+            ResetCCSize();
             DisableAllPolymorphs();
             var minY = player.transform.Find("Cylinder").GetComponent<Renderer>().bounds.min.y;
             currentPlant.SetParent(oldPlantParent.transform);
@@ -145,7 +145,7 @@ public class WateringCan : WeaponScript
         polymorphGrownActive = true;
     }
 
-    private void resetCCSize()
+    private void ResetCCSize()
     {
         cc = player.GetComponent<CharacterController>();
         cc.enabled = false;
