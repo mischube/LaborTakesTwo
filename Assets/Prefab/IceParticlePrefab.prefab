@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 531915872922990752}
   - component: {fileID: 531915872922990759}
   m_Layer: 0
-  m_Name: IceParticelPrefab (2)
+  m_Name: IceParticlePrefab (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4816,7 +4816,7 @@ GameObject:
   - component: {fileID: 531915873326792008}
   - component: {fileID: 531915873326792015}
   m_Layer: 0
-  m_Name: IceParticelPrefab
+  m_Name: IceParticlePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9618,7 +9618,7 @@ GameObject:
   m_Component:
   - component: {fileID: 531915873910584203}
   m_Layer: 0
-  m_Name: IceParticelPrefab
+  m_Name: IceParticlePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9653,7 +9653,7 @@ GameObject:
   - component: {fileID: 531915874440132624}
   - component: {fileID: 531915874440132631}
   m_Layer: 0
-  m_Name: IceParticelPrefab (1)
+  m_Name: IceParticlePrefab (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -99,5 +99,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea11d238ac09a04a8b03d79877e2e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  smokeParticel: {fileID: 2931031904205407272, guid: a4e70a14dcfee6f428b580a893397a02, type: 3}
+  smokeParticle: {fileID: 2931031904205407272, guid: a4e70a14dcfee6f428b580a893397a02, type: 3}
   rodName: 

@@ -6,34 +6,34 @@ using Weapon;
 public class FireRod : WeaponScript
 {
     private GameObject fireProjectilePrefab;
-    private PhotonParticel photonParticel;
+    private PhotonParticle photonParticle;
     private GameObject fireBeamPrefab;
     private GameObject invisBeam;
 
     private void Start()
     {
         //load prefab
-        fireProjectilePrefab = (GameObject)Resources.Load("FireProjectile", typeof(GameObject));
-        fireBeamPrefab = (GameObject)Resources.Load("BeamFire", typeof(GameObject));
+        fireProjectilePrefab = (GameObject)Resources.Load("FireProjectile");
+        fireBeamPrefab = (GameObject)Resources.Load("BeamFire");
         
-        photonParticel = GetComponent<PhotonParticel>();
-        photonParticel.firerod = this;
+        photonParticle = GetComponent<PhotonParticle>();
+        photonParticle.firerod = this;
     }
 
     public override void PrimaryAction()
     {
         transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
-        photonParticel.fireParticel = true;
+        photonParticle.fireParticle = true;
         
         Transform CompTransform = GetComponentInParent<Transform>();
-        Vector3 position = GetComponentInParent<Transform>().position;
+        Vector3 position = CompTransform.position;
 
         invisBeam = Instantiate(
             fireBeamPrefab,
             position + new Vector3(CompTransform.forward.x * 7.5f, 0, CompTransform.forward.z * 7.5f),
             transform.rotation * fireBeamPrefab.transform.rotation);
         invisBeam.transform.parent = transform;
-        invisBeam.GetComponent<GetParticel>().rodName = "Fire";
+        invisBeam.GetComponent<GetParticle>().rodName = "Fire";
     }
 
     public override void SecondaryAction()
@@ -46,7 +46,7 @@ public class FireRod : WeaponScript
         if (Input.GetMouseButtonUp(0))
         {
             transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
-            photonParticel.fireParticel = false;
+            photonParticle.fireParticle = false;
             Destroy(invisBeam);
         }
     }

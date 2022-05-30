@@ -1,34 +1,34 @@
 using Photon.Pun;
 
-public class PhotonParticel : MonoBehaviourPun, IPunObservable
+public class PhotonParticle : MonoBehaviourPun, IPunObservable
 {
-    public bool iceParticel;
+    public bool iceParticle;
     public Icerod icerod;
     
-    public bool fireParticel;
+    public bool fireParticle;
     public FireRod firerod;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            stream.SendNext(iceParticel);
-            stream.SendNext(fireParticel);
+            stream.SendNext(iceParticle);
+            stream.SendNext(fireParticle);
         }
         else if (stream.IsReading)
         {
-            iceParticel = (bool) stream.ReceiveNext();
-            fireParticel = (bool) stream.ReceiveNext();
-            setIceParticel();
+            iceParticle = (bool) stream.ReceiveNext();
+            fireParticle = (bool) stream.ReceiveNext();
+            SetIceParticle();
         }
     }
 
-    public void setIceParticel()
+    private void SetIceParticle()
     {
         if (!photonView.IsMine && (transform.GetChild(0).gameObject.name.Equals("IceRodPrefab(Clone)") 
                                    || transform.GetChild(0).gameObject.name.Equals("FireRodPrefab(Clone)")))
         {
-            if (iceParticel || fireParticel)
+            if (iceParticle || fireParticle)
             {
                 transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
             } 
