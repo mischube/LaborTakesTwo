@@ -57,8 +57,7 @@ namespace Player
             //integrate in inventory
             newWeaponClone.enabled = false;
             _weapons.AddLast(newWeaponClone);
-
-            //if (newWeaponObj.name.Contains("Hammer"))
+            
             newWeaponObj.GetComponent<Movable>().DestroyTargetPun();
         }
 

@@ -45,12 +45,14 @@ public class WateringCan : WeaponScript
             groundcheck = player.transform.Find("GroundCheck");
         }
 
+        //Schaut alle Objekte durch die von OverlapSpehere erfasst wurden sind und aktiviert jenachdem ob eine
+        //Pflanze gefunden wurde die nötige Polymorph
         foreach (var hitCollider in hitColliders)
         {
             if (hitCollider.gameObject.CompareTag("Grown") && !polymorphGrownActive)
             {
                 currentPlant = hitCollider.transform.GetChild(0);
-                EnablePolymorph();
+                EnableGrowablePlantPolymorph();
 
                 oldPlantPosition = hitCollider.transform.GetChild(0).position;
                 var minY = hitCollider.transform.GetChild(0).GetComponent<Renderer>().bounds.min.y;
@@ -67,7 +69,7 @@ public class WateringCan : WeaponScript
                 int lastChild = hitCollider.transform.childCount - 1;
                 currentPlant = hitCollider.transform.GetChild(lastChild);
                 plantExtensionPrefab = hitCollider.transform.GetChild(lastChild).gameObject;
-                EnableSnakePolymorph();
+                EnableSnakePlantPolymorph();
                 player.transform.GetComponent<SnakeMovement>().SetCurrentPlant(
                     plantExtensionPrefab,
                     oldPlantParent,
@@ -81,10 +83,11 @@ public class WateringCan : WeaponScript
             }
         }
 
+        //Schaut ob Growable Polymorph aktiv ist und schaltet dies mithilfe von Methoden dann aus
         if (polymorphGrownActive)
         {
-            resetCC();
-            DisablePolymorph();
+            resetCCSize();
+            DisableAllPolymorphs();
             var minY = player.transform.Find("Cylinder").GetComponent<Renderer>().bounds.min.y;
             currentPlant.SetParent(oldPlantParent.transform);
             currentPlant.position = oldPlantPosition;
@@ -92,9 +95,10 @@ public class WateringCan : WeaponScript
             cc.enabled = true;
         }
 
+        //Schaut ob Snake Polymorph aktiv ist und schaltet dies mithilfe von Methoden dann aus
         if (polymorphSnakeActive)
         {
-            DisablePolymorph();
+            DisableAllPolymorphs();
             currentPlant.SetParent(oldPlantParent.transform);
             player.transform.position = oldPlantPosition;
             player.transform.GetComponent<PlayerMovement>().enabled = true;
@@ -109,7 +113,7 @@ public class WateringCan : WeaponScript
         }
     }
 
-    private void EnableSnakePolymorph()
+    private void EnableSnakePlantPolymorph()
     {
         cc = player.GetComponent<CharacterController>();
         cc.enabled = false;
@@ -122,7 +126,7 @@ public class WateringCan : WeaponScript
         polymorphSnakeActive = true;
     }
 
-    private void EnablePolymorph()
+    private void EnableGrowablePlantPolymorph()
     {
         cc = player.GetComponent<CharacterController>();
 
@@ -141,7 +145,7 @@ public class WateringCan : WeaponScript
         polymorphGrownActive = true;
     }
 
-    private void resetCC()
+    private void resetCCSize()
     {
         cc = player.GetComponent<CharacterController>();
         cc.enabled = false;
@@ -149,7 +153,7 @@ public class WateringCan : WeaponScript
         cc.height = oldCharacterControllerHeight;
     }
 
-    private void DisablePolymorph()
+    private void DisableAllPolymorphs()
     {
         player.transform.Find("Cylinder").gameObject.SetActive(true);
         player.transform.Find("Cube").gameObject.SetActive(true);

@@ -22,10 +22,11 @@ public class ParticleColliderAction : MonoBehaviour
     {
         if (other.CompareTag("Plant"))
         {
-            maxSize = other.GetComponent<PlantType>().GetPlantSize();
-            maxSnakeSize = other.GetComponent<PlantType>().GetSnakePlantSize();
-            currentSnakeSize = other.GetComponent<PlantType>().GetCurrentSnakeSize();
-            plantTypeTag = other.GetComponent<PlantType>().GetPlantType();
+            var collisionObjectScript = other.GetComponent<PlantType>();
+            maxSize = collisionObjectScript.GetPlantSize();
+            maxSnakeSize = collisionObjectScript.GetSnakePlantSize();
+            currentSnakeSize = collisionObjectScript.GetCurrentSnakeSize();
+            plantTypeTag = collisionObjectScript.GetPlantType();
             particleSystem.GetCollisionEvents(other, collisionEvents);
 
             if (other.CompareTag("Plant") && plantTypeTag.Equals("Growable") &&
@@ -42,7 +43,7 @@ public class ParticleColliderAction : MonoBehaviour
             if (other.CompareTag("Plant") && plantTypeTag.Equals("Snake") &&
                 other.transform.childCount < maxSnakeSize / 10)
             {
-                other.GetComponent<PlantType>().IncrementCurrentSnakeSize();
+                collisionObjectScript.IncrementCurrentSnakeSize();
                 if (currentSnakeSize % 10 == 0 && currentSnakeSize > 0)
                 {
                     int childCount = currentSnakeSize / 10 - 1;
