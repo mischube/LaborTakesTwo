@@ -1977,9 +1977,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75be6e48108ecc446bae8ec8ec1b42ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iceParticel: 0
+  iceParticle: 0
   icerod: {fileID: 0}
-  fireParticel: 0
+  fireParticle: 0
   firerod: {fileID: 0}
 --- !u!114 &6839634904867956317
 MonoBehaviour:
