@@ -5,7 +5,7 @@ using Photon.Pun;
 using UnityEngine;
 using Weapon;
 
-public class WeaponRod : WeaponScript
+public abstract class WeaponRod : WeaponScript
 {
     //will be loaded in particular script
     protected GameObject projectilePrefab;
