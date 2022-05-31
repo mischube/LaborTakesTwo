@@ -12,7 +12,7 @@ namespace Weapon.Hammer
             if (other.gameObject.CompareTag("Destroyable") &&
                 hammer.GetAttackActive())
             {
-                other.GetComponent<Movable>().DestroyTargetPun();
+                other.GetComponent<Destroyable>().Destroy();
             }
 
             if (other.gameObject.CompareTag("Pushable") &&

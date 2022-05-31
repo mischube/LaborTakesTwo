@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using Global;
 using Photon.Pun;
 using UI;
 using UnityEngine;
 using Weapon;
-using Weapon.Hammer;
 
 namespace Player
 {
@@ -57,8 +57,8 @@ namespace Player
             //integrate in inventory
             newWeaponClone.enabled = false;
             _weapons.AddLast(newWeaponClone);
-            
-            newWeaponObj.GetComponent<Movable>().DestroyTargetPun();
+
+            GameManager.Instance.DestroyObject(newWeaponObj.gameObject);
         }
 
         private void SwitchWeapon(bool stepForward)

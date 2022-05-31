@@ -24,8 +24,6 @@ public class AppStarter : MonoBehaviour
         _networkConnector.JoinedRoom += OnJoinedRoom;
         _networkConnector.Connect();
         _networkConnector.Connected += () => _networkConnector.JoinRoom();
-
-        Instantiate(gameManagerPrefab);
     }
 
     private void OnGameSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -74,8 +72,9 @@ public class AppStarter : MonoBehaviour
         var currentScene = gameManager.CurrentScene;
         var spawnPosition = gameManager.GetComponent<SpawnPointRepository>().GetSpawnPoint(currentScene);
 
-        Debug.LogFormat
-        ("Spawning player in scene {0} on position [{1}]", currentScene.GetStringValue(),
+        Debug.LogFormat(
+            "Spawning player in scene {0} on position [{1}]",
+            currentScene.GetStringValue(),
             spawnPosition.position);
 
         var player = PhotonNetwork.Instantiate(playerPrefab.name, spawnPosition.position, Quaternion.identity);

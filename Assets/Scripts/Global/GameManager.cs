@@ -13,6 +13,7 @@ namespace Global
         private LocalScenesManager _scenesManager;
         private RespawnManager _respawnManager;
         private SpawnPointRepository _spawnPointRepository;
+        private ObjectDestroyer _objectDestroyer;
 
         private readonly Guid _guid = Guid.NewGuid();
 
@@ -45,6 +46,7 @@ namespace Global
             _scenesManager = GetComponent<LocalScenesManager>();
             _respawnManager = GetComponent<RespawnManager>();
             _spawnPointRepository = GetComponent<SpawnPointRepository>();
+            _objectDestroyer = GetComponent<ObjectDestroyer>();
         }
 
 
@@ -69,6 +71,11 @@ namespace Global
         }
 
         #endregion
+
+        public void DestroyObject(GameObject gameObjectToDestroy)
+        {
+            _objectDestroyer.DestroyTargetPun(gameObjectToDestroy);
+        }
 
 
         public void SwitchScene(Scenes nextScene)
