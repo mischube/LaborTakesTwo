@@ -1916,6 +1916,8 @@ GameObject:
   - component: {fileID: 6304997164441906121}
   - component: {fileID: 3358938125013613283}
   - component: {fileID: 6970176317232490557}
+  - component: {fileID: 7774028365365292452}
+  - component: {fileID: 6839634904867956317}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Player
@@ -1963,6 +1965,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf08883d7e010a42a7cc9ca32bc3a5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7774028365365292452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361167154252844057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75be6e48108ecc446bae8ec8ec1b42ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iceParticle: 0
+  icerod: {fileID: 0}
+  fireParticle: 0
+  firerod: {fileID: 0}
+--- !u!114 &6839634904867956317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7361167154252844057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 7774028365365292452}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &8780264559847461424
 GameObject:
   m_ObjectHideFlags: 0

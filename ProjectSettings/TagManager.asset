@@ -23,11 +23,11 @@ TagManager:
   - Ground
   - Interactable
   - 
+  - Ice
   - 
   - 
-  - 
-  - 
-  - 
+  - BeamIce
+  - BeamFire
   - 
   - 
   - 
