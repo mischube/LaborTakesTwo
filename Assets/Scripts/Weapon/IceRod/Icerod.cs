@@ -4,36 +4,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Weapon;
 
-public class Icerod : WeaponScript
+public class Icerod : WeaponRod
 {
-    private GameObject iceProjectilePrefab;
-    private PhotonParticle photonParticle;
-    private GameObject beamPrefab;
-    private GameObject invisBeam;
-
-    private void Start()
+    private new void Start()
     {
+        base.Start();
+        
         //load prefab
-        iceProjectilePrefab = (GameObject)Resources.Load("IceProjectile");
+        projectilePrefab = (GameObject)Resources.Load("IceProjectile");
         beamPrefab = (GameObject)Resources.Load("BeamIce");
         
-        photonParticle = GetComponent<PhotonParticle>();
         photonParticle.icerod = this;
     }
 
     public override void PrimaryAction()
     {
-        transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+        base. PrimaryAction();
+        
         photonParticle.iceParticle = true;
         
-        Transform CompTransform = GetComponentInParent<Transform>();
-        Vector3 position = CompTransform.position;
-
-        invisBeam = Instantiate(
-            beamPrefab,
-            position + new Vector3(CompTransform.forward.x * 7.5f, 0, CompTransform.forward.z * 7.5f),
-            transform.rotation * beamPrefab.transform.rotation);
-        invisBeam.transform.parent = transform;
         invisBeam.GetComponent<GetParticle>().rodName = "Ice";
     }
 
@@ -45,10 +34,5 @@ public class Icerod : WeaponScript
             photonParticle.iceParticle = false;
             Destroy(invisBeam);
         }
-    }
-
-    public override void SecondaryAction()
-    {
-        PhotonNetwork.Instantiate(iceProjectilePrefab.name, transform.position, transform.rotation);
     }
 }

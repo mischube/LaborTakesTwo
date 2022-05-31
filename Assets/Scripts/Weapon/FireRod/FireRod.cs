@@ -1,46 +1,28 @@
-using System;
 using Photon.Pun;
 using UnityEngine;
-using Weapon;
 
-public class FireRod : WeaponScript
+public class FireRod : WeaponRod
 {
-    private GameObject fireProjectilePrefab;
-    private PhotonParticle photonParticle;
-    private GameObject fireBeamPrefab;
-    private GameObject invisBeam;
-
-    private void Start()
+    private new void Start()
     {
-        //load prefab
-        fireProjectilePrefab = (GameObject)Resources.Load("FireProjectile");
-        fireBeamPrefab = (GameObject)Resources.Load("BeamFire");
+        base.Start();
         
-        photonParticle = GetComponent<PhotonParticle>();
+        //load prefab
+        projectilePrefab = (GameObject)Resources.Load("FireProjectile");
+        beamPrefab = (GameObject)Resources.Load("BeamFire");
+        
         photonParticle.firerod = this;
     }
 
     public override void PrimaryAction()
     {
-        transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
+        base. PrimaryAction();
+        
         photonParticle.fireParticle = true;
         
-        Transform CompTransform = GetComponentInParent<Transform>();
-        Vector3 position = CompTransform.position;
-
-        invisBeam = Instantiate(
-            fireBeamPrefab,
-            position + new Vector3(CompTransform.forward.x * 7.5f, 0, CompTransform.forward.z * 7.5f),
-            transform.rotation * fireBeamPrefab.transform.rotation);
-        invisBeam.transform.parent = transform;
         invisBeam.GetComponent<GetParticle>().rodName = "Fire";
     }
 
-    public override void SecondaryAction()
-    {
-        PhotonNetwork.Instantiate(fireProjectilePrefab.name, transform.position, transform.rotation);
-    }
-    
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
