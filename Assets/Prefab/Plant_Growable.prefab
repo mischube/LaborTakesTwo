@@ -11664,8 +11664,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 4.052967, z: 5}
-  m_Center: {x: -2.5, y: 3.9824715, z: 0}
+  m_Size: {x: 5, y: 0.06624246, z: 5}
+  m_Center: {x: -2.5, y: 1.9891089, z: 0}
 --- !u!114 &863735109644976154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11680,6 +11680,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantType: 1
   plantGrowthSize: 1
+  snakePlantGrowthSize: 0
 --- !u!1001 &4090448600419364081
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11694,18 +11695,6 @@ PrefabInstance:
     - target: {fileID: 1981587558803994887, guid: ffce4db1c23cc6d41a1f7249ea62d18f, type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1981587558803994887, guid: ffce4db1c23cc6d41a1f7249ea62d18f, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1981587558803994887, guid: ffce4db1c23cc6d41a1f7249ea62d18f, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1981587558803994887, guid: ffce4db1c23cc6d41a1f7249ea62d18f, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1981587558803994887, guid: ffce4db1c23cc6d41a1f7249ea62d18f, type: 3}
       propertyPath: m_LocalPosition.x

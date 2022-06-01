@@ -1991,9 +1991,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceParticle: 0
-  icerod: {fileID: 0}
   fireParticle: 0
-  firerod: {fileID: 0}
+  wateringParticle: 0
 --- !u!114 &6839634904867956317
 MonoBehaviour:
   m_ObjectHideFlags: 0

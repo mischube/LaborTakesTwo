@@ -6,7 +6,7 @@ public class WateringCan : WeaponScript
 {
     [SerializeField] private ParticleSystem particleSystem;
     private Vector3 takeoverCenter;
-    private float takeoverRadius = 1f;
+    private float takeoverRadius = 1.5f;
     private GameObject player;
     private GameObject plantExtensionPrefab;
     private CharacterController cc;
