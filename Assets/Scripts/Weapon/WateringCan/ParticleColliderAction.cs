@@ -8,7 +8,7 @@ public class ParticleColliderAction : MonoBehaviour
     private float growthSpeed = 0.011f;
     private float maxSize = 1f;
     private int maxSnakeSize = 4;
-    private int currentSnakeSize = 0;
+    private int currentSnakeSize;
     private string plantTypeTag;
     private GameObject plantpart;
 

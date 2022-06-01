@@ -21,17 +21,27 @@ public class WateringCan : WeaponScript
     private Transform currentPlant;
     private Vector3 oldCharacterControllerCenter;
     private float oldCharacterControllerHeight;
+    private PhotonParticle photonParticle;
+
+    private void Start()
+    {
+        photonParticle = GetComponent<PhotonParticle>();
+    }
 
     private void Update()
     {
         if (Input.GetMouseButtonUp(0))
+        {
             particleSystem.Stop();
+            photonParticle.wateringParticle = false;
+        }
     }
 
     public override void PrimaryAction()
     {
         particleSystem = transform.GetChild(0).GetChild(1).GetComponent<ParticleSystem>();
         particleSystem.Play();
+        photonParticle.wateringParticle = true;
     }
 
     public override void SecondaryAction()

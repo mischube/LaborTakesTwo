@@ -10,8 +10,6 @@ public class FireRod : WeaponRod
         //load prefab
         projectilePrefab = (GameObject)Resources.Load("FireProjectile");
         beamPrefab = (GameObject)Resources.Load("BeamFire");
-        
-        photonParticle.firerod = this;
     }
 
     public override void PrimaryAction()

@@ -1,12 +1,11 @@
 using Photon.Pun;
+using UnityEngine;
 
 public class PhotonParticle : MonoBehaviourPun, IPunObservable
 {
     public bool iceParticle;
-    public Icerod icerod;
-    
     public bool fireParticle;
-    public FireRod firerod;
+    public bool wateringParticle;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -14,27 +13,40 @@ public class PhotonParticle : MonoBehaviourPun, IPunObservable
         {
             stream.SendNext(iceParticle);
             stream.SendNext(fireParticle);
-        }
-        else if (stream.IsReading)
+            stream.SendNext(wateringParticle);
+        } else if (stream.IsReading)
         {
             iceParticle = (bool) stream.ReceiveNext();
             fireParticle = (bool) stream.ReceiveNext();
-            SetIceParticle();
+            wateringParticle = (bool) stream.ReceiveNext();
+            SetParticle();
         }
     }
 
-    private void SetIceParticle()
+    private void SetParticle()
     {
-        if (!photonView.IsMine && (transform.GetChild(0).gameObject.name.Equals("IceRodPrefab(Clone)") 
-                                   || transform.GetChild(0).gameObject.name.Equals("FireRodPrefab(Clone)")))
+        if (photonView.IsMine)
+            return;
+        if (transform.GetChild(0).gameObject.name.Equals("IceRodPrefab(Clone)")
+            || transform.GetChild(0).gameObject.name.Equals("FireRodPrefab(Clone)"))
         {
             if (iceParticle || fireParticle)
             {
                 transform.GetChild(0).GetChild(1).gameObject.SetActive(true);
-            } 
-            else
+            } else
             {
                 transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
+            }
+        }
+
+        if (transform.GetChild(0).gameObject.name.Equals("Gießkanne(Clone)"))
+        {
+            if (wateringParticle)
+            {
+                transform.GetChild(0).GetChild(1).GetComponent<ParticleSystem>().Play();
+            } else
+            {
+                transform.GetChild(0).GetChild(1).GetComponent<ParticleSystem>().Stop();
             }
         }
     }

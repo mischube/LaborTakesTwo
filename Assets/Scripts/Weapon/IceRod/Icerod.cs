@@ -13,8 +13,6 @@ public class Icerod : WeaponRod
         //load prefab
         projectilePrefab = (GameObject)Resources.Load("IceProjectile");
         beamPrefab = (GameObject)Resources.Load("BeamIce");
-        
-        photonParticle.icerod = this;
     }
 
     public override void PrimaryAction()
