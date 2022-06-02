@@ -19,6 +19,12 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     private Transform growingPlantTransform;
     private GameObject plantPrefab;
 
+
+    private void Start()
+    {
+        plantPrefab = (GameObject) Resources.Load("Cannonball");
+    }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -31,17 +37,16 @@ public class PlantType : MonoBehaviourPun, IPunObservable
         }
     }
 
-    public void SetGrowingPlant(Transform transform, GameObject gameObject)
+    public void SetGrowingPlant(Transform transform)
     {
         growingPlantTransform = transform;
-        plantPrefab = gameObject;
     }
 
     public void SpawnPlantInMultiplayer()
     {
         if (photonView.IsMine)
             return;
-        Instantiate(plantPrefab);
+        Instantiate(plantPrefab, growingPlantTransform.position, growingPlantTransform.rotation);
     }
 
     #region Getters

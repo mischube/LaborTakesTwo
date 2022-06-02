@@ -68,7 +68,7 @@ public class SnakeMovement : MonoBehaviour
                 currentplant.transform.position + currentplant.transform.forward * plantRangeOffset,
                 plantPrefab.transform.rotation,
                 localplayer.transform);
-            plantType.SetGrowingPlant(save.transform, save);
+            plantType.SetGrowingPlant(save.transform);
             plantList.Add(save);
             currentplant = save;
             currentStartPos = save.transform.localPosition;
