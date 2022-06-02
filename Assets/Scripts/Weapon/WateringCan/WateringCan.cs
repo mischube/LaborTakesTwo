@@ -80,10 +80,12 @@ public class WateringCan : WeaponScript
                 currentPlant = hitCollider.transform.GetChild(lastChild);
                 plantExtensionPrefab = hitCollider.transform.GetChild(lastChild).gameObject;
                 EnableSnakePlantPolymorph();
+                var plantTypeScript = hitCollider.gameObject.GetComponent<PlantType>();
                 player.transform.GetComponent<SnakeMovement>().SetCurrentPlant(
                     plantExtensionPrefab,
                     oldPlantParent,
-                    player);
+                    player,
+                    plantTypeScript);
                 oldPlantPosition = player.transform.position; //Care its used for the old player pos this time
                 oldPlantParent = hitCollider.gameObject;
                 player.transform.position = hitCollider.transform.GetChild(lastChild).position;

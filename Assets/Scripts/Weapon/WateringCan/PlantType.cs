@@ -1,7 +1,8 @@
+using Photon.Pun;
 using UnityEngine;
 using Weapon.WateringCan;
 
-public class PlantType : MonoBehaviour
+public class PlantType : MonoBehaviourPun, IPunObservable
 {
     [Tooltip("Possible Types 'Snake', 'Growable'")] [SerializeField]
     private Plants plantType;
@@ -14,9 +15,45 @@ public class PlantType : MonoBehaviour
 
     private int currentPlantGrowthSize = 0;
 
+    private int maxSnakeRange;
+    private Transform growingPlantTransform;
+    private GameObject plantPrefab;
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(growingPlantTransform);
+        } else if (stream.IsReading)
+        {
+            growingPlantTransform = (Transform) stream.ReceiveNext();
+            SpawnPlantInMultiplayer();
+        }
+    }
+
+    public void SetGrowingPlant(Transform transform, GameObject gameObject)
+    {
+        growingPlantTransform = transform;
+        plantPrefab = gameObject;
+    }
+
+    public void SpawnPlantInMultiplayer()
+    {
+        if (photonView.IsMine)
+            return;
+        Instantiate(plantPrefab);
+    }
+
+    #region Getters
+
     public string GetPlantType()
     {
         return plantType.ToString();
+    }
+
+    public int GetSnakeRange()
+    {
+        return maxSnakeRange;
     }
 
     public float GetPlantSize()
@@ -34,8 +71,11 @@ public class PlantType : MonoBehaviour
         return currentPlantGrowthSize;
     }
 
+    #endregion
+
     public void IncrementCurrentSnakeSize()
     {
         currentPlantGrowthSize++;
     }
+    
 }
