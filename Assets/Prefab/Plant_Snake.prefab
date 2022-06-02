@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1824209307200171658}
   - component: {fileID: 6092690274918268284}
   - component: {fileID: 6877294631104112615}
+  - component: {fileID: 6205522719646125321}
   m_Layer: 9
   m_Name: Plant_Snake
   m_TagString: Plant
@@ -11681,6 +11682,29 @@ MonoBehaviour:
   plantType: 0
   plantGrowthSize: 1
   snakePlantGrowthSize: 50
+--- !u!114 &6205522719646125321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824209307200171659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 6877294631104112615}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &390254155773054764
 PrefabInstance:
   m_ObjectHideFlags: 0
