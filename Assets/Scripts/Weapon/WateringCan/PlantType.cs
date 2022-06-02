@@ -18,7 +18,8 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     private int maxSnakeRange;
     private Transform growingPlantTransform;
     private GameObject plantPrefab;
-
+    public bool wateringParticle;
+    
 
     private void Start()
     {
@@ -29,11 +30,17 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     {
         if (stream.IsWriting)
         {
+            Debug.Log(growingPlantTransform);
             stream.SendNext(growingPlantTransform);
+            stream.SendNext(wateringParticle);
+            Debug.Log(wateringParticle);
         } else if (stream.IsReading)
         {
             growingPlantTransform = (Transform) stream.ReceiveNext();
+            Debug.Log(growingPlantTransform);
             SpawnPlantInMultiplayer();
+            wateringParticle = (bool) stream.ReceiveNext();
+            Debug.Log(wateringParticle);
         }
     }
 
@@ -44,9 +51,8 @@ public class PlantType : MonoBehaviourPun, IPunObservable
 
     public void SpawnPlantInMultiplayer()
     {
-        if (photonView.IsMine)
-            return;
-        Instantiate(plantPrefab, growingPlantTransform.position, growingPlantTransform.rotation);
+        Debug.Log("Instantiate Prefab");
+        //var var = Instantiate(plantPrefab, growingPlantTransform.position, growingPlantTransform.rotation);
     }
 
     #region Getters
