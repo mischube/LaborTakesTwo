@@ -87,14 +87,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoints:
   - scene: 1
-    position: {x: 63, y: 12, z: -43}
-  - scene: 2
     position: {x: -5.7, y: 15, z: -153}
+  - scene: 2
+    position: {x: 0, y: 1, z: 0}
   - scene: 3
     position: {x: 0, y: 1, z: 0}
   - scene: 4
-    position: {x: 0, y: 1, z: -30}
-  - scene: 5
     position: {x: 0, y: 2, z: 0}
 --- !u!114 &-1041576544709154611
 MonoBehaviour:
