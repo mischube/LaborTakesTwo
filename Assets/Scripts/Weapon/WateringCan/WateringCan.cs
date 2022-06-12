@@ -88,6 +88,7 @@ public class WateringCan : WeaponScript
                     plantTypeScript);
                 oldPlantPosition = player.transform.position; //Care its used for the old player pos this time
                 oldPlantParent = hitCollider.gameObject;
+                oldPlantParent.transform.GetComponent<PlantType>().setplayerplanted(true);
                 player.transform.position = hitCollider.transform.GetChild(lastChild).position;
                 currentPlant.SetParent(player.transform);
                 polymorphSnakeActive = true;
@@ -114,7 +115,7 @@ public class WateringCan : WeaponScript
             currentPlant.SetParent(oldPlantParent.transform);
             player.transform.position = oldPlantPosition;
             player.transform.GetComponent<PlayerMovement>().enabled = true;
-
+            oldPlantParent.transform.GetComponent<PlantType>().setplayerplanted(true);
             foreach (var plant in player.transform.GetComponent<SnakeMovement>().ReturnPlantList())
             {
                 Destroy(plant);

@@ -18,9 +18,9 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     private int maxSnakeRange;
     private Vector3 growingPlantTransform;
     private GameObject plantPrefab;
+    private bool playerIsPlanted = false;
     public int counter = 0;
-    
-    
+
 
     private void Start()
     {
@@ -31,16 +31,12 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     {
         if (stream.IsWriting)
         {
-            Debug.Log("writing");
-            //stream.SendNext(counter);
+            stream.SendNext(playerIsPlanted);
             stream.SendNext(growingPlantTransform);
-            
         } else if (stream.IsReading)
         {
-            Debug.Log("reading");
-            //counter = (int) stream.ReceiveNext();
+            playerIsPlanted = (bool) stream.ReceiveNext();
             growingPlantTransform = (Vector3) stream.ReceiveNext();
-            
             SpawnPlantInMultiplayer();
         }
     }
@@ -55,7 +51,10 @@ public class PlantType : MonoBehaviourPun, IPunObservable
         Debug.Log("Instantiate Prefab");
         if (plantPrefab == null)
             return;
-        var var = Instantiate(plantPrefab, growingPlantTransform, Quaternion.identity);
+        if (playerIsPlanted)
+        {
+            var var = Instantiate(plantPrefab, growingPlantTransform, Quaternion.identity);
+        }
     }
 
     #region Getters
@@ -91,5 +90,9 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     {
         currentPlantGrowthSize++;
     }
-    
+
+    public void setplayerplanted(bool status)
+    {
+        playerIsPlanted = status;
+    }
 }
