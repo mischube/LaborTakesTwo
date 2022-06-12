@@ -16,43 +16,46 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     private int currentPlantGrowthSize = 0;
 
     private int maxSnakeRange;
-    private Transform growingPlantTransform;
+    private Vector3 growingPlantTransform;
     private GameObject plantPrefab;
-    public bool wateringParticle;
+    public int counter = 0;
+    
     
 
     private void Start()
     {
-        plantPrefab = (GameObject) Resources.Load("Cannonball");
+        plantPrefab = (GameObject) Resources.Load("Plantparts");
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
-            Debug.Log(growingPlantTransform);
+            Debug.Log("writing");
+            //stream.SendNext(counter);
             stream.SendNext(growingPlantTransform);
-            stream.SendNext(wateringParticle);
-            Debug.Log(wateringParticle);
+            
         } else if (stream.IsReading)
         {
-            growingPlantTransform = (Transform) stream.ReceiveNext();
-            Debug.Log(growingPlantTransform);
+            Debug.Log("reading");
+            //counter = (int) stream.ReceiveNext();
+            growingPlantTransform = (Vector3) stream.ReceiveNext();
+            
             SpawnPlantInMultiplayer();
-            wateringParticle = (bool) stream.ReceiveNext();
-            Debug.Log(wateringParticle);
         }
     }
 
-    public void SetGrowingPlant(Transform transform)
+    public void SetGrowingPlant(Vector3 vector3)
     {
-        growingPlantTransform = transform;
+        growingPlantTransform = vector3;
     }
 
     public void SpawnPlantInMultiplayer()
     {
         Debug.Log("Instantiate Prefab");
-        //var var = Instantiate(plantPrefab, growingPlantTransform.position, growingPlantTransform.rotation);
+        if (plantPrefab == null)
+            return;
+        var var = Instantiate(plantPrefab, growingPlantTransform, Quaternion.identity);
     }
 
     #region Getters
