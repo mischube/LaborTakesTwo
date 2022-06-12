@@ -264,11 +264,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   speed: 12
-  gravity: -12
+  jumpHeight: 3
   dashSpeed: 20
+  gravity: -12
   dashCooldown: 3
   dashTime: 0.5
-  jumpHeight: 3
   groundDistance: 0.4
 --- !u!114 &7910142604564455571
 MonoBehaviour:

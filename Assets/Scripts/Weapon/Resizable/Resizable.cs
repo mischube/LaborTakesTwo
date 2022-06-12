@@ -6,6 +6,8 @@ namespace Weapon.Resizable
     {
         [SerializeField] protected float resizeFactor;
 
+        public float ResizeFactor => resizeFactor;
+
         public abstract void Resize();
 
         protected void ResizeInternal()

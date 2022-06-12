@@ -4,13 +4,16 @@ namespace Weapon.Resizable.Shrinker
     {
         public override void PrimaryAction()
         {
-            throw new System.NotImplementedException();
+            var hit = DoRayCast();
+
+            if (hit.TryGetComponent<Shrinkable>(out var resizable))
+                ResizeInternal(resizable);
         }
 
         public override void SecondaryAction()
         {
             var shrinkable = GetComponentInParent<Shrinkable>();
-            ResizeInternal(shrinkable);
+            ResizePlayerInternal(shrinkable);
         }
     }
 }

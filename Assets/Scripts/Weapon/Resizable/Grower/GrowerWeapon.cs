@@ -4,13 +4,16 @@ namespace Weapon.Resizable.Grower
     {
         public override void PrimaryAction()
         {
-            throw new System.NotImplementedException();
+            var hit = DoRayCast();
+
+            if (hit.transform.TryGetComponent<Growable>(out var resizable))
+                ResizeInternal(resizable);
         }
 
         public override void SecondaryAction()
         {
             var growable = GetComponentInParent<Growable>();
-            ResizeInternal(growable);
+            ResizePlayerInternal(growable);
         }
     }
 }
