@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Door
@@ -6,10 +8,22 @@ namespace Door
     {
         [SerializeField] private Door door;
         [SerializeField] private bool closeOnLeave;
+        [SerializeField] private String[] possibleTags;
+        private bool openedOnce;
 
         private void OnTriggerEnter(Collider other)
         {
-            door.Open();
+            if (openedOnce && !closeOnLeave)
+                return;
+            
+            foreach (var wantedTag in possibleTags)
+            {
+                if (other.transform.tag.Equals(wantedTag))
+                {
+                    openedOnce = true;
+                    door.Open();
+                }
+            }
         }
 
         private void OnTriggerExit(Collider other)
@@ -19,7 +33,13 @@ namespace Door
                 return;
             }
 
-            door.Close();
+            foreach (var wantedTag in possibleTags)
+            {
+                if (other.transform.tag.Equals(wantedTag))
+                {
+                    door.Close();
+                }
+            }
         }
     }
 }

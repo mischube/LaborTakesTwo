@@ -8,6 +8,7 @@ namespace Global
         [StringEnum("Tutorial")] Tutorial,
         [StringEnum("Advanced")] Advanced,
         [StringEnum("Boss")] Boss,
-        [StringEnum("IceAndFirePlayground")] IceAndFirePlayground
+        [StringEnum("IceAndFirePlayground")] IceAndFirePlayground,
+        [StringEnum("FireAndIceLevel")] FireAndIceLevel
     }
 }
