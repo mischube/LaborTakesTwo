@@ -30,6 +30,9 @@ public class ElementObject : MonoBehaviour
             transform.gameObject.layer = 4;
             GetComponent<Renderer>().material.color = Color.blue;
             transform.tag = "Untagged";
+        }else if (transform.gameObject.layer == 13)
+        {
+            Destroy(gameObject);
         }
     }
     
