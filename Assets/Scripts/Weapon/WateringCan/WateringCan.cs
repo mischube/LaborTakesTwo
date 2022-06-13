@@ -16,6 +16,7 @@ public class WateringCan : WeaponScript
     private Vector3 characterControllerCenterOffset;
     private float characterControllerHeightOffset;
 
+    public PhotonPlant photonPlant;
     private Vector3 oldPlantPosition;
     private GameObject oldPlantParent;
     private Transform currentPlant;
@@ -47,6 +48,8 @@ public class WateringCan : WeaponScript
     public override void SecondaryAction()
     {
         player = transform.root.gameObject;
+        photonPlant = player.gameObject.GetComponent<PhotonPlant>();
+        Debug.Log(photonPlant);
         takeoverCenter = player.transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(takeoverCenter, takeoverRadius);
 
@@ -71,6 +74,10 @@ public class WateringCan : WeaponScript
                 hitCollider.transform.GetChild(0).SetParent(player.transform);
                 groundcheck.position = new Vector3(player.transform.position.x, minY, player.transform.position.z);
                 cc.enabled = true;
+
+                player.GetComponent<PhotonPlant>().SetPolyPlant(currentPlant.position);
+                player.GetComponent<PhotonPlant>().SetPlantSize(currentPlant.localScale);
+                player.GetComponent<PhotonPlant>().SetPolyEnable(true);
                 return;
             }
 
@@ -86,12 +93,16 @@ public class WateringCan : WeaponScript
                     oldPlantParent,
                     player,
                     plantTypeScript);
+                
                 oldPlantPosition = player.transform.position; //Care its used for the old player pos this time
                 oldPlantParent = hitCollider.gameObject;
-                oldPlantParent.transform.GetComponent<PlantType>().setplayerplanted(true);
+                oldPlantParent.transform.GetComponent<PlantType>().SetPlayerPlanted(true);
                 player.transform.position = hitCollider.transform.GetChild(lastChild).position;
                 currentPlant.SetParent(player.transform);
                 polymorphSnakeActive = true;
+                player.GetComponent<PhotonPlant>().SetPolyPlant(currentPlant.position);
+                player.GetComponent<PhotonPlant>().SetPlantSize(currentPlant.localScale);
+                player.GetComponent<PhotonPlant>().SetPolyEnable(true);
                 return;
             }
         }
@@ -106,6 +117,7 @@ public class WateringCan : WeaponScript
             currentPlant.position = oldPlantPosition;
             groundcheck.position = new Vector3(groundcheck.position.x, minY, groundcheck.position.z);
             cc.enabled = true;
+            player.GetComponent<PhotonPlant>().SetPolyEnable(false);
         }
 
         //Schaut ob Snake Polymorph aktiv ist und schaltet dies mithilfe von Methoden dann aus
@@ -115,12 +127,13 @@ public class WateringCan : WeaponScript
             currentPlant.SetParent(oldPlantParent.transform);
             player.transform.position = oldPlantPosition;
             player.transform.GetComponent<PlayerMovement>().enabled = true;
-            oldPlantParent.transform.GetComponent<PlantType>().setplayerplanted(true);
+            oldPlantParent.transform.GetComponent<PlantType>().SetPlayerPlanted(false);
             foreach (var plant in player.transform.GetComponent<SnakeMovement>().ReturnPlantList())
             {
                 Destroy(plant);
             }
 
+            player.GetComponent<PhotonPlant>().SetPolyEnable(false);
             player.transform.GetComponent<SnakeMovement>().clearList();
             cc.enabled = true;
         }

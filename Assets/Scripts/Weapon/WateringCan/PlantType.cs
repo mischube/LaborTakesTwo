@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using Weapon.WateringCan;
@@ -18,13 +19,15 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     private int maxSnakeRange;
     private Vector3 growingPlantTransform;
     private GameObject plantPrefab;
+    private GameObject oldPlayerPrefab;
+    private List<GameObject> plants;
     private bool playerIsPlanted = false;
-    public int counter = 0;
-
+    private bool playerIsPoly = false;
 
     private void Start()
     {
         plantPrefab = (GameObject) Resources.Load("Plantparts");
+        plants = new List<GameObject>();
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -33,11 +36,13 @@ public class PlantType : MonoBehaviourPun, IPunObservable
         {
             stream.SendNext(playerIsPlanted);
             stream.SendNext(growingPlantTransform);
+         
         } else if (stream.IsReading)
         {
             playerIsPlanted = (bool) stream.ReceiveNext();
             growingPlantTransform = (Vector3) stream.ReceiveNext();
             SpawnPlantInMultiplayer();
+            DeleteAllPlants();
         }
     }
 
@@ -46,14 +51,37 @@ public class PlantType : MonoBehaviourPun, IPunObservable
         growingPlantTransform = vector3;
     }
 
+    public void PlayerIsPoly(bool poly)
+    {
+        playerIsPoly = poly;
+    }
+
     public void SpawnPlantInMultiplayer()
     {
-        Debug.Log("Instantiate Prefab");
         if (plantPrefab == null)
             return;
         if (playerIsPlanted)
         {
+            PlayerIsPoly(true);
             var var = Instantiate(plantPrefab, growingPlantTransform, Quaternion.identity);
+            plants.Add(var);
+        }
+    }
+
+    public void DeleteAllPlants()
+    {
+        if (!playerIsPlanted)
+        {
+            PlayerIsPoly(false);
+            if (plants.Count == 0)
+                return;
+            foreach (var plant in plants)
+            {
+                Destroy(plant);
+            }
+
+            plants.Clear();
+            ResetPlantPos();
         }
     }
 
@@ -91,8 +119,14 @@ public class PlantType : MonoBehaviourPun, IPunObservable
         currentPlantGrowthSize++;
     }
 
-    public void setplayerplanted(bool status)
+    public void SetPlayerPlanted(bool status)
     {
+        ResetPlantPos();
         playerIsPlanted = status;
+    }
+
+    public void ResetPlantPos()
+    {
+        growingPlantTransform = new Vector3(-30, -30, -30);
     }
 }
