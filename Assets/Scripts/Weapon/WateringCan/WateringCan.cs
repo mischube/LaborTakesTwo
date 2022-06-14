@@ -137,7 +137,7 @@ public class WateringCan : WeaponScript
             }
 
             player.GetComponent<PhotonPlant>().SetPolyEnable(false);
-            player.transform.GetComponent<SnakeMovement>().clearList();
+            player.transform.GetComponent<SnakeMovement>().ClearList();
             cc.enabled = true;
         }
     }

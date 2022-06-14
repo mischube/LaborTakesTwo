@@ -15,8 +15,7 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     private int snakePlantGrowthSize;
 
     private int currentPlantGrowthSize = 0;
-
-    private int maxSnakeRange;
+    [SerializeField] private int maxSnakeRange;
     private Vector3 growingPlantTransform;
     private GameObject plantPrefab;
     private GameObject oldPlayerPrefab;
@@ -56,6 +55,10 @@ public class PlantType : MonoBehaviourPun, IPunObservable
         playerIsPoly = poly;
     }
 
+    public int GetMaxSnakeRange()
+    {
+        return maxSnakeRange;
+    }
     public void SpawnPlantInMultiplayer()
     {
         if (plantPrefab == null)

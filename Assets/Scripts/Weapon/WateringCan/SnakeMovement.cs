@@ -13,9 +13,12 @@ public class SnakeMovement : MonoBehaviour
     private float leftside;
     private float directionSpeed = 0.01f;
     public PlantType plantType;
-
+    private int currentSnakeRange;
+    private bool lockMovement;
     void Update()
     {
+        if (plantType.GetMaxSnakeRange() == currentSnakeRange && lockMovement)
+            return;
         if (plantList.Count > 0)
         {
             if (Input.GetKey(KeyCode.W))
@@ -63,6 +66,11 @@ public class SnakeMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            if (plantType.GetMaxSnakeRange() <= currentSnakeRange)
+            {
+                lockMovement = true;
+                return;
+            }
             GameObject save = Instantiate(
                 plantPrefab,
                 currentplant.transform.position + currentplant.transform.forward * plantRangeOffset,
@@ -75,6 +83,7 @@ public class SnakeMovement : MonoBehaviour
             currentStartPos = save.transform.localPosition;
             rightSide = 0f;
             leftside = 0f;
+            currentSnakeRange++;
         }
     }
 
@@ -92,8 +101,10 @@ public class SnakeMovement : MonoBehaviour
         return plantList;
     }
 
-    public void clearList()
+    public void ClearList()
     {
         plantList.Clear();
+        currentSnakeRange = 0;
+        lockMovement = false;
     }
 }
