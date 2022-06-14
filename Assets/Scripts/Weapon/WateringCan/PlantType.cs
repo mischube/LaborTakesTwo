@@ -14,14 +14,15 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     [Tooltip("Gives the snake plant a max size")] [SerializeField]
     private int snakePlantGrowthSize;
 
-    private int currentPlantGrowthSize = 0;
+    private int currentPlantGrowthSize;
     [SerializeField] private int maxSnakeRange;
     private Vector3 growingPlantTransform;
     private GameObject plantPrefab;
     private GameObject oldPlayerPrefab;
     private List<GameObject> plants;
-    private bool playerIsPlanted = false;
-    private bool playerIsPoly = false;
+    private bool playerIsPlanted;
+    private bool playerIsPlanting;
+    private bool ownerOfPlant;
 
     private void Start()
     {
@@ -34,13 +35,24 @@ public class PlantType : MonoBehaviourPun, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(playerIsPlanted);
+            stream.SendNext(playerIsPlanting);
             stream.SendNext(growingPlantTransform);
-         
         } else if (stream.IsReading)
         {
             playerIsPlanted = (bool) stream.ReceiveNext();
+            playerIsPlanting = (bool) stream.ReceiveNext();
             growingPlantTransform = (Vector3) stream.ReceiveNext();
+        }
+    }
+
+    private void Update()
+    {
+        if (playerIsPlanting && !ownerOfPlant)
             SpawnPlantInMultiplayer();
+        if (plants.Count == 0)
+            return;
+        if (!playerIsPlanted)
+        {
             DeleteAllPlants();
         }
     }
@@ -50,42 +62,41 @@ public class PlantType : MonoBehaviourPun, IPunObservable
         growingPlantTransform = vector3;
     }
 
-    public void PlayerIsPoly(bool poly)
+    public void SetPolyOwner()
     {
-        playerIsPoly = poly;
+        ownerOfPlant = true;
+    }
+
+    public void PlayerIsPlanting(bool poly)
+    {
+        playerIsPlanting = poly;
     }
 
     public int GetMaxSnakeRange()
     {
         return maxSnakeRange;
     }
+
     public void SpawnPlantInMultiplayer()
     {
         if (plantPrefab == null)
             return;
         if (playerIsPlanted)
         {
-            PlayerIsPoly(true);
             var var = Instantiate(plantPrefab, growingPlantTransform, Quaternion.identity);
             plants.Add(var);
+            playerIsPlanting = false;
         }
     }
 
     public void DeleteAllPlants()
     {
-        if (!playerIsPlanted)
+        foreach (var plant in plants)
         {
-            PlayerIsPoly(false);
-            if (plants.Count == 0)
-                return;
-            foreach (var plant in plants)
-            {
-                Destroy(plant);
-            }
-
-            plants.Clear();
-            ResetPlantPos();
+            Destroy(plant);
         }
+
+        plants.Clear();
     }
 
     #region Getters
@@ -93,11 +104,6 @@ public class PlantType : MonoBehaviourPun, IPunObservable
     public string GetPlantType()
     {
         return plantType.ToString();
-    }
-
-    public int GetSnakeRange()
-    {
-        return maxSnakeRange;
     }
 
     public float GetPlantSize()
@@ -124,12 +130,6 @@ public class PlantType : MonoBehaviourPun, IPunObservable
 
     public void SetPlayerPlanted(bool status)
     {
-        ResetPlantPos();
         playerIsPlanted = status;
-    }
-
-    public void ResetPlantPos()
-    {
-        growingPlantTransform = new Vector3(-30, -30, -30);
     }
 }
