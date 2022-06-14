@@ -16,6 +16,8 @@ public class SnakeMovement : MonoBehaviour
     private int currentSnakeRange;
     private bool lockMovement;
     private bool instantiateBool = true;
+    private bool toggle;
+    private GameObject save;
     void Update()
     {
         if (plantType.GetMaxSnakeRange() == currentSnakeRange && lockMovement)
@@ -73,9 +75,8 @@ public class SnakeMovement : MonoBehaviour
                 return;
             }
 
-            if (instantiateBool)
-            {
-                GameObject save = Instantiate(
+            plantType.SetPolyOwner();
+            save = Instantiate(
                     plantPrefab,
                     currentplant.transform.position + currentplant.transform.forward * plantRangeOffset,
                     plantPrefab.transform.rotation,
@@ -86,29 +87,17 @@ public class SnakeMovement : MonoBehaviour
                 rightSide = 0f;
                 leftside = 0f;
                 currentSnakeRange++;
-                instantiateBool = false;
-            } else
-            {
-                GameObject save = Instantiate(
-                    plantPrefab,
-                    currentplant.transform.position + currentplant.transform.forward * plantRangeOffset,
-                    plantPrefab.transform.rotation,
-                    localplayer.transform);
-                plantType.SetPolyOwner();
-                plantType.SetGrowingPlant(
-                    currentplant.transform.position + currentplant.transform.forward * plantRangeOffset);
-                plantType.PlayerIsPlanting(true);
-                plantList.Add(save);
-                currentplant = save;
-                currentStartPos = save.transform.localPosition;
-                rightSide = 0f;
-                leftside = 0f;
-                currentSnakeRange++;
-            }
+        }
+
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            plantType.SetGrowingPlant(
+                currentplant.transform.position);
+            plantType.PlayerIsPlanting(true);
         }
     }
 
-    public void SetCurrentPlant(GameObject plant, GameObject soil, GameObject player, PlantType _plantType)
+    public void SetCurrentPlant(GameObject plant, GameObject player, PlantType _plantType)
     {
         currentplant = plantPrefab = plant;
         localplayer = player;
@@ -127,5 +116,6 @@ public class SnakeMovement : MonoBehaviour
         plantList.Clear();
         currentSnakeRange = 0;
         lockMovement = false;
+        toggle = false;
     }
 }

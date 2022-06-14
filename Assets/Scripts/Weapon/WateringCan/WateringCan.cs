@@ -92,7 +92,6 @@ public class WateringCan : WeaponScript
                 var plantTypeScript = hitCollider.gameObject.GetComponent<PlantType>();
                 player.transform.GetComponent<SnakeMovement>().SetCurrentPlant(
                     plantExtensionPrefab,
-                    oldPlantParent,
                     player,
                     plantTypeScript);
 

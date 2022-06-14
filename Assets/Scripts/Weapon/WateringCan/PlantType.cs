@@ -3,7 +3,7 @@ using Photon.Pun;
 using UnityEngine;
 using Weapon.WateringCan;
 
-public class PlantType : MonoBehaviourPun, IPunObservable
+public class PlantType : MonoBehaviour, IPunObservable
 {
     [Tooltip("Possible Types 'Snake', 'Growable'")] [SerializeField]
     private Plants plantType;
