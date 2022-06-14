@@ -16,8 +16,6 @@ public class SnakeMovement : MonoBehaviour
     private float directionSpeed = 0.01f;
     private int currentSnakeRange;
     private bool lockMovement;
-    private bool instantiateBool = true;
-    private bool toggle;
 
     public PlantType plantType;
 
@@ -119,6 +117,5 @@ public class SnakeMovement : MonoBehaviour
         plantList.Clear();
         currentSnakeRange = 0;
         lockMovement = false;
-        toggle = false;
     }
 }

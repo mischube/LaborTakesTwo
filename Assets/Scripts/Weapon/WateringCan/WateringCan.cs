@@ -1,3 +1,4 @@
+using Photon.Pun;
 using Player;
 using UnityEngine;
 using Weapon;
@@ -53,7 +54,6 @@ public class WateringCan : WeaponScript
     {
         player = transform.root.gameObject;
         photonPlant = player.gameObject.GetComponent<PhotonPlant>();
-        Debug.Log(photonPlant);
         takeoverCenter = player.transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(takeoverCenter, takeoverRadius);
 
@@ -70,10 +70,11 @@ public class WateringCan : WeaponScript
             {
                 currentPlant = hitCollider.transform.GetChild(0);
                 EnableGrowablePlantPolymorph();
-
+                
                 oldPlantPosition = hitCollider.transform.GetChild(0).position;
                 var minY = hitCollider.transform.GetChild(0).GetComponent<Renderer>().bounds.min.y;
                 oldPlantParent = hitCollider.gameObject;
+
                 player.transform.position = hitCollider.transform.GetChild(0).position;
                 hitCollider.transform.GetChild(0).SetParent(player.transform);
                 groundcheck.position = new Vector3(player.transform.position.x, minY, player.transform.position.z);
@@ -105,7 +106,7 @@ public class WateringCan : WeaponScript
                 player.transform.position = hitCollider.transform.GetChild(lastChild).position;
                 currentPlant.SetParent(player.transform);
                 polymorphSnakeActive = true;
-
+                oldPlantParent.GetComponent<PhotonView>().TransferOwnership(PhotonNetwork.LocalPlayer);
                 player.GetComponent<PhotonPlant>().SetPolyEnable(true);
                 player.GetComponent<PhotonPlant>().SetWhichPlant(true);
                 player.GetComponent<PhotonPlant>().SetPolyOwner();

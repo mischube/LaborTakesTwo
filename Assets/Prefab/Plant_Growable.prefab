@@ -11682,6 +11682,7 @@ MonoBehaviour:
   plantType: 1
   plantGrowthSize: 1
   snakePlantGrowthSize: 0
+  maxSnakeRange: 0
 --- !u!114 &8627031633796891886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11698,7 +11699,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 863735109644976154}
