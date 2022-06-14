@@ -4,23 +4,28 @@ using UnityEngine;
 public class PhotonPlant : MonoBehaviour, IPunObservable
 {
     private GameObject plantPrefab;
+    private GameObject plantModel;
     private Vector3 plantPosition;
     private Vector3 plantScale;
     private GameObject oldPlantParent;
 
-    private bool currentlyAnPlant = false;
-    private bool alreadyAnPlant = false;
+    private bool currentlyAnPlant;
+    private bool alreadyAnPlant;
+    private bool ownerOfPlant;
+    private bool whichPlantUsed;
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {
             stream.SendNext(currentlyAnPlant);
+            stream.SendNext(whichPlantUsed);
             stream.SendNext(plantPosition);
             stream.SendNext(plantScale);
         } else if (stream.IsReading)
         {
             currentlyAnPlant = (bool) stream.ReceiveNext();
+            whichPlantUsed = (bool) stream.ReceiveNext();
             plantPosition = (Vector3) stream.ReceiveNext();
             plantScale = (Vector3) stream.ReceiveNext();
         }
@@ -46,9 +51,19 @@ public class PhotonPlant : MonoBehaviour, IPunObservable
         currentlyAnPlant = state;
     }
 
+    public void SetWhichPlant(bool state)
+    {
+        whichPlantUsed = state;
+    }
+
     public void SetPolyPlant(Vector3 pos)
     {
         plantPosition = pos;
+    }
+
+    public void SetPolyOwner()
+    {
+        ownerOfPlant = true;
     }
 
     public void SetPlantSize(Vector3 scaling)
@@ -60,12 +75,18 @@ public class PhotonPlant : MonoBehaviour, IPunObservable
     {
         if (alreadyAnPlant)
             return;
-        plantPrefab = Instantiate(plantPrefab);
-        plantPrefab.transform.localScale = plantScale;
+        if (ownerOfPlant)
+            return;
+        if (!whichPlantUsed)
+        {
+            plantModel = Instantiate(plantPrefab, transform.position, plantPrefab.transform.rotation);
+            plantModel.transform.localScale = plantScale;
+            plantModel.transform.SetParent(transform);
+        }
+
         transform.Find("Cylinder").gameObject.SetActive(false);
         transform.Find("Cube").gameObject.SetActive(false);
         transform.Find("Inventory").gameObject.SetActive(false);
-        plantPrefab.transform.SetParent(transform);
         alreadyAnPlant = true;
     }
 
@@ -73,11 +94,20 @@ public class PhotonPlant : MonoBehaviour, IPunObservable
     {
         if (!alreadyAnPlant)
             return;
-        plantPosition = oldPlantPos;
+        if (ownerOfPlant)
+            return;
+
+        if (!whichPlantUsed)
+        {
+            plantPosition = oldPlantPos;
+            plantPrefab.transform.position = plantPosition;
+            Destroy(plantModel);
+        }
+
         transform.Find("Cylinder").gameObject.SetActive(true);
         transform.Find("Cube").gameObject.SetActive(true);
         transform.Find("Inventory").gameObject.SetActive(true);
-        plantPrefab.transform.position = plantPosition;
+
         alreadyAnPlant = false;
     }
 }

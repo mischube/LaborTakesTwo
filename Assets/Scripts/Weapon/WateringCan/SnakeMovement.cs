@@ -13,7 +13,7 @@ public class SnakeMovement : MonoBehaviour
     private float leftside;
     private float directionSpeed = 0.01f;
     public PlantType plantType;
-    
+
     void Update()
     {
         if (plantList.Count > 0)
@@ -68,7 +68,8 @@ public class SnakeMovement : MonoBehaviour
                 currentplant.transform.position + currentplant.transform.forward * plantRangeOffset,
                 plantPrefab.transform.rotation,
                 localplayer.transform);
-            plantType.SetGrowingPlant(currentplant.transform.position + currentplant.transform.forward * plantRangeOffset);
+            plantType.SetGrowingPlant(
+                currentplant.transform.position + currentplant.transform.forward * plantRangeOffset);
             plantList.Add(save);
             currentplant = save;
             currentStartPos = save.transform.localPosition;
@@ -84,7 +85,6 @@ public class SnakeMovement : MonoBehaviour
         rightSide = 0f;
         leftside = 0f;
         plantType = _plantType;
-
     }
 
     public List<GameObject> ReturnPlantList()

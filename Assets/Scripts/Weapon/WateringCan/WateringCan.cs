@@ -78,6 +78,8 @@ public class WateringCan : WeaponScript
                 player.GetComponent<PhotonPlant>().SetPolyPlant(currentPlant.position);
                 player.GetComponent<PhotonPlant>().SetPlantSize(currentPlant.localScale);
                 player.GetComponent<PhotonPlant>().SetPolyEnable(true);
+                player.GetComponent<PhotonPlant>().SetWhichPlant(false);
+                player.GetComponent<PhotonPlant>().SetPolyOwner();
                 return;
             }
 
@@ -93,16 +95,17 @@ public class WateringCan : WeaponScript
                     oldPlantParent,
                     player,
                     plantTypeScript);
-                
+
                 oldPlantPosition = player.transform.position; //Care its used for the old player pos this time
                 oldPlantParent = hitCollider.gameObject;
                 oldPlantParent.transform.GetComponent<PlantType>().SetPlayerPlanted(true);
                 player.transform.position = hitCollider.transform.GetChild(lastChild).position;
                 currentPlant.SetParent(player.transform);
                 polymorphSnakeActive = true;
-                player.GetComponent<PhotonPlant>().SetPolyPlant(currentPlant.position);
-                player.GetComponent<PhotonPlant>().SetPlantSize(currentPlant.localScale);
+
                 player.GetComponent<PhotonPlant>().SetPolyEnable(true);
+                player.GetComponent<PhotonPlant>().SetWhichPlant(true);
+                player.GetComponent<PhotonPlant>().SetPolyOwner();
                 return;
             }
         }
