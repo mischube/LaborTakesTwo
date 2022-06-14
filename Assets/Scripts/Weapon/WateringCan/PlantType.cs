@@ -14,8 +14,9 @@ public class PlantType : MonoBehaviour, IPunObservable
     [Tooltip("Gives the snake plant a max size")] [SerializeField]
     private int snakePlantGrowthSize;
 
-    private int currentPlantGrowthSize;
     [SerializeField] private int maxSnakeRange;
+    private int currentPlantGrowthSize;
+
     private Vector3 growingPlantTransform;
     private GameObject plantPrefab;
     private GameObject oldPlayerPrefab;

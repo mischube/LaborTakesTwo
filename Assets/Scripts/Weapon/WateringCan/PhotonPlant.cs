@@ -5,9 +5,10 @@ public class PhotonPlant : MonoBehaviour, IPunObservable
 {
     private GameObject plantPrefab;
     private GameObject plantModel;
+    private GameObject oldPlantParent;
+
     private Vector3 plantPosition;
     private Vector3 plantScale;
-    private GameObject oldPlantParent;
 
     private bool currentlyAnPlant;
     private bool alreadyAnPlant;
@@ -83,7 +84,6 @@ public class PhotonPlant : MonoBehaviour, IPunObservable
             plantModel.transform.localScale = plantScale;
             plantModel.transform.SetParent(transform);
         }
-
         transform.Find("Cylinder").gameObject.SetActive(false);
         transform.Find("Cube").gameObject.SetActive(false);
         transform.Find("Inventory").gameObject.SetActive(false);
@@ -103,11 +103,9 @@ public class PhotonPlant : MonoBehaviour, IPunObservable
             plantPrefab.transform.position = plantPosition;
             Destroy(plantModel);
         }
-
         transform.Find("Cylinder").gameObject.SetActive(true);
         transform.Find("Cube").gameObject.SetActive(true);
         transform.Find("Inventory").gameObject.SetActive(true);
-
         alreadyAnPlant = false;
     }
 }

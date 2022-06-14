@@ -5,24 +5,28 @@ using Weapon;
 public class WateringCan : WeaponScript
 {
     [SerializeField] private ParticleSystem particleSystem;
-    private Vector3 takeoverCenter;
-    private float takeoverRadius = 1.5f;
+    private PhotonParticle photonParticle;
+    public PhotonPlant photonPlant;
+    private CharacterController cc;
+
     private GameObject player;
     private GameObject plantExtensionPrefab;
-    private CharacterController cc;
-    private Transform groundcheck;
+    private GameObject oldPlantParent;
+
     private bool polymorphGrownActive;
     private bool polymorphSnakeActive;
-    private Vector3 characterControllerCenterOffset;
-    private float characterControllerHeightOffset;
 
-    public PhotonPlant photonPlant;
-    private Vector3 oldPlantPosition;
-    private GameObject oldPlantParent;
-    private Transform currentPlant;
+    private Vector3 characterControllerCenterOffset;
     private Vector3 oldCharacterControllerCenter;
+    private Vector3 oldPlantPosition;
+    private Vector3 takeoverCenter;
+
+    private Transform currentPlant;
+    private Transform groundcheck;
+
+    private float takeoverRadius = 1.5f;
+    private float characterControllerHeightOffset;
     private float oldCharacterControllerHeight;
-    private PhotonParticle photonParticle;
 
     private void Start()
     {

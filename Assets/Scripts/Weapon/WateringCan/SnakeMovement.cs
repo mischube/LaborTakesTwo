@@ -3,21 +3,24 @@ using UnityEngine;
 
 public class SnakeMovement : MonoBehaviour
 {
+    private List<GameObject> plantList = new List<GameObject>();
     private GameObject plantPrefab;
     private GameObject localplayer;
     private GameObject currentplant;
+    private GameObject save;
     private Vector3 currentStartPos;
-    private List<GameObject> plantList = new List<GameObject>();
+
     private float plantRangeOffset = 1f;
     private float rightSide;
     private float leftside;
     private float directionSpeed = 0.01f;
-    public PlantType plantType;
     private int currentSnakeRange;
     private bool lockMovement;
     private bool instantiateBool = true;
     private bool toggle;
-    private GameObject save;
+
+    public PlantType plantType;
+
     void Update()
     {
         if (plantType.GetMaxSnakeRange() == currentSnakeRange && lockMovement)
@@ -77,16 +80,16 @@ public class SnakeMovement : MonoBehaviour
 
             plantType.SetPolyOwner();
             save = Instantiate(
-                    plantPrefab,
-                    currentplant.transform.position + currentplant.transform.forward * plantRangeOffset,
-                    plantPrefab.transform.rotation,
-                    localplayer.transform);
-                plantList.Add(save);
-                currentplant = save;
-                currentStartPos = save.transform.localPosition;
-                rightSide = 0f;
-                leftside = 0f;
-                currentSnakeRange++;
+                plantPrefab,
+                currentplant.transform.position + currentplant.transform.forward * plantRangeOffset,
+                plantPrefab.transform.rotation,
+                localplayer.transform);
+            plantList.Add(save);
+            currentplant = save;
+            currentStartPos = save.transform.localPosition;
+            rightSide = 0f;
+            leftside = 0f;
+            currentSnakeRange++;
         }
 
         if (Input.GetKeyUp(KeyCode.Space))
