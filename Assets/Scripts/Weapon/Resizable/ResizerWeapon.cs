@@ -1,3 +1,5 @@
+using System.Collections;
+using Library;
 using Player;
 using UnityEngine;
 
@@ -6,23 +8,64 @@ namespace Weapon.Resizable
     public abstract class ResizerWeapon : WeaponScript
     {
         [SerializeField] protected float interactionDistance = 20f;
+        [SerializeField] protected float thickness = 0.25f;
         [SerializeField] protected LayerMask interactableMask = ~0;
+        [SerializeField] protected float cooldown = 0.75f;
+
+        private LineRenderer _lineRenderer;
+        private PlayerFocus _playerFocus;
+        private bool _isReady = true;
 
         public abstract override void PrimaryAction();
 
         protected GameObject DoRayCast()
         {
-            var cam = PlayerNetworking.LocalPlayerInstance.GetComponentInChildren<Camera>();
-            var ray = new Ray(transform.position, cam.transform.forward);
-
-            Debug.DrawRay(ray.origin, ray.direction * interactionDistance, Color.red, 5f);
-            if (!Physics.Raycast(ray, out var hit, interactionDistance, interactableMask))
+            if (!_isReady)
                 return null;
-            return hit.transform.gameObject;
+
+            _isReady = false;
+
+            var position = transform.position + Vector3.up;
+            var direction = _playerFocus.GetViewDirection();
+            var destinationPos = position + direction * interactionDistance;
+
+            _lineRenderer.positionCount = 2;
+            _lineRenderer.SetPosition(0, position);
+            _lineRenderer.SetPosition(1, destinationPos);
+
+            if (Physics.SphereCast(
+                    position,
+                    thickness,
+                    direction,
+                    out var hit,
+                    interactionDistance,
+                    interactableMask))
+            {
+                StartCoroutine(nameof(ResetLineRenderer));
+                return hit.transform.gameObject;
+            }
+
+            StartCoroutine(nameof(ResetLineRenderer));
+            return null;
         }
+
 
         public abstract override void SecondaryAction();
 
+
+        protected override void OnEnable()
+        {
+            _lineRenderer = gameObject.AddComponent<LineRenderer>();
+            _lineRenderer.startWidth = thickness;
+            _lineRenderer.endWidth = thickness;
+            _playerFocus = GetComponentInParent<PlayerFocus>();
+            base.OnEnable();
+        }
+
+        private void OnDisable()
+        {
+            Destroy(_lineRenderer);
+        }
 
         protected void ResizeInternal(Resizable resizable)
         {
@@ -47,6 +90,15 @@ namespace Weapon.Resizable
             playerMovement.speed *= scaleDiff;
             playerMovement.dashSpeed *= scaleDiff;
             playerMovement.jumpHeight *= scaleDiff;
+        }
+
+
+        private IEnumerator ResetLineRenderer()
+        {
+            yield return new WaitForSeconds(cooldown);
+
+            _lineRenderer.Reset();
+            _isReady = true;
         }
     }
 }

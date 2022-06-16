@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &112498657803215210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3038034493107742799}
+  m_Layer: 7
+  m_Name: Focus
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3038034493107742799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 112498657803215210}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1504431538775554854}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &786340893004496791
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +93,7 @@ Transform:
   - {fileID: 2145121747630076649}
   - {fileID: 5800728070587371174}
   m_Father: {fileID: 1504431538775554854}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8364305124079042459
 MonoBehaviour:
@@ -218,6 +248,7 @@ GameObject:
   - component: {fileID: 1317406428685864519}
   - component: {fileID: 2723584785456438547}
   - component: {fileID: 823970647039783863}
+  - component: {fileID: 5755867987635377628}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -236,6 +267,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3038034493107742799}
   - {fileID: 1504431538856185675}
   - {fileID: 1504431540764554284}
   - {fileID: 4649419451380182150}
@@ -463,6 +495,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resizeFactor: 1.05
+--- !u!114 &5755867987635377628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504431538775554853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 861a5ab45215410d8dfd4d21e0f6dd6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 1504431540764554284}
+  focus: {fileID: 3038034493107742799}
 --- !u!1 &1504431538856185672
 GameObject:
   m_ObjectHideFlags: 0
@@ -494,7 +540,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1504431538775554854}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1504431538856185679
 MonoBehaviour:
@@ -1276,7 +1322,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1504431538775554854}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 13.359, y: 0, z: 0}
 --- !u!20 &1504431540764554285
 Camera:
@@ -1520,7 +1566,7 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 1504431538775554854}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &4290965950498312807
 MeshFilter:
@@ -1612,7 +1658,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1504431538775554854}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3580859921032639756
 GameObject:
@@ -1718,7 +1764,7 @@ Transform:
   m_Children:
   - {fileID: 6304997164441906121}
   m_Father: {fileID: 1504431538775554854}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7049538388717459357
 MonoBehaviour:
@@ -2182,7 +2228,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8965525925627783970}
-  m_LocalRotation: {x: 0.13482685, y: 0.00000001704927, z: -0.0000000023198823, w: 0.99086916}
+  m_LocalRotation: {x: 0.13482685, y: -0.000000017049272, z: 0.0000000023198825, w: 0.99086916}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
