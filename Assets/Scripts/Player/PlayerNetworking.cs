@@ -15,11 +15,11 @@ namespace Player
 
         public static event PlayerLoaded PlayerLoaded;
 
-        
+
         private void Awake()
         {
             _weaponObj = GetComponentInChildren<WeaponPhoton>();
-            
+
             if (photonView.IsMine)
             {
                 LocalPlayerInstance = gameObject;
@@ -53,6 +53,7 @@ namespace Player
 
         private void DisableScripts()
         {
+            _weaponObj.GetComponent<WeaponScript>().enabled = false;
             GetComponent<PlayerMovement>().enabled = false;
             GetComponentInChildren<PlayerInventory>().enabled = false;
             GetComponentInChildren<Respawn>().enabled = false;

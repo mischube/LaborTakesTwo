@@ -206,6 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1504431538775554854}
   - component: {fileID: 1504431538775554855}
+  - component: {fileID: 7555907662265491475}
   - component: {fileID: 7910142604564455571}
   - component: {fileID: 1504431538775554852}
   - component: {fileID: 1047253470696002284}
@@ -216,6 +217,7 @@ GameObject:
   - component: {fileID: 4027590028795705597}
   - component: {fileID: 6106331426431389882}
   - component: {fileID: 1317406428685864519}
+  - component: {fileID: 3860370542197682016}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -268,6 +270,19 @@ MonoBehaviour:
   dashTime: 0.5
   jumpHeight: 3
   groundDistance: 0.4
+--- !u!114 &7555907662265491475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504431538775554853}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fa376d8dcf3a04396dae2518af1591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  plantType: {fileID: 0}
 --- !u!114 &7910142604564455571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -324,6 +339,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: -4350774455710407121}
   - {fileID: 6106331426431389882}
+  - {fileID: 3860370542197682016}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -435,6 +451,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3860370542197682016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504431538775554853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f2c9655424b48d4eb12f1afe9a5d366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1504431538856185672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,9 +2006,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   iceParticle: 0
-  icerod: {fileID: 0}
   fireParticle: 0
-  firerod: {fileID: 0}
+  wateringParticle: 0
 --- !u!114 &6839634904867956317
 MonoBehaviour:
   m_ObjectHideFlags: 0
