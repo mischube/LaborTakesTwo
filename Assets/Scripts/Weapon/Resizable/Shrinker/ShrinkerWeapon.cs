@@ -6,6 +6,9 @@ namespace Weapon.Resizable.Shrinker
         {
             var hit = DoRayCast();
 
+            if (hit == null)
+                return;
+
             if (hit.TryGetComponent<Shrinkable>(out var resizable))
                 ResizeInternal(resizable);
         }

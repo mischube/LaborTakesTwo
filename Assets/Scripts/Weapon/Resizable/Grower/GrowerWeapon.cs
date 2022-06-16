@@ -6,6 +6,9 @@ namespace Weapon.Resizable.Grower
         {
             var hit = DoRayCast();
 
+            if (hit == null)
+                return;
+
             if (hit.transform.TryGetComponent<Growable>(out var resizable))
                 ResizeInternal(resizable);
         }
