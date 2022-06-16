@@ -1,4 +1,6 @@
 using System;
+using JetBrains.Annotations;
+using Photon.Pun;
 
 namespace Weapon.Resizable.Shrinker
 {
@@ -11,7 +13,15 @@ namespace Weapon.Resizable.Shrinker
                 throw new InvalidOperationException("Resize factor must be negative to shrink something");
             }
 
-            ResizeInternal();
+            RPCCall(nameof(ShrinkPhoton));
+        }
+
+
+        [PunRPC]
+        [UsedImplicitly]
+        public void ShrinkPhoton()
+        {
+            transform.localScale *= resizeFactor;
         }
     }
 }

@@ -1,8 +1,9 @@
+using Photon.Pun;
 using UnityEngine;
 
 namespace Weapon.Resizable
 {
-    public abstract class Resizable : MonoBehaviour
+    public abstract class Resizable : MonoBehaviourPun
     {
         [SerializeField] protected float resizeFactor;
 
@@ -10,9 +11,9 @@ namespace Weapon.Resizable
 
         public abstract void Resize();
 
-        protected void ResizeInternal()
+        protected void RPCCall(string methodName)
         {
-            transform.localScale *= resizeFactor;
+            photonView.RPC(methodName, RpcTarget.All);
         }
     }
 }

@@ -1,4 +1,6 @@
 using System;
+using JetBrains.Annotations;
+using Photon.Pun;
 
 namespace Weapon.Resizable.Grower
 {
@@ -11,7 +13,15 @@ namespace Weapon.Resizable.Grower
                 throw new InvalidOperationException("Resize factor must be positive to grow something");
             }
 
-            ResizeInternal();
+            RPCCall(nameof(GrowPhoton));
+        }
+
+
+        [PunRPC]
+        [UsedImplicitly]
+        public void GrowPhoton()
+        {
+            transform.localScale *= resizeFactor;
         }
     }
 }
