@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/IceAndFirePlayground.unity
     guid: 1c857390f28dfd4468a14909d0f61828
+  - enabled: 1
+    path: Assets/Scenes/FireAndIceLevel.unity
+    guid: 38f431f4c96edca48a6acf66da5be870
   m_configObjects: {}

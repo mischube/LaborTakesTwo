@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Cannon.meta
 guid: 10f2eebd0e769b74ba18259881e5a5b1
 folderAsset: yes
+|||||||| 9775e21:Assets/A_Polytope Studio/Lowpoly Medieval Environments/SRP/PT_Environment_Pack_URP_7.5.3.unitypackage.meta
+guid: 07ecfad19cbdf1c409552991e72ee5e9
+========
+guid: 38f431f4c96edca48a6acf66da5be870
+>>>>>>>> master:Assets/Scenes/FireAndIceLevel.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
