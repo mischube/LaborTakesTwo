@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class ElementObject : MonoBehaviour
 {
+    [SerializeField] private Material waterMaterial;
+    [SerializeField] private Material iceMaterial;
+    
     private void OnParticleCollision(GameObject other)
     {
         if (other.name.Contains("Fire"))
@@ -22,7 +25,7 @@ public class ElementObject : MonoBehaviour
         if (transform.gameObject.layer == 12)
         {
             transform.gameObject.layer = 4;
-            GetComponent<Renderer>().material.color = Color.blue;
+            GetComponent<Renderer>().material = waterMaterial;
             transform.tag = "Untagged";
         }else if (transform.gameObject.layer == 13)
         {
@@ -35,7 +38,7 @@ public class ElementObject : MonoBehaviour
         if (transform.gameObject.layer == 4)
         {
             transform.gameObject.layer = 12;
-            GetComponent<Renderer>().material.color = Color.cyan;
+            GetComponent<Renderer>().material = iceMaterial;
             transform.tag = "Destroyable";
         }
     }
