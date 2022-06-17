@@ -1,5 +1,4 @@
 using Photon.Pun;
-using Player;
 using UnityEngine;
 using Weapon;
 
@@ -7,7 +6,6 @@ public class WateringCan : WeaponScript
 {
     [SerializeField] private ParticleSystem particleSystem;
     private PhotonParticle photonParticle;
-    public PhotonPlant photonPlant;
     private CharacterController cc;
 
     private GameObject player;
@@ -53,7 +51,6 @@ public class WateringCan : WeaponScript
     public override void SecondaryAction()
     {
         player = transform.root.gameObject;
-        photonPlant = player.gameObject.GetComponent<PhotonPlant>();
         takeoverCenter = player.transform.position;
         Collider[] hitColliders = Physics.OverlapSphere(takeoverCenter, takeoverRadius);
 
@@ -70,7 +67,7 @@ public class WateringCan : WeaponScript
             {
                 currentPlant = hitCollider.transform.GetChild(0);
                 EnableGrowablePlantPolymorph();
-                
+
                 oldPlantPosition = hitCollider.transform.GetChild(0).position;
                 var minY = hitCollider.transform.GetChild(0).GetComponent<Renderer>().bounds.min.y;
                 oldPlantParent = hitCollider.gameObject;
@@ -133,7 +130,7 @@ public class WateringCan : WeaponScript
             DisableAllPolymorphs();
             currentPlant.SetParent(oldPlantParent.transform);
             player.transform.position = oldPlantPosition;
-            player.transform.GetComponent<PlayerMovement>().enabled = true;
+            player.transform.GetComponent<Player.PlayerMovement>().enabled = true;
             oldPlantParent.transform.GetComponent<PlantType>().SetPlayerPlanted(false);
             foreach (var plant in player.transform.GetComponent<SnakeMovement>().ReturnPlantList())
             {
@@ -149,13 +146,13 @@ public class WateringCan : WeaponScript
     private void EnableSnakePlantPolymorph()
     {
         cc = player.GetComponent<CharacterController>();
+        player.GetComponent<Player.PlayerMovement>().enabled = false;
+        player.GetComponent<SnakeMovement>().enabled = true;
         cc.enabled = false;
         player.transform.Find("Cylinder").gameObject.SetActive(false);
         player.transform.Find("Cube").gameObject.SetActive(false);
         player.transform.Find("Inventory").gameObject.SetActive(false);
         player.transform.Find("GroundCheck").gameObject.SetActive(false);
-        player.transform.GetComponent<PlayerMovement>().enabled = false;
-        player.transform.GetComponent<SnakeMovement>().enabled = true;
         polymorphSnakeActive = true;
     }
 
