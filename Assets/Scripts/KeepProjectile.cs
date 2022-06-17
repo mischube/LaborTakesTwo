@@ -24,10 +24,7 @@ public class KeepProjectile : MonoBehaviour
                 GameObject projectile = Instantiate(ProjectilePrefab,
                     transform.position, transform.rotation);
                 projectile.GetComponent<MoveProjectileAndDestroy>().enabled = false;
-                if (partNameOfProjectile.Equals("Fire"))
-                {
-                    projectile.transform.position = new Vector3(projectile.transform.position.x,projectile.transform.position.y-1f,projectile.transform.position.z);
-                }
+                projectile.transform.position = new Vector3(projectile.transform.position.x,projectile.transform.position.y-1f,projectile.transform.position.z);
             }
         }
     }
