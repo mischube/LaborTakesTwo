@@ -16,7 +16,7 @@ public class CannonballDmg : MonoBehaviour
         if (other.transform.tag.Equals("Boss"))
         {
             BossHealth bossHealth = other.GetComponent<BossHealth>();
-            bossHealth.DamageBoss(3f);
+            bossHealth.DamageBoss(1f);
             cannonball.DestoryWholeGameobject();
         }
     }
