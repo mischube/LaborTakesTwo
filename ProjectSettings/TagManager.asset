@@ -14,6 +14,7 @@ TagManager:
   - Plant
   - Growable
   - GrownSnake
+  - Projectile
   layers:
   - Default
   - TransparentFX
