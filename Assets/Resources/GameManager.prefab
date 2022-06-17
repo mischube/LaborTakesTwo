@@ -94,6 +94,8 @@ MonoBehaviour:
     position: {x: 0, y: 1, z: 0}
   - scene: 4
     position: {x: 0, y: 2, z: 0}
+  - scene: 5
+    position: {x: -29, y: 2, z: 3}
 --- !u!114 &-1041576544709154611
 MonoBehaviour:
   m_ObjectHideFlags: 0
