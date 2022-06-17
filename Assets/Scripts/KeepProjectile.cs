@@ -8,6 +8,8 @@ public class KeepProjectile : MonoBehaviour
 {
     private bool activatedOnce;
     [SerializeField] private String[] possibleTags;
+    [SerializeField] private GameObject ProjectilePrefab;
+    [SerializeField] private String partNameOfProjectile;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -16,11 +18,11 @@ public class KeepProjectile : MonoBehaviour
             
         foreach (var wantedTag in possibleTags)
         {
-            if (other.transform.tag.Equals(wantedTag))
+            if (other.transform.tag.Equals(wantedTag) && wantedTag.Contains(partNameOfProjectile))
             {
                 activatedOnce = true;
-                GameObject projectile = PhotonNetwork.Instantiate(other.name.Substring(0, other.name.Length - 7),
-                    new Vector3(transform.position.x, transform.position.y - 1, transform.position.z), transform.rotation);
+                GameObject projectile = Instantiate(ProjectilePrefab,
+                    transform.position, transform.rotation);
                 projectile.GetComponent<MoveProjectileAndDestroy>().enabled = false;
             }
         }

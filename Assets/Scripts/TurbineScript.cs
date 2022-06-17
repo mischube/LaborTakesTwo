@@ -11,7 +11,8 @@ public class TurbineScript : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-        if (other.transform.name.Contains("smoke") && !openOnce)
+        Debug.Log(other);
+        if (other.transform.name.Contains("Smoke") && !openOnce)
         {
             openOnce = true;
             door.Open();
