@@ -9,18 +9,26 @@ namespace Door
         [SerializeField] private Door door;
         [SerializeField] private bool closeOnLeave;
         [SerializeField] private String[] possibleTags;
+        [SerializeField] private bool shouldOnlyOpenOnce;
         private bool openedOnce;
 
         private void OnTriggerEnter(Collider other)
         {
             if (openedOnce && !closeOnLeave)
                 return;
+
+            if (shouldOnlyOpenOnce)
+                openedOnce = true;
+
+            if (possibleTags.Length == 0)
+            {
+                door.Open();
+            }
             
             foreach (var wantedTag in possibleTags)
             {
                 if (other.transform.tag.Equals(wantedTag))
                 {
-                    openedOnce = true;
                     door.Open();
                 }
             }
@@ -31,6 +39,11 @@ namespace Door
             if (!closeOnLeave)
             {
                 return;
+            }
+            
+            if (possibleTags.Length == 0)
+            {
+                door.Close();
             }
 
             foreach (var wantedTag in possibleTags)
