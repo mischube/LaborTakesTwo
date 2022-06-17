@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class threeBlockDmg : MonoBehaviour
+public class ThreeBlockDmg : MonoBehaviour
 {
     [SerializeField]
     private BossHealth bossHealth;
