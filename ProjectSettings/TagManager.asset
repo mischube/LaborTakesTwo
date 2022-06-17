@@ -10,7 +10,10 @@ TagManager:
   - GameManager
   - UI
   - Boss
-  - Projectile
+  - Grown
+  - Plant
+  - Growable
+  - GrownSnake
   layers:
   - Default
   - TransparentFX
@@ -25,11 +28,11 @@ TagManager:
   - Interactable
   - 
   - Ice
-  - Plant
+  - 
   - 
   - BeamIce
   - BeamFire
-  - Turbine
+  - 
   - 
   - 
   - 
