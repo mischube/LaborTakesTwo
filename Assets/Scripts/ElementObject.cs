@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class ElementObject : MonoBehaviour
 {
-    private void Start()
-    {
-        GetComponent<Renderer>().material.color = Color.cyan;
-        transform.tag = "Destroyable";
-    }
-
     private void OnParticleCollision(GameObject other)
     {
         if (other.name.Contains("Fire"))
