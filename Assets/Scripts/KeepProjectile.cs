@@ -18,12 +18,16 @@ public class KeepProjectile : MonoBehaviour
             
         foreach (var wantedTag in possibleTags)
         {
-            if (other.transform.tag.Equals(wantedTag) && wantedTag.Contains(partNameOfProjectile))
+            if (other.transform.tag.Equals(wantedTag) && other.name.Contains(partNameOfProjectile))
             {
                 activatedOnce = true;
                 GameObject projectile = Instantiate(ProjectilePrefab,
                     transform.position, transform.rotation);
                 projectile.GetComponent<MoveProjectileAndDestroy>().enabled = false;
+                if (partNameOfProjectile.Equals("Fire"))
+                {
+                    projectile.transform.position = new Vector3(projectile.transform.position.x,projectile.transform.position.y-1f,projectile.transform.position.z);
+                }
             }
         }
     }
