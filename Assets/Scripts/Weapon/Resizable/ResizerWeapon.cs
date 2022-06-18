@@ -84,7 +84,7 @@ namespace Weapon.Resizable
         {
             var player = PlayerNetworking.LocalPlayerInstance;
 
-            var playerMovement = player.GetComponent<PlayerMovement>();
+            var playerMovement = player.GetComponent<Player.PlayerMovement>();
             playerMovement.characterController.stepOffset *= scaleDiff;
 
             playerMovement.speed *= scaleDiff;
