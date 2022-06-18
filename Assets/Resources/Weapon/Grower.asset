@@ -15,5 +15,5 @@ MonoBehaviour:
   name: Grower
   description: You can grow things with it (Use a watering can for plants)
   animatorController: {fileID: 9100000, guid: d4e023b83854a7742a92ac7b46d5cc91, type: 2}
-  body: {fileID: 4799185309550705924, guid: 0a5f006db72ef9447b6ff6aa42cbea3b, type: 3}
+  body: {fileID: 4799185309550705924, guid: 4476f56fc640ac14581e08237819ea2c, type: 3}
   icon: {fileID: 21300000, guid: 1e394b431e54ea541b6ef3818559e2a2, type: 3}
