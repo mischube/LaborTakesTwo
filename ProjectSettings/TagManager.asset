@@ -10,6 +10,11 @@ TagManager:
   - GameManager
   - UI
   - Boss
+  - Grown
+  - Plant
+  - Growable
+  - GrownSnake
+  - Projectile
   layers:
   - Default
   - TransparentFX
