@@ -56,6 +56,7 @@ namespace Weapon.Resizable
         protected override void OnEnable()
         {
             _lineRenderer = gameObject.AddComponent<LineRenderer>();
+            _lineRenderer.positionCount = 0;
             _lineRenderer.startWidth = thickness;
             _lineRenderer.endWidth = thickness;
             _playerFocus = GetComponentInParent<PlayerFocus>();
