@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 2651866290148876717}
   - component: {fileID: 2651866290148876716}
   - component: {fileID: 2651866290148876708}
-  - component: {fileID: 2651866290148876709}
   m_Layer: 10
   m_Name: "Gie\xDFkanne Pickupable"
   m_TagString: Player
@@ -68,7 +67,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponContainer: {fileID: 11400000, guid: 8108216f2dd860e4e8645f9ed372a788, type: 2}
   particleSystem: {fileID: 6732991696010022685, guid: bb6d073d87ee9e34fb488f88d078d9d9, type: 3}
-  photonPlant: {fileID: 0}
 --- !u!65 &2651866290148876712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -162,18 +160,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2651866290148876718}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2651866290148876709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2651866290148876718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 731b59aef011ef944bf739e8b79bf781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2651866290441576948
 GameObject:
   m_ObjectHideFlags: 0

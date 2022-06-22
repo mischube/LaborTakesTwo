@@ -40,7 +40,7 @@ namespace Player
         {
             if (_isLocked)
             {
-                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 _isLocked = false;
             } else
