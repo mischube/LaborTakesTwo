@@ -13,12 +13,12 @@ namespace Player
         public LayerMask groundMask;
 
         //Serialize fields
-        [SerializeField] private float speed = 12f;
+        public float speed = 12f;
+        public float jumpHeight = 3f;
+        public float dashSpeed = 200f;
         [SerializeField] private float gravity = -9.81f;
-        [SerializeField] private float dashSpeed = 200f;
         [SerializeField] private float dashCooldown = 3f;
         [SerializeField] private float dashTime = 0.5f;
-        [SerializeField] private float jumpHeight = 3f;
         [SerializeField] private float groundDistance = 0.4f;
 
         //general variables
