@@ -6,7 +6,7 @@ namespace Global
     {
         [StringEnum("Start")] Start,
         [StringEnum("Tutorial")] Tutorial,
-        [StringEnum("Advanced")] Advanced,
+        [StringEnum("ResizerLevel")] ResizerLevel,
         [StringEnum("Boss")] Boss,
         [StringEnum("FireAndIceLevel")] FireAndIceLevel
     }
