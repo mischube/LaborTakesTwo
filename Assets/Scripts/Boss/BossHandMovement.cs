@@ -30,11 +30,11 @@ public class BossHandMovement : MonoBehaviour
 
         transform.position += moveDirection * (speed * Time.deltaTime);
 
-        if (transform.position.y < 0f || transform.position.y > 10f)
+        if (transform.position.y < 2f || transform.position.y > 10f)
         {
             _changeDirection = true;
             
-            if (transform.position.y < 2f)
+            if (transform.position.y < 2.5f)
             {
                 bossShockwave.StartShockwave();
             }
