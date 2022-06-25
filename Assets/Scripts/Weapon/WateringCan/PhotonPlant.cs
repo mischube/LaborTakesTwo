@@ -10,7 +10,7 @@ public class PhotonPlant : MonoBehaviour, IPunObservable
     private Vector3 plantPosition;
     private Vector3 plantScale;
 
-    private bool currentlyAnPlant;
+    public bool currentlyAnPlant;
     private bool alreadyAnPlant;
     private bool ownerOfPlant;
     private bool whichPlantUsed;
