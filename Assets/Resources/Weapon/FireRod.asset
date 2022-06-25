@@ -16,4 +16,4 @@ MonoBehaviour:
   description: Press F to pick up
   animatorController: {fileID: 9100000, guid: e5015c39533ddcc43955fa9f6a317730, type: 2}
   body: {fileID: 2159540638894780878, guid: 42871680b912d0e48ab718ef06fbb58a, type: 3}
-  icon: {fileID: 21300000, guid: 75b9c165539d63b439d79f5f7d3ac2b8, type: 3}
+  icon: {fileID: 21300000, guid: 19cda384849d3e644bd66b13ed52df60, type: 3}
