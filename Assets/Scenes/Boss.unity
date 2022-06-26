@@ -9835,7 +9835,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-6466
+  m_Name: pb_Mesh-50548
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -12750,6 +12750,10 @@ PrefabInstance:
     - target: {fileID: 6205522719646125321, guid: c90e393377f5bbc479e04be0ebeb1eb1, type: 3}
       propertyPath: sceneViewId
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6877294631104112615, guid: c90e393377f5bbc479e04be0ebeb1eb1, type: 3}
+      propertyPath: maxSnakeRange
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c90e393377f5bbc479e04be0ebeb1eb1, type: 3}
