@@ -74,26 +74,6 @@ namespace Weapon.Resizable
         }
 
 
-        protected void ResizePlayerInternal(Resizable resizable)
-        {
-            ResizeInternal(resizable);
-            UpdatePlayerStats(resizable.ResizeFactor);
-        }
-
-
-        private void UpdatePlayerStats(float scaleDiff)
-        {
-            var player = PlayerNetworking.LocalPlayerInstance;
-
-            var playerMovement = player.GetComponent<Player.PlayerMovement>();
-            playerMovement.characterController.stepOffset *= scaleDiff;
-
-            playerMovement.speed *= scaleDiff;
-            playerMovement.dashSpeed *= scaleDiff;
-            playerMovement.jumpHeight *= scaleDiff;
-        }
-
-
         private IEnumerator ResetLineRenderer()
         {
             yield return new WaitForSeconds(cooldown);

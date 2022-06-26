@@ -22,6 +22,11 @@ namespace Weapon.Resizable.Grower
         public void GrowPhoton()
         {
             transform.localScale *= resizeFactor;
+
+            if (!isPlayer)
+                return;
+
+            UpdatePlayerStats();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Weapon.Resizable.Grower
         public override void SecondaryAction()
         {
             var growable = GetComponentInParent<Growable>();
-            ResizePlayerInternal(growable);
+            ResizeInternal(growable);
         }
     }
 }
