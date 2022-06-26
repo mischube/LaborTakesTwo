@@ -16,7 +16,7 @@ namespace Weapon.Resizable.Shrinker
         public override void SecondaryAction()
         {
             var shrinkable = GetComponentInParent<Shrinkable>();
-            ResizePlayerInternal(shrinkable);
+            ResizeInternal(shrinkable);
         }
     }
 }
