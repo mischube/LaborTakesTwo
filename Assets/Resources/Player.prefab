@@ -511,6 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resizeFactor: 0.95
+  isPlayer: 1
 --- !u!114 &751339766855765654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +525,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resizeFactor: 1.05
+  isPlayer: 1
 --- !u!114 &6615329267205031917
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -22,6 +22,11 @@ namespace Weapon.Resizable.Shrinker
         public void ShrinkPhoton()
         {
             transform.localScale *= resizeFactor;
+            
+            if (!isPlayer)
+                return;
+
+            UpdatePlayerStats();
         }
     }
 }
