@@ -8,10 +8,6 @@ public class Cannon : MonoBehaviourPun
 
     public void ShootCannonBall()
     {
-        if (!photonView.IsMine)
-            return;
-        
-        PhotonNetwork.Instantiate
-            (cannonBallPrefab.name, cannonBallShootingPosition.position, transform.rotation);
+        Instantiate(cannonBallPrefab, cannonBallShootingPosition.position, transform.rotation);
     }
 }

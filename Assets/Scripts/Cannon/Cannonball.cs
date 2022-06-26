@@ -16,9 +16,6 @@ public class Cannonball : MonoBehaviourPun
 
     public void DestoryWholeGameobject()
     {
-        if (!photonView.IsMine)
-            return;
-        
-        PhotonNetwork.Destroy(gameObject);
+        Destroy(gameObject);
     }
 }
