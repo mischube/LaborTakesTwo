@@ -19,9 +19,9 @@ namespace Weapon.Resizable
 
         protected void UpdatePlayerStats()
         {
-            var player = PlayerNetworking.LocalPlayerInstance;
+            Debug.LogFormat("resizing player stats: obj={0}, factor= {1}", gameObject, resizeFactor);
 
-            var playerMovement = player.GetComponent<Player.PlayerMovement>();
+            var playerMovement = GetComponent<Player.PlayerMovement>();
             playerMovement.characterController.stepOffset *= resizeFactor;
 
             playerMovement.speed *= resizeFactor;

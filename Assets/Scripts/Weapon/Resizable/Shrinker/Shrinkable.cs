@@ -1,6 +1,7 @@
 using System;
 using JetBrains.Annotations;
 using Photon.Pun;
+using UnityEngine;
 
 namespace Weapon.Resizable.Shrinker
 {
@@ -21,6 +22,8 @@ namespace Weapon.Resizable.Shrinker
         [UsedImplicitly]
         public void ShrinkPhoton()
         {
+            Debug.LogFormat("Shrinking {0}", gameObject);
+            
             transform.localScale *= resizeFactor;
             
             if (!isPlayer)

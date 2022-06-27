@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponContainer: {fileID: 11400000, guid: d3c85f2f3bbd10740ab49670cca742bd, type: 2}
-  interactionDistance: 20
+  interactionDistance: 30
   thickness: 0.25
   interactableMask:
     serializedVersion: 2
