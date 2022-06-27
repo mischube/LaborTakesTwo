@@ -83,9 +83,9 @@ public class BossShockwave : MonoBehaviourPun
                 {
                     if (player.transform.position.y < 1.3f)
                     {
-                        if (photonView.IsMine)
+                        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+                        if (playerHealth != null)
                         {
-                            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
                             playerHealth.DamagePlayer(shockWaveDmg);
                         }
                     }
