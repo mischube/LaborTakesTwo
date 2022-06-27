@@ -300,7 +300,7 @@ MonoBehaviour:
   speed: 12
   jumpHeight: 3
   dashSpeed: 20
-  gravity: -12
+  gravity: -19.62
   dashCooldown: 3
   dashTime: 0.5
   groundDistance: 0.4
