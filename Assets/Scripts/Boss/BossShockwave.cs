@@ -83,8 +83,7 @@ public class BossShockwave : MonoBehaviourPun
                 {
                     if (player.transform.position.y < 1.3f)
                     {
-                        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-                        if (playerHealth != null)
+                        if (player.TryGetComponent(out PlayerHealth playerHealth))
                         {
                             playerHealth.DamagePlayer(shockWaveDmg);
                         }
