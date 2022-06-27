@@ -1,9 +1,9 @@
 using System.Collections;
-using Photon.Pun;
+using System.Linq;
 using Player;
 using UnityEngine;
 
-public class BossShockwave : MonoBehaviourPun
+public class BossShockwave : MonoBehaviour
 {
     public LineRenderer lineRenderer;
     public int pointsCount;
@@ -67,12 +67,9 @@ public class BossShockwave : MonoBehaviourPun
             //if they are in inner circle dont get hit and be deletet of list
             for (int i = 0; i < outerCircle.Length; i++)
             {
-                for (int j = 0; j < innerCircle.Length; j++)
+                if (innerCircle.Contains(outerCircle[i]))
                 {
-                    if (outerCircle[i].Equals(innerCircle[j]))
-                    {
-                        outerCircle.SetValue(null,i);
-                    }
+                    outerCircle[i] = null;
                 }
             }
 
