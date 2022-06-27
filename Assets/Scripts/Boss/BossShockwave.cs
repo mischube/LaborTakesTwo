@@ -1,8 +1,9 @@
 using System.Collections;
+using Photon.Pun;
 using Player;
 using UnityEngine;
 
-public class BossShockwave : MonoBehaviour
+public class BossShockwave : MonoBehaviourPun
 {
     public LineRenderer lineRenderer;
     public int pointsCount;
@@ -82,8 +83,11 @@ public class BossShockwave : MonoBehaviour
                 {
                     if (player.transform.position.y < 1.3f)
                     {
-                        PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-                        playerHealth.DamagePlayer(shockWaveDmg);
+                        if (photonView.IsMine)
+                        {
+                            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+                            playerHealth.DamagePlayer(shockWaveDmg);
+                        }
                     }
                 }
             }
