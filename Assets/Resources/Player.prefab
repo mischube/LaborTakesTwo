@@ -296,7 +296,7 @@ MonoBehaviour:
   groundCheck: {fileID: 601995945853297250}
   groundMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 8704
   speed: 12
   jumpHeight: 3
   dashSpeed: 20

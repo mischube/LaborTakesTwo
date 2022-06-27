@@ -2,11 +2,19 @@ using UnityEngine;
 
 public class OnDestroyDoThis : MonoBehaviour
 {
-    [SerializeField]
-    private Door.Door door;
-    
+    [SerializeField] private Door.Door door;
+    [SerializeField] private ThreeBlockDmg threeBlockDmg;
+
     private void OnDestroy()
     {
-        door.Open();
+        if (door!=null)
+        {
+            door.Open();
+        }
+        
+        if (threeBlockDmg != null)
+        {
+            threeBlockDmg.setCounterUp();
+        }
     }
 }
