@@ -1,6 +1,7 @@
 using System;
 using JetBrains.Annotations;
 using Photon.Pun;
+using UnityEngine;
 
 namespace Weapon.Resizable.Grower
 {
@@ -21,6 +22,8 @@ namespace Weapon.Resizable.Grower
         [UsedImplicitly]
         public void GrowPhoton()
         {
+            Debug.LogFormat("Growing {0}", gameObject);
+            
             transform.localScale *= resizeFactor;
 
             if (!isPlayer)
