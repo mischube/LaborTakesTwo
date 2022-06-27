@@ -12,6 +12,10 @@ public class BossHandMovement : MonoBehaviour
     private float speed = 5f;
     private bool _changeDirection;
 
+    private float maxHandHeight = 10f;
+    private float minHandHeight = 2f;
+    private float shockwaveActivationHeight = 2.5f;
+
     private void Start()
     {
         if (leftHand)
@@ -30,11 +34,11 @@ public class BossHandMovement : MonoBehaviour
 
         transform.position += moveDirection * (speed * Time.deltaTime);
 
-        if (transform.position.y < 2f || transform.position.y > 10f)
+        if (transform.position.y < minHandHeight || transform.position.y > maxHandHeight)
         {
             _changeDirection = true;
             
-            if (transform.position.y < 2.5f)
+            if (transform.position.y < shockwaveActivationHeight)
             {
                 bossShockwave.StartShockwave();
             }
