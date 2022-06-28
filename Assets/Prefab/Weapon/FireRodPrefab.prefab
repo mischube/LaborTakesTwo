@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2159540638894780873}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FireRodPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}

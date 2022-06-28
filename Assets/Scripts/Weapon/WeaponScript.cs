@@ -37,5 +37,10 @@ namespace Weapon
         public abstract void PrimaryAction();
 
         public abstract void SecondaryAction();
+
+        public virtual void CopyParameters(WeaponScript original)
+        {
+            weaponContainer = original.weaponContainer;
+        }
     }
 }

@@ -1599,7 +1599,7 @@ GameObject:
   - component: {fileID: 3240820937784006050}
   - component: {fileID: 4401019681290474739}
   - component: {fileID: 3216511643938982879}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Shrinker_Modell
   m_TagString: Player
   m_Icon: {fileID: 0}

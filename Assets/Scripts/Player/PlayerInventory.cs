@@ -52,7 +52,7 @@ namespace Player
 
             //clone script
             var newWeaponClone = _weaponHolder.AddComponent(newWeapon.GetType()) as WeaponScript;
-            newWeaponClone!.weaponContainer = newWeapon.weaponContainer;
+            newWeaponClone!.CopyParameters(newWeapon);
 
             //integrate in inventory
             newWeaponClone.enabled = false;

@@ -9,8 +9,8 @@ namespace Weapon.Resizable
     {
         [SerializeField] protected float interactionDistance = 20f;
         [SerializeField] protected float thickness = 0.25f;
-        [SerializeField] protected LayerMask interactableMask = ~0;
-        [SerializeField] protected float cooldown = 0.75f;
+        [SerializeField] protected LayerMask interactableMask;
+        [SerializeField] protected float cooldown = 0.5f;
 
         private LineRenderer _lineRenderer;
         private PlayerFocus _playerFocus;
@@ -80,6 +80,18 @@ namespace Weapon.Resizable
 
             _lineRenderer.Reset();
             _isReady = true;
+        }
+
+        public override void CopyParameters(WeaponScript original)
+        {
+            base.CopyParameters(original);
+
+            if (!(original is ResizerWeapon resizerWeapon))
+                return;
+
+            interactableMask = resizerWeapon.interactableMask;
+            interactionDistance = resizerWeapon.interactionDistance;
+            cooldown = resizerWeapon.cooldown;
         }
     }
 }
