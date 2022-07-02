@@ -101,6 +101,13 @@ Bei folgenden Themen konnten wir besonders viel Erfahrung sammeln (da wir die me
 - https://assetstore.unity.com/packages/2d/textures-materials/stone/hand-painted-stone-textures-28645
 - https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-volume-2-nebula-3392
 
+## Technologien
+
+- Photon PUN
+- ProBuilder
+- ProGrids
+- Cinemachine
+
 ## Dokumentation
 
 Hier stehen alle Ideen, Meetings und Präsentationsvorbereitungen
