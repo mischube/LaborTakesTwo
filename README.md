@@ -5,7 +5,7 @@
 |----------------|---------|
 |Alexander Justus|  202959 |
 |Mike Schubert   |  202220 |
-|Dennis Weber    |  20???? |
+|Dennis Weber    |  202394 |
 
 ## Besonderheiten des Projekts
 
@@ -97,6 +97,11 @@ Bei folgenden Themen konnten wir besonders viel Erfahrung sammeln (da wir die me
 - https://assetstore.unity.com/packages/3d/environments/landscapes/lowpoly-environment-pack-99479
 - https://assetstore.unity.com/packages/3d/environments/landscapes/free-low-poly-nature-forest-205742
 - https://assetstore.unity.com/packages/3d/props/exterior/low-poly-brick-houses-131899
+
+## Dokumentation
+
+Hier stehen alle Ideen, Meetings und Präsentationsvorbereitungen
+https://docs.google.com/document/d/1hfgJ5XBw0JGtW6MCj486S43_ZLwAsgodCdGVBiRQ-9s/edit?usp=sharing
 
 ## Playthrough Video (10min) 
 
