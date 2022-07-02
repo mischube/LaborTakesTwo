@@ -36,7 +36,7 @@ ungefähr noch mal die hälfte der Zeit, die wir für die Entwicklung der Mechan
 
 Durch das verwenden von Scriptable Objects war es uns möglich, unsere Waffen nach einem Bauplan schnell und einfach
 zu erstellen, so hatten alle Waffen einen eigenen Animator, Werte und Daten sowie vordefinierte Methoden, die jede
-Waffe implementieren mussten (primary und secondary attack z. B.). Jede Waffe besteht aus 
+Waffe implementieren mussten (z. B. primary und secondary attack).
 
 So haben wir sechs verschiedene Waffen zur Verfügung
 gestellt.
