@@ -71,7 +71,7 @@ Zusätzlich haben wir probiert, unsere eigene Inspektor UI für Unity zu entwick
 Erleichtert. Leider jedoch hat es uns nicht überzeugen können und wurde daher verworfen bzw. nicht mehr weiter
 entwickelt.
 
-### Gesammelte Erfahrungen
+## Gesammelte Erfahrungen
 
 Bei folgenden Themen konnten wir besonders viel Erfahrung sammeln (da wir die meisten davon kaum oder nie verwendet haben)
 - Animator
