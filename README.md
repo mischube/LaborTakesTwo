@@ -24,6 +24,8 @@ einfach, bestimmte Mechaniken zu testen, da wir dadurch nicht durch das gesamte 
 Um über das "PhotonNetwork" Objekte in einer Szene zu spawnen, ist es notwendig, einen Spawnpunkt anzugeben. 
 Des weiteren war es ein großes Hindernis, wenn die Spielerposition bei einem Szenenwechsel gleich bleibt.
 
+Für das Spawnsystem haben wir zu Beginn versucht, eine eigene Inspector UI zu schreiben, damit man schnell und einfach diese verwalten kann. Im Hintergrund sollte ein Dictionary diese speichern. Der Unity Inspector kann leider nicht mit Dictionaries umgehen wodurch der erste Gedanke war, eine eigene UI zu entwickeln. Nach einigen Stunden wurde entschieden, dass eine andere Architektur des Spawnsystems eine bessere Alternative darstellt und die Arbeit an einer solchen UI wurde verworfen.
+
 ### Photon
 
 Unsere größte Herausforderung hier war es, unser Spiel an Photon anzupassen. Dazu fanden wir über die gesamte
@@ -66,10 +68,6 @@ Damit der Spieler nicht jedes Mal erneut durch das ganze Level laufen muss, wenn
 verteilt. Diese sind sehr einfach zu verwenden und können daher ganz einfach platziert werden. Es muss lediglich das Prefab des
 Respawnpunktes platziert werden und schon ist es einsatzbereit. Der Spieler muss mit dem Collider des Respawnpunktes kollidieren,
 damit dieser als Punkt gespeichert wird.
-
-Zusätzlich haben wir probiert, unsere eigene Inspektor UI für Unity zu entwickeln, die uns die Arbeit für ...
-Erleichtert. Leider jedoch hat es uns nicht überzeugen können und wurde daher verworfen bzw. nicht mehr weiter
-entwickelt.
 
 ## Gesammelte Erfahrungen
 
