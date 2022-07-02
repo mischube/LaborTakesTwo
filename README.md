@@ -97,6 +97,9 @@ Bei folgenden Themen konnten wir besonders viel Erfahrung sammeln (da wir die me
 - https://assetstore.unity.com/packages/3d/environments/landscapes/lowpoly-environment-pack-99479
 - https://assetstore.unity.com/packages/3d/environments/landscapes/free-low-poly-nature-forest-205742
 - https://assetstore.unity.com/packages/3d/props/exterior/low-poly-brick-houses-131899
+- https://assetstore.unity.com/packages/3d/environments/fantasy/battle-cannon-70589
+- https://assetstore.unity.com/packages/2d/textures-materials/stone/hand-painted-stone-textures-28645
+- https://assetstore.unity.com/packages/2d/textures-materials/sky/skybox-volume-2-nebula-3392
 
 ## Dokumentation
 
